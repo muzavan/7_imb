@@ -120,7 +120,7 @@ class LokasiController extends Controller {
 		}
 		$lokasi->nama = $var['nama'];
 		$lokasi->fungsi = $var['fungsi'];
-		$lokasi->alamat = $var['lokasi'];
+		$lokasi->lokasi = $var['lokasi'];
 		$lokasi->jenis = $var['jenis'];
 		$lokasi->jumlah_lantai = $var['jumlah_lantai'];
 		$lokasi->dokumen = $fileSrc;

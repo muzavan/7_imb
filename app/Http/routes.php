@@ -50,6 +50,22 @@ Route::group(['prefix' => '/bangunans/bangunan/{id}'], function()
 
 /* Bangunan End */
 
+/* Lokasi Begin */
+Route::get('/lokasis','LokasiController@index');
+Route::get('/lokasis/create','LokasiController@create');
+Route::post('/lokasis','LokasiController@store');
+Route::group(['prefix' => '/lokasis/lokasi/{id}'], function()
+{
+    
+    Route::get('/','LokasiController@show');
+    Route::get('edit', 'LokasiController@edit');
+    Route::post('update','LokasiController@update');
+    Route::get('delete','LokasiController@destroy');
+
+});
+
+/* Lokasi End */
+
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
