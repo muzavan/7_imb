@@ -66,6 +66,22 @@ Route::group(['prefix' => '/lokasis/lokasi/{id}'], function()
 
 /* Lokasi End */
 
+/* Pemilik Begin */
+Route::get('/pemiliks','PemilikController@index');
+Route::get('/pemiliks/create','PemilikController@create');
+Route::post('/pemiliks','PemilikController@store');
+Route::group(['prefix' => '/pemiliks/pemilik/{id}'], function()
+{
+    
+    Route::get('/','PemilikController@show');
+    Route::get('edit', 'PemilikController@edit');
+    Route::post('update','PemilikController@update');
+    Route::get('delete','PemilikController@destroy');
+
+});
+
+/* Pemilik End */
+
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',

@@ -5,21 +5,29 @@
 		<div class='col-md-3'>
 		</div>
 		<div class='col-md-6'>
-			{!! Form::open() !!}
+			{!! Form::open(['url' => '/pemiliks']) !!}
 			<div class='form-group'>
-				{!! Form::label('judul','Judul:') !!}
-				{!! Form::text('judul',null,['class' => 'form-control']) !!}
+				{!! Form::label('nama','Nama:') !!}
+				{!! Form::text('nama',null,['class' => 'form-control']) !!}
 			</div>
 			<div class='form-group'>
-				{!! Form::label('konten','Konten:') !!}
-				{!! Form::textarea('konten',null,['class' => 'form-control']) !!}
+				{!! Form::label('alamat','Alamat:') !!}
+				{!! Form::textarea('alamat',null,['class' => 'form-control']) !!}
 			</div>
 			<div class='form-group'>
-				{!! Form::label('referensi','Referensi:') !!}
-				{!! Form::textarea('referensi','(Optional)',['class' => 'form-control','rows' => '4']) !!}
+				{!! Form::label('telepon','Telepon:') !!}
+				{!! Form::text('telepon',null,['class' => 'form-control']) !!}
 			</div>
 			<div class='form-group'>
-				{!! Form::submit('Tambah Informasi',['class' => 'btn btn-primary form-control']) !!}
+				{!! Form::label('fax','Fax:') !!}
+				{!! Form::text('fax',null,['class' => 'form-control']) !!}
+			</div>
+			<div class='form-group'>
+				{!! Form::label('email','Email:') !!}
+				{!! Form::email('email','pemilik@pemilik.com',['class' => 'form-control']) !!}
+			</div>
+			<div class='form-group'>
+				{!! Form::submit('Tambah Pemilik',['class' => 'btn btn-primary form-control']) !!}
 			</div>
 			{!! Form::close() !!}
 		</div>
