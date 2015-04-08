@@ -1,26 +1,26 @@
 @extends('app')
 
 @section('content')
-	@if($informasi)
+	@if($tanah)
 	<div class='row'>
 		<div class='col-md-3'>
 		</div>
 		<div class='col-md-6'>
-			{!! Form::open(['url' => "informasis/informasi/$informasi->id/update"]) !!}
+			{!! Form::open(['url' => "/tanahs/tanah/$tanah->id/update"]) !!}
 			<div class='form-group'>
-				{!! Form::label('judul','Judul:') !!}
-				{!! Form::text('judul',$informasi->judul,['class' => 'form-control']) !!}
+				{!! Form::label('nama_pemilik','Nama Pemilik:') !!}
+				{!! Form::text('nama_pemilik',$tanah->nama_pemilik,['class' => 'form-control']) !!}
 			</div>
 			<div class='form-group'>
-				{!! Form::label('konten','Konten:') !!}
-				{!! Form::textarea('konten',$informasi->konten,['class' => 'form-control']) !!}
+				{!! Form::label('luas','Luas:') !!}
+				{!! Form::text('luas',$tanah->luas,['class' => 'form-control']) !!}
 			</div>
 			<div class='form-group'>
-				{!! Form::label('referensi','Referensi:') !!}
-				{!! Form::textarea('referensi',$informasi->referensi,['class' => 'form-control','rows' => '4']) !!}
+				{!! Form::label('status_hak','Status:') !!}
+				{!! Form::select('status_hak',['1' => 'Benar', '2'=>'Salah'],'2',['class' => 'form-control']) !!}
 			</div>
 			<div class='form-group'>
-				{!! Form::submit('Ubah Informasi',['class' => 'btn btn-primary form-control']) !!}
+				{!! Form::submit('Tambah Tanah',['class' => 'btn btn-primary form-control']) !!}
 			</div>
 			{!! Form::close() !!}
 		</div>

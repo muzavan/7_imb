@@ -49,7 +49,14 @@ class PermohonanImbController extends Controller {
 	{
 		//$var = (new Request)->all();
 		$var = Request::all();
-		PermohonanImb::create($var);
+		$permohonan = new PermohonanImb();
+		$permohonan->id_lokasi = $var['id_lokasi'];
+		$permohonan->id_bangunan = $var['id_bangunan'];
+		$permohonan->id_pemilik = $var['id_pemilik'];
+		$permohonan->id_tanah = $var['id_tanah'];
+		$permohonan->id_pemohon = $var['id_pemohon'];
+		$permohonan->status = 0;
+		$permohonan->code = 0;
 		return redirect('/permohonanimbs');
 	}
 

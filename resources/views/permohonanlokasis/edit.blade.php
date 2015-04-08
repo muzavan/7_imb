@@ -1,26 +1,31 @@
 @extends('app')
 
 @section('content')
-	@if($informasi)
+	@if($permohonanlokasi)
 	<div class='row'>
 		<div class='col-md-3'>
 		</div>
 		<div class='col-md-6'>
-			{!! Form::open(['url' => "informasis/informasi/$informasi->id/update"]) !!}
+			{!! Form::open(['url' => "/permohonanlokasis/$permohonanlokasi->id/update"]) !!}
 			<div class='form-group'>
-				{!! Form::label('judul','Judul:') !!}
-				{!! Form::text('judul',$informasi->judul,['class' => 'form-control']) !!}
+				{!! Form::label('id_pemohon','ID Pemohon:') !!}
+				{!! Form::text('id_pemohon',$permohonanlokasi->id_pemohon,['class' => 'form-control']) !!}
+			</div>
+			
+			<div class='form-group'>
+				{!! Form::label('id_lokasi','ID Lokasi:') !!}
+				{!! Form::text('id_lokasi',$permohonanlokasi->id_lokasi,['class' => 'form-control']) !!}
 			</div>
 			<div class='form-group'>
-				{!! Form::label('konten','Konten:') !!}
-				{!! Form::textarea('konten',$informasi->konten,['class' => 'form-control']) !!}
+				{!! Form::label('status','Status:') !!}
+				{!! Form::text('status',$permohonanlokasi->status,['class' => 'form-control']) !!}
+				<div class='form-group'>
+				{!! Form::label('code','Code:') !!}
+				{!! Form::text('code',$permohonanlokasi->code,['class' => 'form-control']) !!}
+			</div>
 			</div>
 			<div class='form-group'>
-				{!! Form::label('referensi','Referensi:') !!}
-				{!! Form::textarea('referensi',$informasi->referensi,['class' => 'form-control','rows' => '4']) !!}
-			</div>
-			<div class='form-group'>
-				{!! Form::submit('Ubah Informasi',['class' => 'btn btn-primary form-control']) !!}
+				{!! Form::submit('Tambah Informasi',['class' => 'btn btn-primary form-control']) !!}
 			</div>
 			{!! Form::close() !!}
 		</div>

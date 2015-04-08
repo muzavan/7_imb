@@ -98,6 +98,55 @@ Route::group(['prefix' => '/pengaduans/pengaduan/{id}'], function()
 
 /* Pengaduan End */
 
+/* Tanah Begin */
+Route::get('/tanahs','TanahController@index');
+Route::get('/tanahs/create','TanahController@create');
+Route::post('/tanahs','TanahController@store');
+Route::group(['prefix' => '/tanahs/tanah/{id}'], function()
+{
+    
+    Route::get('/','TanahController@show');
+    Route::get('edit', 'TanahController@edit');
+    Route::post('update','TanahController@update');
+    Route::get('delete','TanahController@destroy');
+
+});
+
+/* Tanah End */
+
+/* PermohonanImb Begin */
+Route::get('/permohonanimbs','PermohonanImbController@index');
+Route::get('/permohonanimbs/create','PermohonanImbController@create');
+Route::post('/permohonanimbs','PermohonanImbController@store');
+Route::group(['prefix' => '/permohonanimbs/permohonanimb/{id}'], function()
+{
+    
+    Route::get('/','PermohonanImbController@show');
+    Route::get('edit', 'PermohonanImbController@edit');
+    Route::post('update','PermohonanImbController@update');
+    Route::get('delete','PermohonanImbController@destroy');
+
+});
+
+/* PermohonanImb End */
+
+/* PermohonanLokasi Begin */
+Route::get('/permohonanlokasis','PermohonanLokasiController@index');
+Route::get('/permohonanlokasis/create','PermohonanLokasiController@create');
+Route::post('/permohonanlokasis','PermohonanLokasiController@store');
+Route::group(['prefix' => '/permohonanlokasis/permohonanlokasi/{id}'], function()
+{
+    
+    Route::get('/','PermohonanLokasiController@show');
+    Route::get('edit', 'PermohonanLokasiController@edit');
+    Route::post('update','PermohonanLokasiController@update');
+    Route::get('delete','PermohonanLokasiController@destroy');
+
+});
+
+/* PermohonanLokasi End */
+
+
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',

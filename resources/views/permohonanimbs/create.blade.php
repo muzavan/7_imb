@@ -5,18 +5,26 @@
 		<div class='col-md-3'>
 		</div>
 		<div class='col-md-6'>
-			{!! Form::open() !!}
+			{!! Form::open(['url' => "/permohonanimbs"]) !!}
 			<div class='form-group'>
-				{!! Form::label('judul','Judul:') !!}
-				{!! Form::text('judul',null,['class' => 'form-control']) !!}
+				{!! Form::label('id_bangunan','ID Bangunan:') !!}
+				{!! Form::text('id_bangunan',null,['class' => 'form-control']) !!}
 			</div>
 			<div class='form-group'>
-				{!! Form::label('konten','Konten:') !!}
-				{!! Form::textarea('konten',null,['class' => 'form-control']) !!}
+				{!! Form::label('id_pemohon','ID Pemohon:') !!}
+				{!! Form::text('id_pemohon',null,['class' => 'form-control']) !!}
 			</div>
 			<div class='form-group'>
-				{!! Form::label('referensi','Referensi:') !!}
-				{!! Form::textarea('referensi','(Optional)',['class' => 'form-control','rows' => '4']) !!}
+				{!! Form::label('id_pemilik','ID Pemilik:') !!}
+				{!! Form::text('id_pemohon',null,['class' => 'form-control']) !!}
+			</div>
+			<div class='form-group'>
+				{!! Form::label('id_tanah','ID Tanah:') !!}
+				{!! Form::text('id_tanah',null,['class' => 'form-control']) !!}
+			</div>
+			<div class='form-group'>
+				{!! Form::label('id_lokasi','ID Lokasi:') !!}
+				{!! Form::text('id_lokasi',null,['class' => 'form-control']) !!}
 			</div>
 			<div class='form-group'>
 				{!! Form::submit('Tambah Informasi',['class' => 'btn btn-primary form-control']) !!}

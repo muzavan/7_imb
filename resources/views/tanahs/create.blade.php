@@ -5,21 +5,17 @@
 		<div class='col-md-3'>
 		</div>
 		<div class='col-md-6'>
-			{!! Form::open() !!}
+			{!! Form::open(['url' => "/tanahs"]) !!}
 			<div class='form-group'>
-				{!! Form::label('judul','Judul:') !!}
-				{!! Form::text('judul',null,['class' => 'form-control']) !!}
+				{!! Form::label('nama_pemilik','Nama Pemilik:') !!}
+				{!! Form::text('nama_pemilik',null,['class' => 'form-control']) !!}
 			</div>
 			<div class='form-group'>
-				{!! Form::label('konten','Konten:') !!}
-				{!! Form::textarea('konten',null,['class' => 'form-control']) !!}
+				{!! Form::label('luas','Luas:') !!}
+				{!! Form::text('luas',null,['class' => 'form-control']) !!}
 			</div>
 			<div class='form-group'>
-				{!! Form::label('referensi','Referensi:') !!}
-				{!! Form::textarea('referensi','(Optional)',['class' => 'form-control','rows' => '4']) !!}
-			</div>
-			<div class='form-group'>
-				{!! Form::submit('Tambah Informasi',['class' => 'btn btn-primary form-control']) !!}
+				{!! Form::submit('Tambah Tanah',['class' => 'btn btn-primary form-control']) !!}
 			</div>
 			{!! Form::close() !!}
 		</div>

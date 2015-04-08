@@ -6,28 +6,30 @@
       {{ $block['message'] }}
     </div>
   @endif
-  @if($block['informasis']->count())
+  @if($block['permohonanlokasis']->count())
       <table class="table table-striped table-bordered">
           <thead>
               <tr>
                   <th>id</th>
-                  <th>judul</th>
-                  <th>konten</th>
-                  <th>referensi</th>
+                  <th>id_pemohon</th>
+                  <th>id_lokasi</th>
+                  <th>status</th>
+                  <th>code</th>
                   <th>Edit</th>
                   <th>Delete</th>
               </tr>
           </thead>
 
           <tbody>
-              @foreach ($block['informasis'] as $informasi)
+              @foreach ($block['permohonanlokasis'] as $permohonanlokasi)
                   <tr>
-                        <td>{{ $informasi->id }}</td>
-                        <td>{{ $informasi->judul }}</td>
-                        <td>{{ $informasi->konten }}</td>
-                        <td>{{ $informasi->referensi }}</td>
-                        <td> <a href='informasis/informasi/{{$informasi->id}}/edit'>Edit</a> </td>
-                        <td> <a href='informasis/informasi/{{$informasi->id}}/delete'>Delete</a> </td>
+                        <td>{{ $permohonanlokasi->id }}</td>
+                        <td>{{ $permohonanlokasi->id_pemohon }}</td>
+                        <td>{{ $permohonanlokasi->id_lokasi }}</td>
+                        <td>{{ $permohonanlokasi->status }}</td>
+                        <td>{{ $permohonanlokasi->code }}</td>
+                        <td> <a href='permohonanlokasis/permohonanlokasi/{{$permohonanlokasi->id}}/edit'>Edit</a> </td>
+                        <td> <a href='permohonanlokasis/permohonanlokasi/{{$permohonanlokasi->id}}/delete'>Delete</a> </td>
                   </tr>
               @endforeach
                 
