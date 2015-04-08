@@ -2,12 +2,12 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Informasi;
+use App\Bangunan;
 use Carbon\Carbon;
 //use Illuminate\Http\Request;
 use Request;
 
-class InformasiController extends Controller {
+class BangunanController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
@@ -16,17 +16,12 @@ class InformasiController extends Controller {
 	 */
 	public function index()
 	{
-		$informasis = Informasi::all();
-		if($informasis == []){
+		$bangunans = Bangunan::all();
+		if($bangunans == []){
 			return 'Kosong';
 		}
 		else{
-			$message = array();
-			$block = [
-				'informasis'=>$informasis,
-				'message'=>$message
-			];
-			return view('informasis.index',compact('block'));
+			return view('bangunans.index',compact('informasis'));
 		}
 	}
 
@@ -37,7 +32,7 @@ class InformasiController extends Controller {
 	 */
 	public function create()
 	{
-		return view('informasis.create');
+		return view('bangunans.create');
 	}
 
 	/**
@@ -49,8 +44,8 @@ class InformasiController extends Controller {
 	{
 		//$var = (new Request)->all();
 		$var = Request::all();
-		Informasi::create($var);
-		return redirect('/informasis');
+		Bangunan::create($var);
+		return redirect('/bangunans');
 	}
 
 	/**
@@ -61,8 +56,8 @@ class InformasiController extends Controller {
 	 */
 	public function show($id)
 	{
-		$informasi = Informasi::find($id);
-		return view('informasis.informasi',compact('informasi'));
+		$bangunan = Bangunan::find($id);
+		return view('bangunans.bangunan',compact('bangunan'));
 	}
 
 	/**
@@ -73,8 +68,8 @@ class InformasiController extends Controller {
 	 */
 	public function edit($id)
 	{
-		$informasi = Informasi::find($id);
-		return view('informasis.edit',compact('informasi'));
+		$bangunan = Bangunan::find($id);
+		return view('bangunans.edit',compact('bangunan'));
 	}
 
 	/**
@@ -86,9 +81,9 @@ class InformasiController extends Controller {
 	public function update($id)
 	{
 		$var = Request::all();
-		$informasi = Informasi::find($id);
-		$informasi->update($var);
-		return redirect('/informasis');
+		$bangunan = Bangunan::find($id);
+		$bangunan->update($var);
+		return redirect('/bangunans');
 	}
 
 	/**
@@ -99,15 +94,7 @@ class InformasiController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		$var = Informasi::find($id);
-		$var->delete();
-		$message = "Informasi dengan id $id sudah dihapus.";
-		$informasis = Informasi::all();
-		$block = [
-				'informasis'=>$informasis,
-				'message'=>$message
-		];
-		return view('informasis.index',compact('block'));
+		//
 	}
 
 }

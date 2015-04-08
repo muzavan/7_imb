@@ -21,12 +21,7 @@ class InformasiController extends Controller {
 			return 'Kosong';
 		}
 		else{
-			$message = array();
-			$block = [
-				'informasis'=>$informasis,
-				'message'=>$message
-			];
-			return view('informasis.index',compact('block'));
+			return view('informasis.index',compact('informasis'));
 		}
 	}
 
@@ -99,15 +94,7 @@ class InformasiController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		$var = Informasi::find($id);
-		$var->delete();
-		$message = "Informasi dengan id $id sudah dihapus.";
-		$informasis = Informasi::all();
-		$block = [
-				'informasis'=>$informasis,
-				'message'=>$message
-		];
-		return view('informasis.index',compact('block'));
+		//
 	}
 
 }

@@ -19,9 +19,17 @@ Route::get('home', 'HomeController@index');
 Route::get('/informasis','InformasiController@index');
 Route::get('/informasis/create','InformasiController@create');
 Route::post('/informasis/create','InformasiController@store');
-Route::get('/informasis/informasi/{id}','InformasiController@show');
-Route::get('/informasis/informasi/{id}/edit','InformasiController@edit');
-Route::get('/informasis/informasi/{id}/update','InformasiController@update');
+//Route::get('/informasis/informasi/{id}/edit','InformasiController@edit');
+Route::group(['prefix' => '/informasis/informasi/{id}'], function()
+{
+    
+    Route::get('/','InformasiController@show');
+    Route::get('edit', 'InformasiController@edit');
+    Route::post('update','InformasiController@update');
+    Route::get('delete','InformasiController@destroy');
+
+});
+
 /* Informasi End */
 
 Route::controllers([

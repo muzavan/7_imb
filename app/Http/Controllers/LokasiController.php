@@ -2,12 +2,12 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Informasi;
+use App\Lokasi;
 use Carbon\Carbon;
 //use Illuminate\Http\Request;
 use Request;
 
-class InformasiController extends Controller {
+class LokasiController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
@@ -16,17 +16,12 @@ class InformasiController extends Controller {
 	 */
 	public function index()
 	{
-		$informasis = Informasi::all();
-		if($informasis == []){
+		$lokasis = Lokasi::all();
+		if($lokasis == []){
 			return 'Kosong';
 		}
 		else{
-			$message = array();
-			$block = [
-				'informasis'=>$informasis,
-				'message'=>$message
-			];
-			return view('informasis.index',compact('block'));
+			return view('lokasis.index',compact('lokasis'));
 		}
 	}
 
@@ -37,7 +32,7 @@ class InformasiController extends Controller {
 	 */
 	public function create()
 	{
-		return view('informasis.create');
+		return view('lokasis.create');
 	}
 
 	/**
@@ -49,8 +44,8 @@ class InformasiController extends Controller {
 	{
 		//$var = (new Request)->all();
 		$var = Request::all();
-		Informasi::create($var);
-		return redirect('/informasis');
+		Lokasi::create($var);
+		return redirect('/lokasis');
 	}
 
 	/**
@@ -61,8 +56,8 @@ class InformasiController extends Controller {
 	 */
 	public function show($id)
 	{
-		$informasi = Informasi::find($id);
-		return view('informasis.informasi',compact('informasi'));
+		$lokasi = Lokasi::find($id);
+		return view('lokasis.lokasi',compact('lokasi'));
 	}
 
 	/**
@@ -73,8 +68,8 @@ class InformasiController extends Controller {
 	 */
 	public function edit($id)
 	{
-		$informasi = Informasi::find($id);
-		return view('informasis.edit',compact('informasi'));
+		$lokasi = Lokasi::find($id);
+		return view('lokasis.edit',compact('lokasi'));
 	}
 
 	/**
@@ -86,9 +81,9 @@ class InformasiController extends Controller {
 	public function update($id)
 	{
 		$var = Request::all();
-		$informasi = Informasi::find($id);
-		$informasi->update($var);
-		return redirect('/informasis');
+		$lokasi = Lokasi::find($id);
+		$lokasi->update($var);
+		return redirect('/lokasis');
 	}
 
 	/**
@@ -99,15 +94,7 @@ class InformasiController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		$var = Informasi::find($id);
-		$var->delete();
-		$message = "Informasi dengan id $id sudah dihapus.";
-		$informasis = Informasi::all();
-		$block = [
-				'informasis'=>$informasis,
-				'message'=>$message
-		];
-		return view('informasis.index',compact('block'));
+		//
 	}
 
 }
