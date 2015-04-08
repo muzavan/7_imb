@@ -5,21 +5,21 @@
 		<div class='col-md-3'>
 		</div>
 		<div class='col-md-6'>
-			{!! Form::open() !!}
+			{!! Form::open(['url' => "/pengaduans"]) !!}
 			<div class='form-group'>
-				{!! Form::label('judul','Judul:') !!}
-				{!! Form::text('judul',null,['class' => 'form-control']) !!}
+				{!! Form::label('nama','Nama:') !!}
+				{!! Form::text('nama',null,['class' => 'form-control']) !!}
 			</div>
 			<div class='form-group'>
-				{!! Form::label('konten','Konten:') !!}
-				{!! Form::textarea('konten',null,['class' => 'form-control']) !!}
+				{!! Form::label('isi','Isi:') !!}
+				{!! Form::textarea('isi',null,['class' => 'form-control']) !!}
 			</div>
 			<div class='form-group'>
-				{!! Form::label('referensi','Referensi:') !!}
-				{!! Form::textarea('referensi','(Optional)',['class' => 'form-control','rows' => '4']) !!}
+				{!! Form::label('jenis','Kategori Pengaduan:') !!}
+				{!! Form::select('jenis',['1'=>'Izin Mendirikan Bangunan', '2'=>'Izin Lokasi'],'1',['class' => 'form-control']) !!}
 			</div>
 			<div class='form-group'>
-				{!! Form::submit('Tambah Informasi',['class' => 'btn btn-primary form-control']) !!}
+				{!! Form::submit('Kirim Pengaduan',['class' => 'btn btn-primary form-control']) !!}
 			</div>
 			{!! Form::close() !!}
 		</div>

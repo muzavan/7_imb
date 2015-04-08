@@ -82,6 +82,22 @@ Route::group(['prefix' => '/pemiliks/pemilik/{id}'], function()
 
 /* Pemilik End */
 
+/* Pengaduan Begin */
+Route::get('/pengaduans','PengaduanController@index');
+Route::get('/pengaduans/create','PengaduanController@create');
+Route::post('/pengaduans','PengaduanController@store');
+Route::group(['prefix' => '/pengaduans/pengaduan/{id}'], function()
+{
+    
+    Route::get('/','PengaduanController@show');
+    Route::get('edit', 'PengaduanController@edit');
+    Route::post('update','PengaduanController@update');
+    Route::get('delete','PengaduanController@destroy');
+
+});
+
+/* Pengaduan End */
+
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',

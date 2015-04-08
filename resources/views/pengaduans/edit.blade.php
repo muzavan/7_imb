@@ -1,26 +1,26 @@
 @extends('app')
 
 @section('content')
-	@if($informasi)
+	@if($pengaduan)
 	<div class='row'>
 		<div class='col-md-3'>
 		</div>
 		<div class='col-md-6'>
-			{!! Form::open(['url' => "informasis/informasi/$informasi->id/update"]) !!}
+			{!! Form::open(['url' => "/pengaduans/pengaduan/$pengaduan->id/update"]) !!}
 			<div class='form-group'>
-				{!! Form::label('judul','Judul:') !!}
-				{!! Form::text('judul',$informasi->judul,['class' => 'form-control']) !!}
+				{!! Form::label('nama','Nama:') !!}
+				{!! Form::text('nama',$pengaduan->nama,['class' => 'form-control']) !!}
 			</div>
 			<div class='form-group'>
-				{!! Form::label('konten','Konten:') !!}
-				{!! Form::textarea('konten',$informasi->konten,['class' => 'form-control']) !!}
+				{!! Form::label('isi','Isi:') !!}
+				{!! Form::textarea('isi',$pengaduan->isi,['class' => 'form-control']) !!}
 			</div>
 			<div class='form-group'>
-				{!! Form::label('referensi','Referensi:') !!}
-				{!! Form::textarea('referensi',$informasi->referensi,['class' => 'form-control','rows' => '4']) !!}
+				{!! Form::label('jenis','Kategori Pengaduan:') !!}
+				{!! Form::select('jenis',['1'=>'Izin Mendirikan Bangunan', '2'=>'Izin Lokasi'],'1',['class' => 'form-control']) !!}
 			</div>
 			<div class='form-group'>
-				{!! Form::submit('Ubah Informasi',['class' => 'btn btn-primary form-control']) !!}
+				{!! Form::submit('Ubah Pengaduan',['class' => 'btn btn-primary form-control']) !!}
 			</div>
 			{!! Form::close() !!}
 		</div>
