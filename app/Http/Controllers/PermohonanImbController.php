@@ -57,7 +57,10 @@ class PermohonanImbController extends Controller {
 		$permohonan->id_pemohon = $var['id_pemohon'];
 		$permohonan->status = 0;
 		$permohonan->code = 0;
-		return redirect('/permohonanimbs');
+		if($permohonan->save())
+			return redirect('/permohonanimbs');
+		else
+			return "Terjadi Kesalahan";
 	}
 
 	/**
@@ -94,8 +97,10 @@ class PermohonanImbController extends Controller {
 	{
 		$var = Request::all();
 		$permohonanimb = PermohonanImb::find($id);
-		$permohonanimb->update($var);
-		return redirect('/permohonanimbs');
+		if($permohonanimb->update($var))
+			return redirect('/permohonanimbs');
+		else
+			return "Something's Wrong";
 	}
 
 	/**

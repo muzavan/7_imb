@@ -82,6 +82,22 @@ Route::group(['prefix' => '/pemiliks/pemilik/{id}'], function()
 
 /* Pemilik End */
 
+/* Pemohon Begin */
+Route::get('/pemohons','PemohonController@index');
+Route::get('/pemohons/create','PemohonController@create');
+Route::post('/pemohons','PemohonController@store');
+Route::group(['prefix' => '/pemohons/pemohon/{id}'], function()
+{
+    
+    Route::get('/','PemohonController@show');
+    Route::get('edit', 'PemohonController@edit');
+    Route::post('update','PemohonController@update');
+    Route::get('delete','PemohonController@destroy');
+
+});
+
+/* Pemohon End */
+
 /* Pengaduan Begin */
 Route::get('/pengaduans','PengaduanController@index');
 Route::get('/pengaduans/create','PengaduanController@create');

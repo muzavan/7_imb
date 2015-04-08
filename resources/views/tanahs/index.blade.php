@@ -6,28 +6,28 @@
       {{ $block['message'] }}
     </div>
   @endif
-  @if($block['informasis']->count())
+  @if($block['tanahs']->count())
       <table class="table table-striped table-bordered">
           <thead>
               <tr>
                   <th>id</th>
-                  <th>judul</th>
-                  <th>konten</th>
-                  <th>referensi</th>
+                  <th>nama_pemilik</th>
+                  <th>luas</th>
+                  <th>status_hak</th>
                   <th>Edit</th>
                   <th>Delete</th>
               </tr>
           </thead>
 
           <tbody>
-              @foreach ($block['informasis'] as $informasi)
+              @foreach ($block['tanahs'] as $tanah)
                   <tr>
-                        <td>{{ $informasi->id }}</td>
-                        <td>{{ $informasi->judul }}</td>
-                        <td>{{ $informasi->konten }}</td>
-                        <td>{{ $informasi->referensi }}</td>
-                        <td> <a href='informasis/informasi/{{$informasi->id}}/edit'>Edit</a> </td>
-                        <td> <a href='informasis/informasi/{{$informasi->id}}/delete'>Delete</a> </td>
+                        <td>{{ $tanah->id }}</td>
+                        <td>{{ $tanah->nama_pemilik }}</td>
+                        <td>{{ $tanah->luas }}</td>
+                        <td>{{ $tanah->status_hak }}</td>
+                        <td> <a href='tanahs/tanah/{{$tanah->id}}/edit'>Edit</a> </td>
+                        <td> <a href='tanahs/tanah/{{$tanah->id}}/delete'>Delete</a> </td>
                   </tr>
               @endforeach
                 

@@ -24,6 +24,16 @@ class CreateAllTables extends Migration {
 			$table->timestamps();
 		});
 
+		Schema::create('pemohons', function(Blueprint $table)
+		{
+			$table->increments('id');
+			$table->string('nama');
+			$table->string('nik');
+			$table->string('email');
+			$table->text('alamat');
+			$table->timestamps();
+		});
+
 		Schema::create('lokasis', function(Blueprint $table)
 		{
 			$table->increments('id');
@@ -91,6 +101,7 @@ class CreateAllTables extends Migration {
 			$table->foreign('id_lokasi')->references('id')->on('lokasis')->onDelete('cascade');
 			$table->integer('status');
 			$table->integer('code');
+			$table->timestamps();
 		});
 
 		Schema::create('permohonan_lokasis', function(Blueprint $table)
@@ -102,6 +113,7 @@ class CreateAllTables extends Migration {
 			$table->foreign('id_pemohon')->references('id')->on('pemohons')->onDelete('cascade');
 			$table->integer('status');
 			$table->integer('code');
+			$table->timestamps();
 		});
 
 		Schema::create('pengaduans', function(Blueprint $table)

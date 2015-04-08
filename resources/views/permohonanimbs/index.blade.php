@@ -27,6 +27,7 @@
               @foreach ($block['permohonanimbs'] as $permohonanimb)
                   <tr>
                         <td>{{ $permohonanimb->id }}</td>
+                        <td>{{ $permohonanimb->id_bangunan }}</td>
                         <td>{{ $permohonanimb->id_pemohon }}</td>
                         <td>{{ $permohonanimb->id_pemilik }}</td>
                         <td>{{ $permohonanimb->id_tanah }}</td>

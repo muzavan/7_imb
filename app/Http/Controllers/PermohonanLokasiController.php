@@ -49,12 +49,18 @@ class PermohonanLokasiController extends Controller {
 	{
 		//$var = (new Request)->all();
 		$var = Request::all();
-		$permohonan = new PermohonanLokasi();
-		$permohonan->id_lokasi = $var['id_lokasi'];
-		$permohonan->id_pemohon = $var['id_pemohon'];
-		$permohonan->status = 0;
-		$permohonan->code = 0;
-		return redirect('/permohonanlokasis');
+		try{
+			$permohonan = new PermohonanLokasi();
+			$permohonan->id_lokasi = $var['id_lokasi'];
+			$permohonan->id_pemohon = $var['id_pemohon'];
+			$permohonan->status = 0;
+			$permohonan->code = 0;
+			$permohonan->save();
+			return redirect('/permohonanlokasis');
+		}
+		catch(Exception $e){
+			return "Terjadi Kesalahan";
+		}
 	}
 
 	/**
@@ -91,8 +97,13 @@ class PermohonanLokasiController extends Controller {
 	{
 		$var = Request::all();
 		$permohonanlokasi = PermohonanLokasi::find($id);
-		$permohonanlokasi->update($var);
-		return redirect('/permohonanlokasis');
+		try {
+			$permohonanlokasi->update($var);
+			return redirect('/permohonanlokasis');
+		}
+		catch(Exception $e){
+			return "Terjadi Kesalahan";
+		}
 	}
 
 	/**

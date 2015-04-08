@@ -16,7 +16,7 @@
 			</div>
 			<div class='form-group'>
 				{!! Form::label('id_pemilik','ID Pemilik:') !!}
-				{!! Form::text('id_pemohon',null,['class' => 'form-control']) !!}
+				{!! Form::text('id_pemilik',null,['class' => 'form-control']) !!}
 			</div>
 			<div class='form-group'>
 				{!! Form::label('id_tanah','ID Tanah:') !!}
