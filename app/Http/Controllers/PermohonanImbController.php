@@ -2,8 +2,10 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
-use Illuminate\Http\Request;
+use App\PermohonanImb;
+use Carbon\Carbon;
+//use Illuminate\Http\Request;
+use Request;
 
 class PermohonanImbController extends Controller {
 
@@ -14,7 +16,18 @@ class PermohonanImbController extends Controller {
 	 */
 	public function index()
 	{
-		//
+		$permohonanimbs = PermohonanImb::all();
+		if($permohonanimbs == []){
+			return 'Kosong';
+		}
+		else{
+			$message = array();
+			$block = [
+				'permohonanimbs'=>$permohonanimbs,
+				'message'=>$message
+			];
+			return view('permohonanimbs.index',compact('block'));
+		}
 	}
 
 	/**
@@ -24,7 +37,7 @@ class PermohonanImbController extends Controller {
 	 */
 	public function create()
 	{
-		//
+		return view('permohonanimbs.create');
 	}
 
 	/**
@@ -34,7 +47,10 @@ class PermohonanImbController extends Controller {
 	 */
 	public function store()
 	{
-		//
+		//$var = (new Request)->all();
+		$var = Request::all();
+		PermohonanImb::create($var);
+		return redirect('/permohonanimbs');
 	}
 
 	/**
@@ -45,7 +61,8 @@ class PermohonanImbController extends Controller {
 	 */
 	public function show($id)
 	{
-		//
+		$permohonanimb = PermohonanImb::find($id);
+		return view('permohonanimbs.permohonanimb',compact('permohonanimb'));
 	}
 
 	/**
@@ -56,7 +73,8 @@ class PermohonanImbController extends Controller {
 	 */
 	public function edit($id)
 	{
-		//
+		$permohonanimb = PermohonanImb::find($id);
+		return view('permohonanimbs.edit',compact('permohonanimb'));
 	}
 
 	/**
@@ -67,7 +85,10 @@ class PermohonanImbController extends Controller {
 	 */
 	public function update($id)
 	{
-		//
+		$var = Request::all();
+		$permohonanimb = PermohonanImb::find($id);
+		$permohonanimb->update($var);
+		return redirect('/permohonanimbs');
 	}
 
 	/**
@@ -78,7 +99,15 @@ class PermohonanImbController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+		$var = PermohonanImb::find($id);
+		$var->delete();
+		$message = "PermohonanImb dengan id $id sudah dihapus.";
+		$permohonanimbs = PermohonanImb::all();
+		$block = [
+				'permohonanimbs'=>$permohonanimbs,
+				'message'=>$message
+		];
+		return view('permohonanimbs.index',compact('block'));
 	}
 
 }

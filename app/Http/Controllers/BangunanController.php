@@ -21,7 +21,12 @@ class BangunanController extends Controller {
 			return 'Kosong';
 		}
 		else{
-			return view('bangunans.index',compact('informasis'));
+			$message = array();
+			$block = [
+				'bangunans'=>$bangunans,
+				'message'=>$message
+			];
+			return view('bangunans.index',compact('block'));
 		}
 	}
 
@@ -44,7 +49,26 @@ class BangunanController extends Controller {
 	{
 		//$var = (new Request)->all();
 		$var = Request::all();
-		Bangunan::create($var);
+		//dd($var);
+		//Bangunan::create($var);
+		//return redirect('/bangunans');
+		$fileSrc ="none";
+		if (Request::hasFile('dokumen'))
+		{
+    		$destinationPath = "/uploaded";
+    		$extension = Request::file('dokumen')->getClientOriginalExtension(); // getting image extension
+      		$fileName = rand(11111,99999).'.'.$extension; // renameing image
+      		Request::file('dokumen')->move($destinationPath, $fileName);
+      		$fileSrc = $destinationPath.'/'.$fileName;
+		}
+		$bangunan = new Bangunan();
+		$bangunan->nama = $var['nama'];
+		$bangunan->fungsi = $var['fungsi'];
+		$bangunan->alamat = $var['lokasi'];
+		$bangunan->jenis = $var['jenis'];
+		$bangunan->jumlah_lantai = $var['jumlah_lantai'];
+		$bangunan->dokumen = $fileSrc;
+		$bangunan->save();
 		return redirect('/bangunans');
 	}
 
@@ -81,8 +105,26 @@ class BangunanController extends Controller {
 	public function update($id)
 	{
 		$var = Request::all();
+		//dd($var);
+		//Bangunan::create($var);
+		//return redirect('/bangunans');
 		$bangunan = Bangunan::find($id);
-		$bangunan->update($var);
+		$fileSrc = $bangunan->dokumen;
+		if (Request::hasFile('dokumen'))
+		{
+    		$destinationPath = "/uploaded";
+    		$extension = Request::file('dokumen')->getClientOriginalExtension(); // getting image extension
+      		$fileName = rand(11111,99999).'.'.$extension; // renameing image
+      		Request::file('dokumen')->move($destinationPath, $fileName);
+      		$fileSrc = $destinationPath.'/'.$fileName;
+		}
+		$bangunan->nama = $var['nama'];
+		$bangunan->fungsi = $var['fungsi'];
+		$bangunan->alamat = $var['lokasi'];
+		$bangunan->jenis = $var['jenis'];
+		$bangunan->jumlah_lantai = $var['jumlah_lantai'];
+		$bangunan->dokumen = $fileSrc;
+		$bangunan->save();
 		return redirect('/bangunans');
 	}
 
@@ -94,7 +136,15 @@ class BangunanController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+		$var = Bangunan::find($id);
+		$var->delete();
+		$message = "Bangunan dengan id $id sudah dihapus.";
+		$bangunans = Bangunan::all();
+		$block = [
+				'bangunans'=>$bangunans,
+				'message'=>$message
+		];
+		return view('bangunans.index',compact('block'));
 	}
 
 }

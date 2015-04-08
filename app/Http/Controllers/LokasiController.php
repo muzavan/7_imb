@@ -21,7 +21,12 @@ class LokasiController extends Controller {
 			return 'Kosong';
 		}
 		else{
-			return view('lokasis.index',compact('lokasis'));
+			$message = array();
+			$block = [
+				'lokasis'=>$lokasis,
+				'message'=>$message
+			];
+			return view('lokasis.index',compact('block'));
 		}
 	}
 
@@ -44,7 +49,26 @@ class LokasiController extends Controller {
 	{
 		//$var = (new Request)->all();
 		$var = Request::all();
-		Lokasi::create($var);
+		//dd($var);
+		//Lokasi::create($var);
+		//return redirect('/lokasis');
+		$fileSrc ="none";
+		if (Request::hasFile('dokumen'))
+		{
+    		$destinationPath = "/uploaded";
+    		$extension = Request::file('dokumen')->getClientOriginalExtension(); // getting image extension
+      		$fileName = rand(11111,99999).'.'.$extension; // renameing image
+      		Request::file('dokumen')->move($destinationPath, $fileName);
+      		$fileSrc = $destinationPath.'/'.$fileName;
+		}
+		$lokasi = new Lokasi();
+		$lokasi->nama = $var['nama'];
+		$lokasi->fungsi = $var['fungsi'];
+		$lokasi->lokasi = $var['lokasi'];
+		$lokasi->jenis = $var['jenis'];
+		$lokasi->jumlah_lantai = $var['jumlah_lantai'];
+		$lokasi->dokumen = $fileSrc;
+		$lokasi->save();
 		return redirect('/lokasis');
 	}
 
@@ -81,8 +105,26 @@ class LokasiController extends Controller {
 	public function update($id)
 	{
 		$var = Request::all();
+		//dd($var);
+		//Lokasi::create($var);
+		//return redirect('/lokasis');
 		$lokasi = Lokasi::find($id);
-		$lokasi->update($var);
+		$fileSrc = $lokasi->dokumen;
+		if (Request::hasFile('dokumen'))
+		{
+    		$destinationPath = "/uploaded";
+    		$extension = Request::file('dokumen')->getClientOriginalExtension(); // getting image extension
+      		$fileName = rand(11111,99999).'.'.$extension; // renameing image
+      		Request::file('dokumen')->move($destinationPath, $fileName);
+      		$fileSrc = $destinationPath.'/'.$fileName;
+		}
+		$lokasi->nama = $var['nama'];
+		$lokasi->fungsi = $var['fungsi'];
+		$lokasi->alamat = $var['lokasi'];
+		$lokasi->jenis = $var['jenis'];
+		$lokasi->jumlah_lantai = $var['jumlah_lantai'];
+		$lokasi->dokumen = $fileSrc;
+		$lokasi->save();
 		return redirect('/lokasis');
 	}
 
@@ -94,7 +136,15 @@ class LokasiController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+		$var = Lokasi::find($id);
+		$var->delete();
+		$message = "Lokasi dengan id $id sudah dihapus.";
+		$lokasis = Lokasi::all();
+		$block = [
+				'lokasis'=>$lokasis,
+				'message'=>$message
+		];
+		return view('lokasis.index',compact('block'));
 	}
 
 }

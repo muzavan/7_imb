@@ -2,8 +2,10 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
-use Illuminate\Http\Request;
+use App\Tanah;
+use Carbon\Carbon;
+//use Illuminate\Http\Request;
+use Request;
 
 class TanahController extends Controller {
 
@@ -14,7 +16,18 @@ class TanahController extends Controller {
 	 */
 	public function index()
 	{
-		//
+		$tanahs = Tanah::all();
+		if($tanahs == []){
+			return 'Kosong';
+		}
+		else{
+			$message = array();
+			$block = [
+				'tanahs'=>$tanahs,
+				'message'=>$message
+			];
+			return view('tanahs.index',compact('block'));
+		}
 	}
 
 	/**
@@ -24,7 +37,7 @@ class TanahController extends Controller {
 	 */
 	public function create()
 	{
-		//
+		return view('tanahs.create');
 	}
 
 	/**
@@ -34,7 +47,10 @@ class TanahController extends Controller {
 	 */
 	public function store()
 	{
-		//
+		//$var = (new Request)->all();
+		$var = Request::all();
+		Tanah::create($var);
+		return redirect('/tanahs');
 	}
 
 	/**
@@ -45,7 +61,8 @@ class TanahController extends Controller {
 	 */
 	public function show($id)
 	{
-		//
+		$tanah = Tanah::find($id);
+		return view('tanahs.tanah',compact('tanah'));
 	}
 
 	/**
@@ -56,7 +73,8 @@ class TanahController extends Controller {
 	 */
 	public function edit($id)
 	{
-		//
+		$tanah = Tanah::find($id);
+		return view('tanahs.edit',compact('tanah'));
 	}
 
 	/**
@@ -67,7 +85,10 @@ class TanahController extends Controller {
 	 */
 	public function update($id)
 	{
-		//
+		$var = Request::all();
+		$tanah = Tanah::find($id);
+		$tanah->update($var);
+		return redirect('/tanahs');
 	}
 
 	/**
@@ -78,7 +99,15 @@ class TanahController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+		$var = Tanah::find($id);
+		$var->delete();
+		$message = "Tanah dengan id $id sudah dihapus.";
+		$tanahs = Tanah::all();
+		$block = [
+				'tanahs'=>$tanahs,
+				'message'=>$message
+		];
+		return view('tanahs.index',compact('block'));
 	}
 
 }

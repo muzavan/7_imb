@@ -2,8 +2,10 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
-use Illuminate\Http\Request;
+use App\PermohonanLokasi;
+use Carbon\Carbon;
+//use Illuminate\Http\Request;
+use Request;
 
 class PermohonanLokasiController extends Controller {
 
@@ -14,7 +16,18 @@ class PermohonanLokasiController extends Controller {
 	 */
 	public function index()
 	{
-		//
+		$permohonanlokasis = PermohonanLokasi::all();
+		if($permohonanlokasis == []){
+			return 'Kosong';
+		}
+		else{
+			$message = array();
+			$block = [
+				'permohonanlokasis'=>$permohonanlokasis,
+				'message'=>$message
+			];
+			return view('permohonanlokasis.index',compact('block'));
+		}
 	}
 
 	/**
@@ -24,7 +37,7 @@ class PermohonanLokasiController extends Controller {
 	 */
 	public function create()
 	{
-		//
+		return view('permohonanlokasis.create');
 	}
 
 	/**
@@ -34,7 +47,10 @@ class PermohonanLokasiController extends Controller {
 	 */
 	public function store()
 	{
-		//
+		//$var = (new Request)->all();
+		$var = Request::all();
+		PermohonanLokasi::create($var);
+		return redirect('/permohonanlokasis');
 	}
 
 	/**
@@ -45,7 +61,8 @@ class PermohonanLokasiController extends Controller {
 	 */
 	public function show($id)
 	{
-		//
+		$permohonanlokasi = PermohonanLokasi::find($id);
+		return view('permohonanlokasis.permohonanlokasi',compact('permohonanlokasi'));
 	}
 
 	/**
@@ -56,7 +73,8 @@ class PermohonanLokasiController extends Controller {
 	 */
 	public function edit($id)
 	{
-		//
+		$permohonanlokasi = PermohonanLokasi::find($id);
+		return view('permohonanlokasis.edit',compact('permohonanlokasi'));
 	}
 
 	/**
@@ -67,7 +85,10 @@ class PermohonanLokasiController extends Controller {
 	 */
 	public function update($id)
 	{
-		//
+		$var = Request::all();
+		$permohonanlokasi = PermohonanLokasi::find($id);
+		$permohonanlokasi->update($var);
+		return redirect('/permohonanlokasis');
 	}
 
 	/**
@@ -78,7 +99,15 @@ class PermohonanLokasiController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+		$var = PermohonanLokasi::find($id);
+		$var->delete();
+		$message = "PermohonanLokasi dengan id $id sudah dihapus.";
+		$permohonanlokasis = PermohonanLokasi::all();
+		$block = [
+				'permohonanlokasis'=>$permohonanlokasis,
+				'message'=>$message
+		];
+		return view('permohonanlokasis.index',compact('block'));
 	}
 
 }

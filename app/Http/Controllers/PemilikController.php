@@ -21,7 +21,12 @@ class PemilikController extends Controller {
 			return 'Kosong';
 		}
 		else{
-			return view('pemiliks.index',compact('pemiliks'));
+			$message = array();
+			$block = [
+				'pemiliks'=>$pemiliks,
+				'message'=>$message
+			];
+			return view('pemiliks.index',compact('block'));
 		}
 	}
 
@@ -94,7 +99,15 @@ class PemilikController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+		$var = Pemilik::find($id);
+		$var->delete();
+		$message = "Pemilik dengan id $id sudah dihapus.";
+		$pemiliks = Pemilik::all();
+		$block = [
+				'pemiliks'=>$pemiliks,
+				'message'=>$message
+		];
+		return view('pemiliks.index',compact('block'));
 	}
 
 }

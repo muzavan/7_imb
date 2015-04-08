@@ -32,6 +32,24 @@ Route::group(['prefix' => '/informasis/informasi/{id}'], function()
 
 /* Informasi End */
 
+
+
+/* Bangunan Begin */
+Route::get('/bangunans','BangunanController@index');
+Route::get('/bangunans/create','BangunanController@create');
+Route::post('/bangunans','BangunanController@store');
+Route::group(['prefix' => '/bangunans/bangunan/{id}'], function()
+{
+    
+    Route::get('/','BangunanController@show');
+    Route::get('edit', 'BangunanController@edit');
+    Route::post('update','BangunanController@update');
+    Route::get('delete','BangunanController@destroy');
+
+});
+
+/* Bangunan End */
+
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
