@@ -110,4 +110,17 @@ class PemohonController extends Controller {
 		return view('pemohons.index',compact('block'));
 	}
 
+	public function demo_edit($id=4)
+	{
+		$pemohon = Pemohon::find($id);
+		return view('demo.pemohons',compact('pemohon'));
+	}
+
+	public function demo_update($id)
+	{
+		$var = Request::all();
+		$pemohon = Pemohon::find($id);
+		$pemohon->update($var);
+		return redirect('/demo/');
+	}
 }

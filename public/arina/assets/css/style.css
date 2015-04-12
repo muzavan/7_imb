@@ -1,0 +1,54 @@
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    font-size: 18px;
+    color: #636363;
+}
+
+.vertical-center {
+    vertical-align: middle;
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    display: table;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    /* background-color: #68cacd; */
+    background-image: url("../img/bgppl2.png") !important;
+}
+
+/* Heading */
+.heading-h1-large{
+    font-weight: bold;
+    font-size: 150px;
+    color: #ffffff;
+    padding-top: 110px;
+}
+
+/* LINK STYLE */
+a, a:active, a:focus {
+  text-decoration: none;
+  color: #49bd86;
+  background-color: transparent;
+}
+
+a:hover {
+  background-color: transparent;
+  color: #e9bb06;
+  text-decoration: none;
+}
+
+.navbar {
+  background-color: #68cacd;
+}
+
+.nav > li > a {
+  color: #fff;
+}

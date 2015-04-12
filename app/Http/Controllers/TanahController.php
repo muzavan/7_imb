@@ -53,6 +53,15 @@ class TanahController extends Controller {
 		return redirect('/tanahs');
 	}
 
+	public function demo_store()
+	{
+		//$var = (new Request)->all();
+		$var = Request::all();
+		$tanah = Tanah::create($var);
+		setcookie('tanah',$tanah->id,time()+60*60*24);
+		return view('demo.lokasiimbs');
+	}
+
 	/**
 	 * Display the specified resource.
 	 *

@@ -3,8 +3,11 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Lokasi;
+use App\PermohonanLokasi;
+use App\PermohonanImb;
 use Carbon\Carbon;
 //use Illuminate\Http\Request;
+use Input;
 use Request;
 
 class LokasiController extends Controller {
@@ -40,6 +43,11 @@ class LokasiController extends Controller {
 		return view('lokasis.create');
 	}
 
+	public function demo_create()
+	{
+		return view('demo.lokasis');
+	}
+
 	/**
 	 * Store a newly created resource in storage.
 	 *
@@ -70,6 +78,71 @@ class LokasiController extends Controller {
 		$lokasi->dokumen = $fileSrc;
 		$lokasi->save();
 		return redirect('/lokasis');
+	}
+
+	public function demo_store()
+	{
+		//$var = (new Request)->all();
+		$var = Request::all();
+		//dd($var);
+		//Lokasi::create($var);
+		//return redirect('/lokasis');
+		$fileSrc ="none";
+		if (Request::hasFile('dokumen'))
+		{
+    		$destinationPath = "/uploaded";
+    		$extension = Request::file('dokumen')->getClientOriginalExtension(); // getting image extension
+      		$fileName = rand(11111,99999).'.'.$extension; // renameing image
+      		Request::file('dokumen')->move($destinationPath, $fileName);
+      		$fileSrc = $destinationPath.'/'.$fileName;
+		}
+		$lokasi = new Lokasi();
+		$lokasi->nama = $var['nama'];
+		$lokasi->fungsi = $var['fungsi'];
+		$lokasi->lokasi = $var['lokasi'];
+		$lokasi->jenis = $var['jenis'];
+		$lokasi->jumlah_lantai = $var['jumlah_lantai'];
+		$lokasi->dokumen = $fileSrc;
+		$lokasi->save();
+		$permohonan = new PermohonanLokasi();
+		$permohonan->id_pemohon = $_COOKIE['pemohon'];
+		$permohonan->id_lokasi = $lokasi->id;
+		$permohonan->save();
+		return view('demo.selesai_lokasis');
+	}
+
+	public function demo_store_imbs()
+	{
+		//$var = (new Request)->all();
+		$var = Request::all();
+		//dd($var);
+		//Lokasi::create($var);
+		//return redirect('/lokasis');
+		$fileSrc ="none";
+		if (Request::hasFile('dokumen'))
+		{
+    		$destinationPath = "/uploaded";
+    		$extension = Request::file('dokumen')->getClientOriginalExtension(); // getting image extension
+      		$fileName = rand(11111,99999).'.'.$extension; // renameing image
+      		Request::file('dokumen')->move($destinationPath, $fileName);
+      		$fileSrc = $destinationPath.'/'.$fileName;
+		}
+		$lokasi = new Lokasi();
+		$lokasi->nama = $var['nama'];
+		$lokasi->fungsi = $var['fungsi'];
+		$lokasi->lokasi = $var['lokasi'];
+		$lokasi->jenis = $var['jenis'];
+		$lokasi->jumlah_lantai = $var['jumlah_lantai'];
+		$lokasi->dokumen = $fileSrc;
+		$lokasi->save();
+		$permohonan = new PermohonanImb();
+		$permohonan->id_bangunan = $_COOKIE['bangunan'];
+		$permohonan->id_pemohon = $_COOKIE['pemohon'];
+		$permohonan->id_pemilik = $_COOKIE['pemilik'];
+		$permohonan->id_tanah = $_COOKIE['tanah'];
+		$permohonan->id_lokasi = $lokasi->id;
+		$permohonan->save();
+		return view('demo.selesai_lokasis');
 	}
 
 	/**

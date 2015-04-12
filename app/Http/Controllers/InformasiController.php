@@ -30,6 +30,25 @@ class InformasiController extends Controller {
 		}
 	}
 
+	public function demo_index($id = 0)
+	{
+		$informasis = Informasi::all();
+		if($informasis == []){
+			return 'Kosong';
+		}
+		else{
+			$message = array();
+			$informasi = Informasi::find($id);
+			$block = [
+				'informasis'=>$informasis,
+				'message'=>$message,
+				'informasi' => $informasi
+			];
+			setcookie('pemohon',4,time()+60*60*24);
+			return view('demo.informasis',compact('block'));
+		}
+	}
+
 	/**
 	 * Show the form for creating a new resource.
 	 *

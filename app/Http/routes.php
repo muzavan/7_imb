@@ -11,7 +11,9 @@
 |
 */
 
-Route::get('/', 'WelcomeController@index');
+Route::get('/', function(){
+    return view('demo.welcome');
+});
 
 Route::get('home', 'HomeController@index');
 
@@ -162,6 +164,24 @@ Route::group(['prefix' => '/permohonanlokasis/permohonanlokasi/{id}'], function(
 
 /* PermohonanLokasi End */
 
+/* Demo Begin */
+Route::group(['prefix' => '/demo'], function()
+{
+    Route::get('/','InformasiController@demo_index');
+    Route::get('/informasis/{id?}','InformasiController@demo_index');
+    Route::get('/pemohons', 'PemohonController@demo_edit');
+    Route::get('/lokasis', 'LokasiController@demo_create');
+    Route::post('/lokasis', 'LokasiController@demo_store');
+    Route::post('/pemohons/{id}', 'PemohonController@demo_update');
+    Route::get('/imbs', 'BangunanController@demo_create');
+    Route::post('/bangunans', 'BangunanController@demo_store');
+    Route::post('/pemiliks', 'PemilikController@demo_store');
+    Route::post('/tanahs', 'TanahController@demo_store');
+    Route::post('/lokasiimbs', 'LokasiController@demo_store_imbs');
+
+});
+
+/* Demo End */
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',

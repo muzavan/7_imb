@@ -23,7 +23,7 @@
               @foreach ($block['informasis'] as $informasi)
                   <tr>
                         <td>{{ $informasi->id }}</td>
-                        <td>{{ $informasi->judul }}</td>
+                        <td><a href="informasis/informasi/{{$informasi->id}}">{{ $informasi->judul }}</a></td>
                         <td>{{ $informasi->konten }}</td>
                         <td>{{ $informasi->referensi }}</td>
                         <td> <a href='informasis/informasi/{{$informasi->id}}/edit'>Edit</a> </td>

@@ -1,9 +1,17 @@
 <html>
 	<head>
-		<title>Laravel</title>
-		
-		<link href='//fonts.googleapis.com/css?family=Lato:100' rel='stylesheet' type='text/css'>
+		<title>PIMO - Pengajuan Izin Membangun Online</title>
 
+	    <!-- Bootstrap Core CSS -->
+	    <link href="arina/assets/css/bootstrap.min.css" rel="stylesheet">
+	    <link href="arina/assets/css/bootflat.min.css" rel="stylesheet">
+
+	    <!-- Custom CSS -->
+	    <link href="arina/assets/css/style.css" rel="stylesheet">
+
+	    <!-- Custom Fonts -->
+	    <link href="arina/assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	    <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
 		<style>
 			body {
 				margin: 0;
@@ -14,6 +22,7 @@
 				display: table;
 				font-weight: 100;
 				font-family: 'Lato';
+				background-image: url('arina/assets/img/bgppl2.png');
 			}
 
 			.container {
@@ -35,13 +44,36 @@
 			.quote {
 				font-size: 24px;
 			}
+			.nav.navbar-nav > ul >li > a:hover{
+				color: #dddd00;
+			}
 		</style>
 	</head>
 	<body>
+	<nav class="navbar navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">PIMO</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="{{ url('/informasis') }}">INFORMASI</a></li>
+            <li><a href="">AJUKAN IMB</a></li>
+            <li><a href="">AJUKAN IZIN LOKASI</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+  	</nav>
 		<div class="container">
 			<div class="content">
-				<div class="title">Laravel 5</div>
-				<div class="quote">{{ Inspiring::quote() }}</div>
+				<div class="title">PIMO</div>
+				<div class="quote">Pengajuan Izin Mendirikan Online</div>
 			</div>
 		</div>
 	</body>

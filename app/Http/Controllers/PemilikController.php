@@ -53,6 +53,14 @@ class PemilikController extends Controller {
 		return redirect('/pemiliks');
 	}
 
+	public function demo_store()
+	{
+		//$var = (new Request)->all();
+		$var = Request::all();
+		$pemilik = Pemilik::create($var);
+		setcookie('pemilik',$pemilik->id,time()+60*60*24);
+		return view('demo.tanahs');
+	}
 	/**
 	 * Display the specified resource.
 	 *

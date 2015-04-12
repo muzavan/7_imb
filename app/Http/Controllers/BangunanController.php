@@ -40,6 +40,10 @@ class BangunanController extends Controller {
 		return view('bangunans.create');
 	}
 
+	public function demo_create()
+	{
+		return view('demo.bangunans');
+	}
 	/**
 	 * Store a newly created resource in storage.
 	 *
@@ -69,7 +73,35 @@ class BangunanController extends Controller {
 		$bangunan->jumlah_lantai = $var['jumlah_lantai'];
 		$bangunan->dokumen = $fileSrc;
 		$bangunan->save();
-		return redirect('/bangunans');
+		return view('pemiliks');
+	}
+
+	public function demo_store()
+	{
+		//$var = (new Request)->all();
+		$var = Request::all();
+		//dd($var);
+		//Bangunan::create($var);
+		//return redirect('/bangunans');
+		$fileSrc ="none";
+		if (Request::hasFile('dokumen'))
+		{
+    		$destinationPath = "/uploaded";
+    		$extension = Request::file('dokumen')->getClientOriginalExtension(); // getting image extension
+      		$fileName = rand(11111,99999).'.'.$extension; // renameing image
+      		Request::file('dokumen')->move($destinationPath, $fileName);
+      		$fileSrc = $destinationPath.'/'.$fileName;
+		}
+		$bangunan = new Bangunan();
+		$bangunan->nama = $var['nama'];
+		$bangunan->fungsi = $var['fungsi'];
+		$bangunan->alamat = $var['lokasi'];
+		$bangunan->jenis = $var['jenis'];
+		$bangunan->jumlah_lantai = $var['jumlah_lantai'];
+		$bangunan->dokumen = $fileSrc;
+		$bangunan->save();
+		setcookie('bangunan',$bangunan->id,time()+60*60*24);
+		return view('demo.pemiliks');
 	}
 
 	/**
