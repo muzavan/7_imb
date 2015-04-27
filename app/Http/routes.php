@@ -31,23 +31,26 @@ Route::group(['prefix' => '/informasis/informasi/{id}'], function()
     Route::get('delete','InformasiController@destroy');
 
 });
-
 /* Informasi End */
 
 
 
 /* Bangunan Begin */
-// Route::get('/bangunans','BangunanController@index');
-// Route::get('/bangunans/create','BangunanController@create');
-// Route::post('/bangunans','BangunanController@store');
-// Route::group(['prefix' => '/bangunans/bangunan/{id}'], function()
-// {
-    
-//     Route::get('/','BangunanController@show');
-//     Route::get('edit', 'BangunanController@edit');
-//     Route::post('update','BangunanController@update');
-//     Route::get('delete','BangunanController@destroy');
-
+Route::group(['prefix' => '/admin/'], function()
+{
+   Route::group(['prefix' => '/imb'], function()
+    {
+        Route::get('/','BangunanController@index');
+        Route::get('setuju/{id}', 'BangunanController@setuju');
+        Route::get('tolak/{id}', 'BangunanController@tolak');
+    }); 
+   Route::group(['prefix' => '/lokasi'], function()
+    {
+        Route::get('/','LokasiController@index');
+        Route::get('setuju/{id}', 'LokasiController@setuju');
+        Route::get('tolak/{id}', 'LokasiController@tolak');
+    }); 
+});
 // });
 
 /* Bangunan End */

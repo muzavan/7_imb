@@ -6,7 +6,7 @@
       <!--main content start-->
       <section id="main-content">
           <section class="wrapper">
-            <h3><i class="fa fa-angle-right"></i> IMB</h3>
+            <h3><i class="fa fa-angle-right"></i> Izin Lokasi</h3>
 
               <div class="row mt">
                   <div class="col-md-12">
@@ -17,11 +17,12 @@
                               <thead>
                               <tr>
                                   <th><i class="fa fa-bullhorn"></i>ID</th>
-                                  <th class="hidden-phone"><i class="fa fa-question-circle"></i>NIK</th>
+                                  <th class="hidden-phone"></i>NIK</th>
                                   <th><i class="fa fa-bookmark"></i>Email</th>
-                                  <th><i class=" fa fa-edit"></i>Nama</th>
-                                  <th><i class="fa fa-bullhorn"></i>Jenis</th>
-                                  <th class="hidden-phone"><i class="fa fa-question-circle"></i>ID Lokasi</th>
+                                  <th><i class=" fa fa-edit"></i>Alamat</th>
+                                  <th><i class="fa fa-bullhorn"></i>Luas</th>
+                                  <th class="hidden-phone">Kelurahan</th>
+                                  <th class="hidden-phone">Kecamatan</th>
                                   <th><i class="fa fa-bookmark"></i>Dokumen</th>
                                   <th><i class=" fa fa-edit"></i> Status</th>
                                   <th></th>
@@ -30,32 +31,30 @@
 
                               <tbody>
                               <?php
-                                  foreach ($block['bangunans'] as $bangunan) {
+                                  foreach ($block['lokasis'] as $lokasi) {
                               ?>
                               <tr>
-                                  <td>{{$bangunan->id}}</td>
-                                  <td>{{$bangunan->nik}}</td>
-                                  <td>{{$bangunan->email}}</td>
-                                  <td>{{$bangunan->nama}}</td>
-                                  <td>{{$bangunan->jenis}}</td>
-                                  <td>{{$bangunan->id_lokasi}}</td>
-                                  <td><a href='{{$bangunan->dokumen}}'>Dokumen Teknis</a></td>
-                                  <td>{{$bangunan->status}}</td>
+                                  <td>{{$lokasi->id}}</td>
+                                  <td>{{$lokasi->nik}}</td>
+                                  <td>{{$lokasi->email}}</td>
+                                  <td>{{$lokasi->alamat}}</td>
+                                  <td>{{$lokasi->luas}}</td>
+                                  <td>{{$lokasi->kelurahan}}</td>
+                                  <td>{{$lokasi->kecamatan}}</td>
+                                  <td><a href='{{$lokasi->dokumen}}'>Dokumen Teknis</a></td>
+                                  <td>{{$lokasi->status}}</td>
                                   <td>
-                                      <a href='imb/setuju/{{$bangunan->id}}'><button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button></a>
-                                      <a href='imb/tolak/{{$bangunan->id}}'><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button></a>
+                                      <a href='lokasi/setuju/{{$lokasi->id}}'><button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button></a>
+                                      <a href='lokasi/tolak/{{$lokasi->id}}'><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button></a>
                                   </td>
                               </tr>
+                             
                               <?php
                                   }
-                                ?>
+                              ?>
                               </tbody>
                           </table>
-
-                              
-                              <?php
-                                  echo "<center>".$block['bangunans']->render()."<c/enter>";
-                              ?>
+                         <?php echo "<center>".$block['lokasis']->render()."</center>"; ?>
                       </div><!-- /content-panel -->
                   </div><!-- /col-md-12 -->
               </div><!-- /row -->

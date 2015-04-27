@@ -17,9 +17,11 @@ class LokasiController extends Controller {
 	 *
 	 * @return Response
 	 */
+	
 	public function index()
 	{
-		$lokasis = Lokasi::all();
+		$lokasis = Lokasi::orderBy('id','DESC')->paginate(5);
+		$lokasis->setPath("lokasi");
 		if($lokasis == []){
 			return 'Kosong';
 		}
@@ -29,7 +31,11 @@ class LokasiController extends Controller {
 				'lokasis'=>$lokasis,
 				'message'=>$message
 			];
-			return view('lokasis.index',compact('block'));
+			$status = Lokasi::getStatusLokasi();
+			foreach ($block['lokasis'] as $lokasi) {
+				$lokasi->status =  $status["$lokasi->status"];
+			}
+			return view('izin_admin.lokasi',compact('block'));
 		}
 	}
 
@@ -53,13 +59,13 @@ class LokasiController extends Controller {
 		//$var = (new Request)->all();
 		$var = Request::all();
 		$fileSrc ="none";
+		$destinationPath = env('UPLOADED_FILE','/');
 		if (Request::hasFile('dokumen'))
 		{
-    		$destinationPath = "/uploaded";
-    		$extension = Request::file('dokumen')->getClientOriginalExtension(); // getting image extension
-      		$fileName = rand(11111,99999).'.'.$extension; // renameing image
+			$extension = Request::file('dokumen')->getClientOriginalExtension(); // getting image extension
+    		$fileName = rand(11111,99999).'.'.$extension; // renameing image
       		Request::file('dokumen')->move($destinationPath, $fileName);
-      		$fileSrc = $destinationPath.'/'.$fileName;
+      		$fileSrc = "file:///C:/".$destinationPath.'/'.$fileName;
 		}
 		$lokasi = new Lokasi();
 		$lokasi->email = $var['email'];
@@ -157,13 +163,13 @@ class LokasiController extends Controller {
 		//return redirect('/lokasis');
 		$lokasi = Lokasi::find($id);
 		$fileSrc = $lokasi->dokumen;
+		$destinationPath = env('UPLOADED_FILE','/');
 		if (Request::hasFile('dokumen'))
 		{
-    		$destinationPath = "/uploaded";
-    		$extension = Request::file('dokumen')->getClientOriginalExtension(); // getting image extension
-      		$fileName = rand(11111,99999).'.'.$extension; // renameing image
+			$extension = Request::file('dokumen')->getClientOriginalExtension(); // getting image extension
+    		$fileName = rand(11111,99999).'.'.$extension; // renameing image
       		Request::file('dokumen')->move($destinationPath, $fileName);
-      		$fileSrc = $destinationPath.'/'.$fileName;
+      		$fileSrc = "file:///C:/".$destinationPath.'/'.$fileName;
 		}
 		$lokasi->nama = $var['nama'];
 		$lokasi->fungsi = $var['fungsi'];
@@ -174,6 +180,42 @@ class LokasiController extends Controller {
 		$lokasi->save();
 		return redirect('/lokasis');
 	}
+
+	public function setuju($id)
+	{
+		$lokasi = Lokasi::find($id);
+		$lokasi->status = 1;
+		$lokasi->save();
+		$data = [
+			"to" => $lokasi->email,
+			"name" => "Pemohon Lokasi di ".$lokasi->kelurahan,
+			"id" => $lokasi->id,
+			"status" => $lokasi->status,
+			"subject" => "[Hasil Permohonan Izin Lokasi] ".$lokasi->kecamatan,
+			"token" => $lokasi->password,
+		];
+		MailController::send($data);
+		return redirect('/home');
+	}
+
+	public function tolak($id)
+	{
+		$lokasi = Lokasi::find($id);
+		$lokasi->status = -1;
+		$lokasi->save();
+		$data = [
+			"to" => $lokasi->email,
+			"name" => "Pemohon Lokasi di ".$lokasi->kelurahan,
+			"id" => $lokasi->id,
+			"status" => $lokasi->status,
+			"subject" => "[Hasil Permohonan Izin Lokasi] ".$lokasi->kecamatan,
+			"token" => null,
+		];
+		MailController::send($data);
+		return redirect('/home');
+	}
+
+
 
 	/**
 	 * Remove the specified resource from storage.
@@ -191,7 +233,11 @@ class LokasiController extends Controller {
 				'lokasis'=>$lokasis,
 				'message'=>$message
 		];
-		return view('lokasis.index',compact('block'));
+		$status = Lokasi::getStatusLokasi();
+		foreach ($block['lokasis'] as $lokasi) {
+				$lokasi->status =  $status["$lokasi->status"];
+		}
+		return view('izin_admin.lokasis',compact('block'));
 	}
 
 }

@@ -5,7 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 class Bangunan extends Model {
 	protected $fillable = array('nik','email','nama','fungsi','id_lokasi','password_lokasi','dokumen','password','status');
 
-	public static function getOptionBangunan() 
+	public static function getJenisBangunan() 
 	{
 		$jenis_bangunan = [
 			'1' => 'Pagar',
@@ -22,6 +22,17 @@ class Bangunan extends Model {
 			'12' => 'Instalasi/Utilitas',
 			'13' => 'Jembatan',
 			'14' => 'Reservoar',
+		];
+
+		return $jenis_bangunan;
+	}
+
+	public static function getStatusBangunan() 
+	{
+		$jenis_bangunan = [
+			'-1' => 'Sudah ditolak',
+			'0' => 'Sedang diproses',
+			'1' => 'Sudah disetujui',
 		];
 
 		return $jenis_bangunan;

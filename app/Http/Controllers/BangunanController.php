@@ -17,7 +17,8 @@ class BangunanController extends Controller {
 	 */
 	public function index()
 	{
-		$bangunans = Bangunan::all();
+		$bangunans = Bangunan::orderBy('id')->simplePaginate(5);
+		$lokasis->setPath("imb");
 		if($bangunans == []){
 			return 'Kosong';
 		}
@@ -27,7 +28,13 @@ class BangunanController extends Controller {
 				'bangunans'=>$bangunans,
 				'message'=>$message
 			];
-			return view('bangunans.index',compact('block'));
+			$jenis = Bangunan::getJenisBangunan();
+			$status = Bangunan::getStatusBangunan();
+			foreach ($block['bangunans'] as $bangunan) {
+				$bangunan->jenis = $jenis["$bangunan->jenis"];
+				$bangunan->status = $status["$bangunan->status"];
+			}
+			return view('izin_admin.imb',compact('block'));
 		}
 	}
 
@@ -54,13 +61,13 @@ class BangunanController extends Controller {
 		//Bangunan::create($var);
 		//return redirect('/bangunans');
 		$fileSrc ="none";
+		$destinationPath = env('UPLOADED_FILE','/');
 		if (Request::hasFile('dokumen'))
 		{
-    		$destinationPath = "/uploaded";
-    		$extension = Request::file('dokumen')->getClientOriginalExtension(); // getting image extension
-      		$fileName = rand(11111,99999).'.'.$extension; // renameing image
+			$extension = Request::file('dokumen')->getClientOriginalExtension(); // getting image extension
+    		$fileName = rand(11111,99999).'.'.$extension; // renameing image
       		Request::file('dokumen')->move($destinationPath, $fileName);
-      		$fileSrc = $destinationPath.'/'.$fileName;
+      		$fileSrc = "file:///C:/".$destinationPath.'/'.$fileName;
 		}
 		$bangunan = new Bangunan();
 		//$bangunan->nik = $var['nik'];
@@ -159,13 +166,13 @@ class BangunanController extends Controller {
 		//return redirect('/bangunans');
 		$bangunan = Bangunan::find($id);
 		$fileSrc ="none";
+		$destinationPath = env('UPLOADED_FILE','/');
 		if (Request::hasFile('dokumen'))
 		{
-    		$destinationPath = "/uploaded";
-    		$extension = Request::file('dokumen')->getClientOriginalExtension(); // getting image extension
-      		$fileName = rand(11111,99999).'.'.$extension; // renameing image
+			$extension = Request::file('dokumen')->getClientOriginalExtension(); // getting image extension
+    		$fileName = rand(11111,99999).'.'.$extension; // renameing image
       		Request::file('dokumen')->move($destinationPath, $fileName);
-      		$fileSrc = $destinationPath.'/'.$fileName;
+      		$fileSrc = "file:///C:/".$destinationPath.'/'.$fileName;
 		}
 		//$bangunan->nik = $var['nik'];
 		$bangunan->email = $var['email'];
@@ -175,6 +182,40 @@ class BangunanController extends Controller {
 		$bangunan->dokumen = $fileSrc;
 		$bangunan->save();
 		return 'Berhasil';
+	}
+
+	public function setuju($id)
+	{
+		$bangunan = Bangunan::find($id);
+		$bangunan->status = 1;
+		$bangunan->save();
+		$toSend = [
+			"to" => $bangunan->email,
+			"name" => "Pemohon Bangunan".$bangunan->nama,
+			"id" => $bangunan->id,
+			"status" => $bangunan->status,
+			"subject" => "[Hasil Permohonan Izin Mendirikan Bangunan] ".$bangunan->nama,
+			"token" => $bangunan->password,
+		];
+		MailController::send($toSend);
+		return redirect('/home');
+	}
+
+	public function tolak($id)
+	{
+		$bangunan = Bangunan::find($id);
+		$bangunan->status = -1;
+		$bangunan->save();
+		$toSend = [
+			"to" => $bangunan->email,
+			"name" => "Pemohon Bangunan".$bangunan->nama,
+			"id" => $bangunan->id,
+			"status" => $bangunan->status,
+			"subject" => "[Hasil Permohonan Izin Mendirikan Bangunan] ".$bangunan->nama,
+			"token" => null,
+		];
+		MailController::send($toSend);
+		return redirect('/home');
 	}
 
 	/**
@@ -193,6 +234,12 @@ class BangunanController extends Controller {
 				'bangunans'=>$bangunans,
 				'message'=>$message
 		];
+		$jenis = Bangunan::getJenisBangunan();
+		$status = Bangunan::getStatusBangunan();
+		foreach ($block['bangunans'] as $bangunan) {
+				$bangunan->jenis = $jenis["$bangunan->jenis"];
+				$bangunan->status = $status["$bangunan->status"];
+		}
 		return view('bangunans.index',compact('block'));
 	}
 
