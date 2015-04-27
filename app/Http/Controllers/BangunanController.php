@@ -88,28 +88,34 @@ class BangunanController extends Controller {
 	public function api()
 	{
 		$var = Request::all();
-		$bangunan = Bangunan::find($var['id']);
-		if($bangunan==null){
-			return array("status"=>"error");
-		}
-		else if($bangunan->password==$var['password']){
-			$lokasi = Lokasi::find($bangunan->id_lokasi);
-			return [
-				"id" => $bangunan->id,
-				"nik" => $bangunan->nik,
-				"email" => $bangunan->email,
-				"nama" => $bangunan->nama,
-				"jenis" => $bangunan->jenis,
-				"alamat_lokasi" => $lokasi->alamat,
-				"kelurahan_lokasi" => $lokasi->kelurahan,
-				"kecamatan_lokasi" => $lokasi->kecamatan,
-				"status" => $bangunan->status,
-			];
+		if((isset($var['id']))&&(isset($var['password']))){
+			$bangunan = Bangunan::find($var['id']);
+			if($bangunan==null){
+				return array("status"=>"error");
+			}
+			else if($bangunan->password==$var['password']){
+				$lokasi = Lokasi::find($bangunan->id_lokasi);
+				return [
+					"id" => $bangunan->id,
+					"nik" => $bangunan->nik,
+					"email" => $bangunan->email,
+					"nama" => $bangunan->nama,
+					"jenis" => $bangunan->jenis,
+					"alamat_lokasi" => $lokasi->alamat,
+					"kelurahan_lokasi" => $lokasi->kelurahan,
+					"kecamatan_lokasi" => $lokasi->kecamatan,
+					"status" => $bangunan->status,
+				];
 
-		}
-		else{
+			}
+			else{
+				return [
+					"status"=>"fail"
+				];
+			}
+		} else{
 			return [
-				"status"=>"fail"
+				"status"=>"error"
 			];
 		}
 	}
@@ -167,9 +173,6 @@ class BangunanController extends Controller {
 		$bangunan->jenis = $var['jenis'];
 		$bangunan->id_lokasi = $var['id_lokasi'];
 		$bangunan->dokumen = $fileSrc;
-		$bangunan->status = 0;
-		$randomString = rand(11111,99999).'kijang1'.time();
-		$bangunan->password = md5($randomString);
 		$bangunan->save();
 		return 'Berhasil';
 	}

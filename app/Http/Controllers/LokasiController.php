@@ -68,6 +68,9 @@ class LokasiController extends Controller {
 		$lokasi->kelurahan = $var['kelurahan'];
 		$lokasi->kecamatan = $var['kecamatan'];
 		$lokasi->dokumen = $fileSrc;
+		$lokasi->status = 0;
+		$randomString = rand(11111,99999).'kijang1'.time();
+		$lokasi->password = md5($randomString);
 		$lokasi->save();
 		$data = [
 			"to" => $lokasi->email,
@@ -77,37 +80,8 @@ class LokasiController extends Controller {
 			"subject" => "[Bukti Permohonan Izin Lokasi] ".$lokasi->kecamatan,
 			"token" => null,
 		];
-		if(isset($data)){
-			if($data['status']==0){
-				$data['status']="diterima dan akan ditinjau";
-				Mail::send('emails.masuk-izin', $data, function($message) use ($data)  {
-					$message->from('no-reply@pimo.com', 'Sistem Pengajuaan Izin Mendirikan Online');
-					if(!isset($data['name']))
-						$data['name'] = "No Name";
-		    		$message->to($data['to'],$data['name'])->subject($data['subject']);
-				});
-			}
-			else if($data['status']==1){
-				$data['status']="disetujui";
-				Mail::send('emails.setuju-izin', $data, function($message) use ($data)  {
-					$message->from('no-reply@pimo.com', 'Sistem Pengajuaan Izin Mendirikan Online');
-					if(!isset($data['name']))
-						$data['name'] = "No Name";
-		    		$message->to($data['to'],$data['name'])->subject($data['subject']);
-				});
-			}
-			else if($data['status']==2){
-				$data['status']="ditolak";
-				Mail::send('emails.tolak-izin', $data, function($message) use ($data) {
-					$message->from('no-reply@pimo.com', 'Sistem Pengajuaan Izin Mendirikan Online');
-					if(!isset($data['name']))
-						$data['name'] = "No Name";
-		    		$message->to($data['to'],$data['name'])->subject($data['subject']);
-				});
-			}
-		} else{
-			return "Something is wrong";
-		}
+		MailController::send($data);
+
 		return "Berhasil?";
 	}
 
@@ -122,6 +96,39 @@ class LokasiController extends Controller {
 	{
 		$lokasi = Lokasi::find($id);
 		return view('lokasis.lokasi',compact('lokasi'));
+	}
+
+	public function api()
+	{
+		$var = Request::all();
+		if((isset($var['id']))&&(isset($var['password']))){
+			$lokasi = Lokasi::find($var['id']);
+			if($lokasi==null){
+				return array("status"=>"error");
+			}
+			else if($lokasi->password==$var['password']){
+				return [
+					"id" => $lokasi->id,
+					"nik" => $lokasi->nik,
+					"email" => $lokasi->email,
+					"luas" => $lokasi->luas,
+					"alamat" => $lokasi->alamat,
+					"kelurahan" => $lokasi->kelurahan,
+					"kecamatan" => $lokasi->kecamatan,
+					"status" => $lokasi->status,
+				];
+
+			}
+			else{
+				return [
+					"status"=>"fail"
+				];
+			}
+		}else{
+			return [
+					"status"=>"error"
+				];
+		}
 	}
 
 	/**
