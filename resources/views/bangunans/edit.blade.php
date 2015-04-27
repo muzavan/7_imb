@@ -1,3 +1,6 @@
+<?php
+	use App\Bangunan;
+?>
 @extends('app')
 
 @section('content')
@@ -13,7 +16,7 @@
 			</div>
 			<div class='form-group'>
 				{!! Form::label('fungsi','Fungsi:') !!}
-				{!! Form::select('fungsi', array('1' => 'Lapangan Olahraga', '2' => 'Kolam Renang', '3' => 'Rumah'), $bangunan->fungsi,['class' => 'form-control']) !!}
+				{!! Form::select('fungsi',Bangunan::getOptionBangunan(), $bangunan->fungsi,['class' => 'form-control']) !!}
 			</div>
 			<div class='form-group'>
 				{!! Form::label('alamat','Alamat:') !!}
