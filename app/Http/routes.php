@@ -207,6 +207,23 @@ Route::get('/pemohons', 'PemohonController@demo_edit');
 Route::get('/pengajuan-lokasi', 'LokasiController@demo_create');
 Route::get('/pengajuan-IMB', 'BangunanController@demo_create');
 
+Route::group(['prefix' => '/izin_admin'], function()
+{
+    Route::get('/', 'AdminController@index');
+    Route::get('/IMB', 'AdminController@IMB');
+    // Route::get('lokasi', 'AdminController@lokasi');
+    // Route::get('/IMB/menunggu')
+});
+
+Route::group(['prefix' => '/ruang_admin'], function()
+{
+    Route::get('/', 'AdminController@index_ruang');
+    Route::get('/tata_ruang', 'AdminController@tata_ruang');
+    // Route::get('/IMB', 'AdminController@IMB');
+    // Route::get('lokasi', 'AdminController@lokasi');
+    // Route::get('/IMB/menunggu')
+});
+
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
