@@ -1,5 +1,5 @@
 <?php namespace App\Http\Controllers;
-
+use \Mail;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Lokasi;
@@ -43,11 +43,6 @@ class LokasiController extends Controller {
 		return view('lokasis.create');
 	}
 
-	public function demo_create()
-	{
-		return view('commonusers.lokasis');
-	}
-
 	/**
 	 * Store a newly created resource in storage.
 	 *
@@ -57,9 +52,6 @@ class LokasiController extends Controller {
 	{
 		//$var = (new Request)->all();
 		$var = Request::all();
-		//dd($var);
-		//Lokasi::create($var);
-		//return redirect('/lokasis');
 		$fileSrc ="none";
 		if (Request::hasFile('dokumen'))
 		{
@@ -70,79 +62,53 @@ class LokasiController extends Controller {
       		$fileSrc = $destinationPath.'/'.$fileName;
 		}
 		$lokasi = new Lokasi();
-		$lokasi->nama = $var['nama'];
-		$lokasi->fungsi = $var['fungsi'];
-		$lokasi->lokasi = $var['lokasi'];
-		$lokasi->jenis = $var['jenis'];
-		$lokasi->jumlah_lantai = $var['jumlah_lantai'];
+		$lokasi->email = $var['email'];
+		$lokasi->alamat = $var['alamat'];
+		$lokasi->luas = $var['luas'];
+		$lokasi->kelurahan = $var['kelurahan'];
+		$lokasi->kecamatan = $var['kecamatan'];
 		$lokasi->dokumen = $fileSrc;
 		$lokasi->save();
-		return redirect('/lokasis');
-	}
-
-	public function demo_store()
-	{
-		//$var = (new Request)->all();
-		$var = Request::all();
-		//dd($var);
-		//Lokasi::create($var);
-		//return redirect('/lokasis');
-		$fileSrc ="none";
-		if (Request::hasFile('dokumen'))
-		{
-    		$destinationPath = "/uploaded";
-    		$extension = Request::file('dokumen')->getClientOriginalExtension(); // getting image extension
-      		$fileName = rand(11111,99999).'.'.$extension; // renameing image
-      		Request::file('dokumen')->move($destinationPath, $fileName);
-      		$fileSrc = $destinationPath.'/'.$fileName;
+		$data = [
+			"to" => $lokasi->email,
+			"name" => "Pemohon Lokasi di ".$lokasi->kelurahan,
+			"id" => $lokasi->id,
+			"status" => $lokasi->status,
+			"subject" => "[Bukti Permohonan Izin Lokasi] ".$lokasi->kecamatan,
+			"token" => null,
+		];
+		if(isset($data)){
+			if($data['status']==0){
+				$data['status']="diterima dan akan ditinjau";
+				Mail::send('emails.masuk-izin', $data, function($message) use ($data)  {
+					$message->from('no-reply@pimo.com', 'Sistem Pengajuaan Izin Mendirikan Online');
+					if(!isset($data['name']))
+						$data['name'] = "No Name";
+		    		$message->to($data['to'],$data['name'])->subject($data['subject']);
+				});
+			}
+			else if($data['status']==1){
+				$data['status']="disetujui";
+				Mail::send('emails.setuju-izin', $data, function($message) use ($data)  {
+					$message->from('no-reply@pimo.com', 'Sistem Pengajuaan Izin Mendirikan Online');
+					if(!isset($data['name']))
+						$data['name'] = "No Name";
+		    		$message->to($data['to'],$data['name'])->subject($data['subject']);
+				});
+			}
+			else if($data['status']==2){
+				$data['status']="ditolak";
+				Mail::send('emails.tolak-izin', $data, function($message) use ($data) {
+					$message->from('no-reply@pimo.com', 'Sistem Pengajuaan Izin Mendirikan Online');
+					if(!isset($data['name']))
+						$data['name'] = "No Name";
+		    		$message->to($data['to'],$data['name'])->subject($data['subject']);
+				});
+			}
+		} else{
+			return "Something is wrong";
 		}
-		$lokasi = new Lokasi();
-		$lokasi->nama = $var['nama'];
-		$lokasi->fungsi = $var['fungsi'];
-		$lokasi->lokasi = $var['lokasi'];
-		$lokasi->jenis = $var['jenis'];
-		$lokasi->jumlah_lantai = $var['jumlah_lantai'];
-		$lokasi->dokumen = $fileSrc;
-		$lokasi->save();
-		$permohonan = new PermohonanLokasi();
-		$permohonan->id_pemohon = $_COOKIE['pemohon'];
-		$permohonan->id_lokasi = $lokasi->id;
-		$permohonan->save();
-		return view('demo.selesai_lokasis');
-	}
-
-	public function demo_store_imbs()
-	{
-		//$var = (new Request)->all();
-		$var = Request::all();
-		//dd($var);
-		//Lokasi::create($var);
-		//return redirect('/lokasis');
-		$fileSrc ="none";
-		if (Request::hasFile('dokumen'))
-		{
-    		$destinationPath = "/uploaded";
-    		$extension = Request::file('dokumen')->getClientOriginalExtension(); // getting image extension
-      		$fileName = rand(11111,99999).'.'.$extension; // renameing image
-      		Request::file('dokumen')->move($destinationPath, $fileName);
-      		$fileSrc = $destinationPath.'/'.$fileName;
-		}
-		$lokasi = new Lokasi();
-		$lokasi->nama = $var['nama'];
-		$lokasi->fungsi = $var['fungsi'];
-		$lokasi->lokasi = $var['lokasi'];
-		$lokasi->jenis = $var['jenis'];
-		$lokasi->jumlah_lantai = $var['jumlah_lantai'];
-		$lokasi->dokumen = $fileSrc;
-		$lokasi->save();
-		$permohonan = new PermohonanImb();
-		$permohonan->id_bangunan = $_COOKIE['bangunan'];
-		$permohonan->id_pemohon = $_COOKIE['pemohon'];
-		$permohonan->id_pemilik = $_COOKIE['pemilik'];
-		$permohonan->id_tanah = $_COOKIE['tanah'];
-		$permohonan->id_lokasi = $lokasi->id;
-		$permohonan->save();
-		return view('demo.selesai_lokasis');
+		return "Berhasil?";
 	}
 
 	/**
@@ -151,6 +117,7 @@ class LokasiController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
+
 	public function show($id)
 	{
 		$lokasi = Lokasi::find($id);

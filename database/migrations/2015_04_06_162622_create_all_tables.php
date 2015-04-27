@@ -12,58 +12,35 @@ class CreateAllTables extends Migration {
 	 */
 	public function up()
 	{
-
-		Schema::create('pemiliks', function(Blueprint $table)
-		{
-			$table->increments('id');
-			$table->string('nama');
-			$table->string('alamat');
-			$table->string('telepon');
-			$table->string('fax');
-			$table->string('email');
-			$table->timestamps();
-		});
-
-		Schema::create('pemohons', function(Blueprint $table)
-		{
-			$table->increments('id');
-			$table->string('nama');
-			$table->string('nik');
-			$table->string('email');
-			$table->text('alamat');
-			$table->timestamps();
-		});
-
 		Schema::create('lokasis', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->integer('fungsi');
-			$table->string('nama');
-			$table->string('lokasi');
-			$table->integer('jenis');
-			$table->integer('jumlah_lantai');
+			$table->string('nik');
+			$table->string('email');
+			$table->string('alamat');
+			$table->integer('luas');
+			$table->string('kelurahan');
+			$table->string('kecamatan');
 			$table->text('dokumen');
+			$table->integer('status');
+			$table->string('password');
 			$table->timestamps();
 		});
 
-		Schema::create('tanahs', function(Blueprint $table)
-		{
-			$table->increments('id');
-			$table->string('nama_pemilik');
-			$table->string('luas');
-			$table->boolean('status_hak');
-			$table->timestamps();
-		});
-
+		
 		Schema::create('bangunans', function(Blueprint $table)
 		{
+
 			$table->increments('id');
+			$table->string('nik');
+			$table->string('email');
 			$table->string('nama');
-			$table->integer('fungsi');
-			$table->string('alamat');
 			$table->integer('jenis');
-			$table->integer('jumlah_lantai');
-			$table->string('dokumen');
+			$table->integer('id_lokasi')->unsigned();
+      		$table->foreign('id_lokasi')->references('id')->on('lokasis')->onDelete('cascade');
+      		$table->string('dokumen');
+			$table->integer('status');
+			$table->string('password');
 			$table->timestamps();
 		});
 
@@ -76,36 +53,7 @@ class CreateAllTables extends Migration {
 			$table->timestamps();
 		});
 
-		Schema::create('permohonan_imbs', function(Blueprint $table)
-		{
-			$table->increments('id');
-			$table->integer('id_bangunan')->unsigned();
-			$table->foreign('id_bangunan')->references('id')->on('bangunans')->onDelete('cascade');
-			$table->integer('id_pemohon')->unsigned();
-			$table->foreign('id_pemohon')->references('id')->on('pemohons')->onDelete('cascade');
-			$table->integer('id_pemilik')->unsigned();
-			$table->foreign('id_pemilik')->references('id')->on('pemiliks')->onDelete('cascade');
-			$table->integer('id_tanah')->unsigned();
-			$table->foreign('id_tanah')->references('id')->on('tanahs')->onDelete('cascade');
-			$table->integer('id_lokasi')->unsigned();
-			$table->foreign('id_lokasi')->references('id')->on('lokasis')->onDelete('cascade');
-			$table->integer('status');
-			$table->integer('code');
-			$table->timestamps();
-		});
-
-		Schema::create('permohonan_lokasis', function(Blueprint $table)
-		{
-			$table->increments('id');
-			$table->integer('id_lokasi')->unsigned();
-			$table->foreign('id_lokasi')->references('id')->on('lokasis')->onDelete('cascade');
-			$table->integer('id_pemohon')->unsigned();
-			$table->foreign('id_pemohon')->references('id')->on('pemohons')->onDelete('cascade');
-			$table->integer('status');
-			$table->integer('code');
-			$table->timestamps();
-		});
-
+		
 		Schema::create('pengaduans', function(Blueprint $table)
 		{
 			$table->increments('id');

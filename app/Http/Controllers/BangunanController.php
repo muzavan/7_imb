@@ -3,6 +3,7 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Bangunan;
+use App\Lokasi;
 use Carbon\Carbon;
 //use Illuminate\Http\Request;
 use Request;
@@ -40,10 +41,6 @@ class BangunanController extends Controller {
 		return view('bangunans.create');
 	}
 
-	public function demo_create()
-	{
-		return view('commonusers.bangunans');
-	}
 	/**
 	 * Store a newly created resource in storage.
 	 *
@@ -66,42 +63,55 @@ class BangunanController extends Controller {
       		$fileSrc = $destinationPath.'/'.$fileName;
 		}
 		$bangunan = new Bangunan();
+		//$bangunan->nik = $var['nik'];
+		$bangunan->email = $var['email'];
 		$bangunan->nama = $var['nama'];
-		$bangunan->fungsi = $var['fungsi'];
-		$bangunan->alamat = $var['lokasi'];
 		$bangunan->jenis = $var['jenis'];
-		$bangunan->jumlah_lantai = $var['jumlah_lantai'];
+		$bangunan->id_lokasi = $var['id_lokasi'];
 		$bangunan->dokumen = $fileSrc;
+		$bangunan->status = 0;
+		$randomString = rand(11111,99999).'kijang1'.time();
+		$bangunan->password = md5($randomString);
 		$bangunan->save();
-		return view('pemiliks');
+		$toSend = [
+			"to" => $bangunan->email,
+			"name" => "Pemohon Bangunan".$bangunan->nama,
+			"id" => $bangunan->id,
+			"status" => $bangunan->status,
+			"subject" => "[Bukti Permohonan Izin Mendirikan Bangunan] ".$bangunan->nama,
+			"token" => null,
+		];
+		MailController::send($toSend);
+		return 'Berhasil';
 	}
 
-	public function demo_store()
+	public function api()
 	{
-		//$var = (new Request)->all();
 		$var = Request::all();
-		//dd($var);
-		//Bangunan::create($var);
-		//return redirect('/bangunans');
-		$fileSrc ="none";
-		if (Request::hasFile('dokumen'))
-		{
-    		$destinationPath = "/uploaded";
-    		$extension = Request::file('dokumen')->getClientOriginalExtension(); // getting image extension
-      		$fileName = rand(11111,99999).'.'.$extension; // renameing image
-      		Request::file('dokumen')->move($destinationPath, $fileName);
-      		$fileSrc = $destinationPath.'/'.$fileName;
+		$bangunan = Bangunan::find($var['id']);
+		if($bangunan==null){
+			return array("status"=>"error");
 		}
-		$bangunan = new Bangunan();
-		$bangunan->nama = $var['nama'];
-		$bangunan->fungsi = $var['fungsi'];
-		$bangunan->alamat = $var['lokasi'];
-		$bangunan->jenis = $var['jenis'];
-		$bangunan->jumlah_lantai = $var['jumlah_lantai'];
-		$bangunan->dokumen = $fileSrc;
-		$bangunan->save();
-		setcookie('bangunan',$bangunan->id,time()+60*60*24);
-		return view('demo.pemiliks');
+		else if($bangunan->password==$var['password']){
+			$lokasi = Lokasi::find($bangunan->id_lokasi);
+			return [
+				"id" => $bangunan->id,
+				"nik" => $bangunan->nik,
+				"email" => $bangunan->email,
+				"nama" => $bangunan->nama,
+				"jenis" => $bangunan->jenis,
+				"alamat_lokasi" => $lokasi->alamat,
+				"kelurahan_lokasi" => $lokasi->kelurahan,
+				"kecamatan_lokasi" => $lokasi->kecamatan,
+				"status" => $bangunan->status,
+			];
+
+		}
+		else{
+			return [
+				"status"=>"fail"
+			];
+		}
 	}
 
 	/**
@@ -136,12 +146,13 @@ class BangunanController extends Controller {
 	 */
 	public function update($id)
 	{
+		//$var = (new Request)->all();
 		$var = Request::all();
 		//dd($var);
 		//Bangunan::create($var);
 		//return redirect('/bangunans');
 		$bangunan = Bangunan::find($id);
-		$fileSrc = $bangunan->dokumen;
+		$fileSrc ="none";
 		if (Request::hasFile('dokumen'))
 		{
     		$destinationPath = "/uploaded";
@@ -150,14 +161,17 @@ class BangunanController extends Controller {
       		Request::file('dokumen')->move($destinationPath, $fileName);
       		$fileSrc = $destinationPath.'/'.$fileName;
 		}
+		//$bangunan->nik = $var['nik'];
+		$bangunan->email = $var['email'];
 		$bangunan->nama = $var['nama'];
-		$bangunan->fungsi = $var['fungsi'];
-		$bangunan->alamat = $var['lokasi'];
 		$bangunan->jenis = $var['jenis'];
-		$bangunan->jumlah_lantai = $var['jumlah_lantai'];
+		$bangunan->id_lokasi = $var['id_lokasi'];
 		$bangunan->dokumen = $fileSrc;
+		$bangunan->status = 0;
+		$randomString = rand(11111,99999).'kijang1'.time();
+		$bangunan->password = md5($randomString);
 		$bangunan->save();
-		return redirect('/bangunans');
+		return 'Berhasil';
 	}
 
 	/**
@@ -170,7 +184,7 @@ class BangunanController extends Controller {
 	{
 		$var = Bangunan::find($id);
 		$var->delete();
-		$message = "Bangunan dengan id $id sudah dihapus.";
+		$message = "Izin bangunan dengan id $id sudah dihapus.";
 		$bangunans = Bangunan::all();
 		$block = [
 				'bangunans'=>$bangunans,

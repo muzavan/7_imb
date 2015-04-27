@@ -4,6 +4,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Informasi extends Model {
 
-	protected $fillable = array('id','judul','konten','referensi');
+	protected $fillable = array('nik','email','alamat','luas','kelurahan','kecamatan','dokumen','status','password');
 
 }

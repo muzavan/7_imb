@@ -8,26 +8,26 @@ use App\Bangunan;
 		<div class='col-md-3'>
 		</div>
 		<div class='col-md-6'>
-			{!! Form::open(['url' => '/bangunans' , 'files'=>true]) !!}
+			{!! Form::open(['url' => '/home/pengajuan-IMB' , 'files'=>true]) !!}
+			<div class='form-group'>
+				{!! Form::label('email','Email:') !!}
+				{!! Form::email('email','mail@email.com',['class' => 'form-control']) !!}
+			</div>
 			<div class='form-group'>
 				{!! Form::label('nama','Nama:') !!}
 				{!! Form::text('nama','(Nama Bangunan)',['class' => 'form-control']) !!}
 			</div>
 			<div class='form-group'>
-				{!! Form::label('fungsi','Fungsi:') !!}
-				{!! Form::select('fungsi',Bangunan::getOptionBangunan(), '1',['class' => 'form-control']) !!}
-			</div>
-			<div class='form-group'>
-				{!! Form::label('alamat','Alamat:') !!}
-				{!! Form::textarea('lokasi','Alamat Lengkap Bangunan',['class' => 'form-control','rows' => '3']) !!}
-			</div>
-			<div class='form-group'>
 				{!! Form::label('jenis','Jenis:') !!}
-				{!! Form::select('jenis', array('1' => 'Permanen', '2' => 'Semi-Permanen', '3' => 'Sementara'), 'Permanen',['class' => 'form-control']) !!}
+				{!! Form::select('jenis',Bangunan::getOptionBangunan(), '1',['class' => 'form-control']) !!}
 			</div>
 			<div class='form-group'>
-				{!! Form::label('jumlah_lantai','Jumlah Lantai:') !!}
-				{!! Form::selectRange('jumlah_lantai', 1, 20,['class' => 'form-control']) !!}
+				{!! Form::label('id_lokasi','ID Lokasi:') !!}
+				{!! Form::text('id_lokasi','No Surat Izin Lokasi',['class' => 'form-control','rows' => '3']) !!}
+			</div>
+			<div class='form-group'>
+				{!! Form::label('password_lokasi','Password Lokasi:') !!}
+				{!! Form::text('password_lokasi','Password Surat Izin Lokasi (dimiliki Pemilik Lokasi)',['class' => 'form-control','rows' => '3']) !!}
 			</div>
 			<div class='form-group'>
 				{!! Form::label('dokumen','Dokumen Teknis:') !!}

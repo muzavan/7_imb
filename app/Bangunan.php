@@ -3,7 +3,7 @@
 use Illuminate\Database\Eloquent\Model;
 
 class Bangunan extends Model {
-	protected $fillable = array('id','nama','fungsi','alamat','jenis','jumlah_lantai','dokumen');
+	protected $fillable = array('nik','email','nama','fungsi','id_lokasi','password_lokasi','dokumen','password','status');
 
 	public static function getOptionBangunan() 
 	{

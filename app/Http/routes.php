@@ -189,21 +189,22 @@ Route::group(['prefix' => '/home'], function()
     Route::get('/','InformasiController@demo_index');
 
     Route::get('/informasis/{id?}','InformasiController@demo_index');
-    Route::get('/pemohons', 'PemohonController@demo_edit');
-    Route::get('/pengajuan-lokasi', 'LokasiController@demo_create');
-    Route::post('/pengajuan-lokasi', 'LokasiController@demo_store');
-    Route::post('/pemohons/{id}', 'PemohonController@demo_update');
-    Route::get('/pengajuan-IMB', 'BangunanController@demo_create');
-    Route::post('/pengajuan-IMB/bangunan', 'BangunanController@demo_store');
-    Route::post('/pengajuan-IMB/pemilik', 'PemilikController@demo_store');
-    Route::post('/pengajuan-IMB/tanah', 'TanahController@demo_store');
-    Route::post('/pengajuan-IMB/lokasi', 'LokasiController@demo_store_imbs');
+    Route::get('/pengajuan-lokasi', 'LokasiController@create');
+    Route::post('/pengajuan-lokasi', 'LokasiController@store');
+    Route::get('/pengajuan-IMB', 'BangunanController@create');
+    Route::post('/pengajuan-IMB', 'BangunanController@store');
+
+});
+
+Route::group(['prefix' => '/api'], function()
+{
+    Route::post('/lokasi', 'LokasiController@api');
+    Route::post('/imb', 'BangunanController@api');
 
 });
 
 Route::get('/informasis/{id?}','InformasiController@demo_index');
 Route::get('/pemohons', 'PemohonController@demo_edit');
-
 Route::get('/pengajuan-lokasi', 'LokasiController@demo_create');
 Route::get('/pengajuan-IMB', 'BangunanController@demo_create');
 

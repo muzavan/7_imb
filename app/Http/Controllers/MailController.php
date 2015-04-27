@@ -81,16 +81,16 @@ class MailController extends Controller {
 		//
 	}
 
-	public function send($data){
-		// $data = array(
-		// 	'to' => 'mendingngoding@gmail.com',
-		// 	'name' => 'Muhammad Reza Irvanda',
-		// 	'id' => '3',
-		// 	'status' => 2,
-		// 	'subject' => 'Penolakan Izin Mendirikan Bangunan',
-		// 	'token' => '',
+	public static function send(/*$data*/){
+		$data = array(
+			'to' => 'mendingngoding@gmail.com',
+			'name' => 'Muhammad Reza Irvanda',
+			'id' => '3',
+			'status' => 2,
+			'subject' => 'Penolakan Izin Mendirikan Bangunan',
+			'token' => '',
 			
-		// );
+		);
 		if(isset($data)){
 			if($data['status']==0){
 				$data['status']="diterima dan akan ditinjau";

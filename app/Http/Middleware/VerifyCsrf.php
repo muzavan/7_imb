@@ -8,8 +8,8 @@ class VerifyCsrf extends \Illuminate\Foundation\Http\Middleware\VerifyCsrfToken
     * @var array
     */
    protected $routes = [
-           'imbs/api',
-           'ils/api',
+           'api/lokasi',
+           'api/imb',
    ];
 
     /**
@@ -30,11 +30,12 @@ class VerifyCsrf extends \Illuminate\Foundation\Http\Middleware\VerifyCsrfToken
            return $this->addCookieToResponse($request, $next($request));
        }
 
-       throw new \TokenMismatchException;
+       throw new \Illuminate\Session\TokenMismatchException;
    }
 
    /**
     * This will return a bool value based on route checking.
+
     * @param  Request $request
     * @return boolean
     */
