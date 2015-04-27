@@ -51,7 +51,7 @@
                 <ul class="mainnav">
                     <li class="active"><a href="index.html"><i class="icon-home"></i><span>Halaman Utama</span> </a>
                     </li>
-                    <li class="active"><a href="informasis"><i class="icon-info-sign"></i><span>Informasi</span> </a>
+                    <li class="active"><a href="{{ url('/informasis') }}"><i class="icon-info-sign"></i><span>Informasi</span> </a>
                     </li>
                     <li class="dropdown active">                    
                         <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">

@@ -18,7 +18,7 @@ Route::get('/', function(){
 Route::get('home', 'HomeController@index');
 
 /* Informasi Begin */
-Route::get('/informasis','InformasiController@index');
+Route::get('/informasis','InformasiController@demo_index');
 Route::get('/informasis/create','InformasiController@create');
 Route::post('/informasis/create','InformasiController@store');
 Route::get('/informasis/informasi/{id}/edit','InformasiController@edit');
@@ -200,6 +200,9 @@ Route::group(['prefix' => '/home'], function()
     Route::post('/pengajuan-IMB/lokasi', 'LokasiController@demo_store_imbs');
 
 });
+
+Route::get('/informasis/{id?}','InformasiController@demo_index');
+Route::get('/pemohons', 'PemohonController@demo_edit');
 
 Route::get('/pengajuan-lokasi', 'LokasiController@demo_create');
 Route::get('/pengajuan-IMB', 'BangunanController@demo_create');

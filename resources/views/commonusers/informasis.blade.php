@@ -12,7 +12,7 @@
           <tbody>
               @foreach ($block['informasis'] as $informasi)
                   <tr>
-                        <td><a href='{{ url("/home/informasis/$informasi->id")}}'>{{ $informasi->judul }}</a></td>
+                        <td><a href='{{ url("/informasis/$informasi->id")}}'>{{ $informasi->judul }}</a></td>
                   </tr>
               @endforeach
                 
