@@ -45,7 +45,7 @@ class InformasiController extends Controller {
 				'informasi' => $informasi
 			];
 			setcookie('pemohon',4,time()+60*60*24);
-			return view('demo.informasis',compact('block'));
+			return view('commonusers.informasis',compact('block'));
 		}
 	}
 

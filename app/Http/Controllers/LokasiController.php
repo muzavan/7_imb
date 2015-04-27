@@ -45,7 +45,7 @@ class LokasiController extends Controller {
 
 	public function demo_create()
 	{
-		return view('demo.lokasis');
+		return view('commonusers.lokasis');
 	}
 
 	/**

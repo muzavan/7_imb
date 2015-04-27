@@ -1,4 +1,4 @@
-@extends('demo.app')
+@extends('commonusers.app')
 
 @section('sidebar')
   @if($block['informasis']->count())
@@ -12,7 +12,7 @@
           <tbody>
               @foreach ($block['informasis'] as $informasi)
                   <tr>
-                        <td><a href="demo/informasis/{{$informasi->id}}">{{ $informasi->judul }}</a></td>
+                        <td><a href='{{ url("/home/informasis/$informasi->id")}}'>{{ $informasi->judul }}</a></td>
                   </tr>
               @endforeach
                 

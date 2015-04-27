@@ -67,16 +67,6 @@ class CreateAllTables extends Migration {
 			$table->timestamps();
 		});
 
-		Schema::create('pemohons', function(Blueprint $table)
-		{
-			$table->increments('id');
-			$table->string('nama');
-			$table->string('nik');
-			$table->string('email');
-			$table->text('alamat');
-			$table->timestamps();
-		});
-
 		Schema::create('informasis', function(Blueprint $table)
 		{
 			$table->increments('id');

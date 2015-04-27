@@ -42,7 +42,7 @@ class BangunanController extends Controller {
 
 	public function demo_create()
 	{
-		return view('demo.bangunans');
+		return view('commonusers.bangunans');
 	}
 	/**
 	 * Store a newly created resource in storage.

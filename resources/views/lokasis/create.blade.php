@@ -5,10 +5,10 @@
 		<div class='col-md-3'>
 		</div>
 		<div class='col-md-6'>
-			{!! Form::open(['url' => '/lokasis' , 'files'=>true]) !!}
+			{!! Form::open(['url' => '/home/lokasis' , 'files'=>true]) !!}
 			<div class='form-group'>
 				{!! Form::label('nama','Nama:') !!}
-				{!! Form::text('nama','(Nama Lokasi)',['class' => 'form-control']) !!}
+				{!! Form::text('nama','(Nama Lokasi)',['required', 'class' => 'form-control']) !!}
 			</div>
 			<div class='form-group'>
 				{!! Form::label('fungsi','Fungsi:') !!}
