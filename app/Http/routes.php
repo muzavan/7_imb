@@ -42,13 +42,15 @@ Route::group(['prefix' => '/admin/'], function()
     {
         Route::get('/','BangunanController@index');
         Route::get('setuju/{id}', 'BangunanController@setuju');
-        Route::get('tolak/{id}', 'BangunanController@tolak');
+        Route::post('tolak', 'BangunanController@tolak');
+        Route::get('sebelumTolak/{id}', 'BangunanController@sebelumTolak');
     }); 
    Route::group(['prefix' => '/lokasi'], function()
     {
         Route::get('/','LokasiController@index');
         Route::get('setuju/{id}', 'LokasiController@setuju');
-        Route::get('tolak/{id}', 'LokasiController@tolak');
+        Route::post('tolak', 'LokasiController@tolak');
+        Route::get('sebelumTolak/{id}', 'LokasiController@sebelumTolak');
         Route::get('/laporan', 'LokasiController@generateLaporan'); 
     }); 
 });

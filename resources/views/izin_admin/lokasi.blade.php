@@ -1,5 +1,5 @@
 @extends('izin_admin.app')
-
+<?php use App\Lokasi; ?>
 @section('content')
       
       @if($block)
@@ -43,10 +43,12 @@
                                   <td>{{$lokasi->kecamatan}}</td>
                                   <td><a href='{{$lokasi->dokumen}}'>Dokumen Teknis</a></td>
                                   <td>{{$lokasi->status}}</td>
+                                  @if($lokasi->status==Lokasi::getStatusLokasi()['0'])
                                   <td>
-                                      <a href='lokasi/setuju/{{$lokasi->id}}'><button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button></a>
-                                      <a href='lokasi/tolak/{{$lokasi->id}}'><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button></a>
+                                      <a href='lokasi/setuju/{{$lokasi->id}}'><button class="btn btn-success btn-xs"><i class="fa fa-check">Setujui</i></button></a>
+                                      <a href='lokasi/sebelumTolak/{{$lokasi->id}}'><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o ">Tolak</i></button></a>
                                   </td>
+                                  @endif
                               </tr>
                              
                               <?php

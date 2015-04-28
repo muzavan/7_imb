@@ -9,6 +9,8 @@
 	<li>Pengaduan masyarakat yang menyebabkan harus dibatalkannya prosedur perizinan ini.</li>
 </ol>
 
+<p>{{$komentar}}</p>
+
 <p>Informasi lebih lanjut mengenai status izin anda dapat ditanyakan dengan menghubungi Dinas Tata Ruang dan Cipta Karya Kota Bandung melalui telepon ataupun dengan datang langsung ke kantor kami.</p>
 <p> Terima Kasih </p>
 
