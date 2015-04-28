@@ -11,6 +11,14 @@
 |
 */
 
+/* TESTING SSO */
+
+Route::get("reza/loginPemohon/code/",function(){
+    echo Input::all();
+});
+Route::get("/loginPemohon","LoginController@loginPemohon");
+/* END OF TESTING */
+
 Route::get('/', function(){
     return view('commonusers.welcome');
 });
@@ -221,54 +229,3 @@ Route::controllers([
 //});
 
 /* Demo End */
-<<<<<<< HEAD
-=======
-
-
-Route::group(['prefix' => '/home'], function()
-{
-    Route::get('/','InformasiController@demo_index');
-
-    Route::get('/informasis/{id?}','InformasiController@demo_index');
-    Route::get('/pengajuan-lokasi', 'LokasiController@create');
-    Route::post('/pengajuan-lokasi', 'LokasiController@store');
-    Route::get('/pengajuan-IMB', 'BangunanController@create');
-    Route::post('/pengajuan-IMB', 'BangunanController@store');
-
-});
-
-Route::group(['prefix' => '/api'], function()
-{
-    Route::post('/lokasi', 'LokasiController@api');
-    Route::post('/imb', 'BangunanController@api');
-
-});
-
-Route::get('/informasis/{id?}','InformasiController@demo_index');
-Route::get('/email/send','MailController@send');
-Route::get('/pemohons', 'PemohonController@demo_edit');
-Route::get('/pengajuan-lokasi', 'LokasiController@demo_create');
-Route::get('/pengajuan-IMB', 'BangunanController@demo_create');
-
-Route::group(['prefix' => '/izin_admin'], function()
-{
-    Route::get('/', 'AdminController@index');
-    Route::get('/IMB', 'AdminController@IMB');
-    // Route::get('lokasi', 'AdminController@lokasi');
-    // Route::get('/IMB/menunggu')
-});
-
-Route::group(['prefix' => '/ruang_admin'], function()
-{
-    Route::get('/', 'AdminController@index_ruang');
-    Route::get('/tata_ruang', 'AdminController@tata_ruang');
-    // Route::get('/IMB', 'AdminController@IMB');
-    // Route::get('lokasi', 'AdminController@lokasi');
-    // Route::get('/IMB/menunggu')
-});
-
-Route::controllers([
-	'auth' => 'Auth\AuthController',
-	'password' => 'Auth\PasswordController',
-]);
->>>>>>> 0feedfc4bded0dd236584a232088010ae4a51857
