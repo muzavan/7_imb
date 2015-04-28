@@ -1,4 +1,4 @@
-@extends('izin_admin.app')
+@extends('admin.app')
 
 @section('content')
       

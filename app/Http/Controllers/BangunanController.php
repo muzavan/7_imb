@@ -18,7 +18,7 @@ class BangunanController extends Controller {
 	public function index()
 	{
 		$bangunans = Bangunan::orderBy('id')->simplePaginate(5);
-		$lokasis->setPath("imb");
+		// $lokasis->setPath("imb");
 		if($bangunans == []){
 			return 'Kosong';
 		}
@@ -31,10 +31,32 @@ class BangunanController extends Controller {
 			$jenis = Bangunan::getJenisBangunan();
 			$status = Bangunan::getStatusBangunan();
 			foreach ($block['bangunans'] as $bangunan) {
-				$bangunan->jenis = $jenis["$bangunan->jenis"];
-				$bangunan->status = $status["$bangunan->status"];
+				$bangunan->jenis = $jenis["$bangunans->jenis"];
+				$bangunan->status = $status["$bangunans->status"];
 			}
-			return view('izin_admin.imb',compact('block'));
+			return view('admin.imb',compact('block'));
+		}
+	}
+
+	public function user_index()
+	{
+		$bangunans = Bangunan::orderBy('id')->simplePaginate(5);
+		if($bangunans == []){
+			return 'Kosong';
+		}
+		else{
+			$message = array();
+			$block = [
+				'bangunans'=>$bangunans,
+				'message'=>$message
+			];
+			$jenis = Bangunan::getJenisBangunan();
+			$status = Bangunan::getStatusBangunan();
+			foreach ($block['bangunans'] as $bangunan) {
+				$bangunan->jenis = $jenis["$bangunans->jenis"];
+				$bangunan->status = $status["$bangunans->status"];
+			}
+			return view('commonusers.bangunans',compact('block'));
 		}
 	}
 

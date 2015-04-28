@@ -8,17 +8,17 @@
     <meta name="author" content="Dashboard">
     <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 
-    <title>DASHGUM - Bootstrap Admin Template</title>
+    <title>Admin IMB, Izin Lokasi, dan Tata Ruang</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="{{asset ('/admin/css/bootstrap.css') }}" rel="stylesheet">
+    <link href="{{asset ('/admins/css/bootstrap.css') }}" rel="stylesheet">
     <!--external css-->
-    <link href="{{asset ('/admin/font-awesome/css/font-awesome.css') }}" rel="stylesheet" />
+    <link href="{{asset ('/admins/font-awesome/css/font-awesome.css') }}" rel="stylesheet" />
     
     <!-- Custom styles for this template -->
-    <link href="{{asset ('/admin/css/style.css') }}" rel="stylesheet">
-    <link href="{{asset ('/admin/css/style-responsive.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{asset ('/admin/css/to-do.css') }}">
+    <link href="{{asset ('/admins/css/style.css') }}" rel="stylesheet">
+    <link href="{{asset ('/admins/css/style-responsive.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset ('/admins/css/to-do.css') }}">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -39,7 +39,7 @@
                   <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
               </div>
             <!--logo start-->
-            <a href="/izin_admin" class="logo"><b>PIMO</b></a>
+            <a href="/admin" class="logo"><b>PIMO</b></a>
             <!--logo end-->
             <div class="nav notify-row" id="top_menu">
             </div>
@@ -62,7 +62,7 @@
               
                     
                   <li class="mt">
-                      <a href="/izin_admin">
+                      <a href="/admin">
                           <i class="fa fa-dashboard"></i>
                           <span>Halaman Utama</span>
                       </a>
@@ -74,11 +74,10 @@
                           <span>IMB</span>
                       </a>
                       <ul class="sub">
-                          <li><a  href="#">Menampilkan Semua Izin</a></li>
-                          <li><a  href="#">Menampilkan Izin dalam Proses</a></li>
-                          <li><a  href="#">Menampilkan Izin Pending</a></li>
-                          <li><a  href="#">Menampilkan Izin Diterima</a></li>
-                          <li><a  href="#">Menampilkan Izin Ditolak</a></li>
+                          <li><a  href="/admin/imb">Semua Izin</a></li>
+                          <li><a  href="#">Izin dalam Proses</a></li>
+                          <li><a  href="#">Izin Diterima</a></li>
+                          <li><a  href="#">Izin Ditolak</a></li>
                       </ul>
                   </li>
 
@@ -88,11 +87,33 @@
                           <span>Izin Lokasi</span>
                       </a>
                       <ul class="sub">
-                          <li><a  href="#">Menampilkan Semua Izin</a></li>
-                          <li><a  href="#">Menampilkan Izin dalam Proses</a></li>
-                          <li><a  href="#">Menampilkan Izin Pending</a></li>
-                          <li><a  href="#">Menampilkan Izin Diterima</a></li>
-                          <li><a  href="#">Menampilkan Izin Ditolak</a></li>
+                          <li><a  href="/admin/lokasi">Semua Izin</a></li>
+                          <li><a  href="#">Izin dalam Proses</a></li>
+                          <li><a  href="#">Izin Diterima</a></li>
+                          <li><a  href="#">Izin Ditolak</a></li>
+                      </ul>
+                  </li>
+
+                  <li class="sub-menu">
+                      <a href="javascript:;" >
+                          <i class="fa fa-desktop"></i>
+                          <span>Tata Ruang</span>
+                      </a>
+                      <ul class="sub">
+                          <li><a  href="/admin/lokasi">Peta</a></li>
+                          <li><a  href="#">Permohonan Tata Ruang</a></li>
+                      </ul>
+                  </li>
+
+                  <li class="sub-menu">
+                      <a href="javascript:;" >
+                          <i class="fa fa-desktop"></i>
+                          <span>Pengaduan</span>
+                      </a>
+                      <ul class="sub">
+                          <li><a  href="/admin/lokasi">IMB</a></li>
+                          <li><a  href="#">Izin Lokasi</a></li>
+                          <li><a  href="#">Tata Ruang</a></li>
                       </ul>
                   </li>
 
@@ -113,7 +134,7 @@
       <footer class="site-footer">
           <div class="text-center">
               2015 - Azabalakisimawa
-              <a href="index.html#" class="go-top">
+              <a href="/admin" class="go-top">
                   <i class="fa fa-angle-up"></i>
               </a>
           </div>
@@ -122,19 +143,19 @@
   </section>
 
     <!-- js placed at the end of the document so the pages load faster -->
-    <script src="{{asset ('/admin/js/jquery.js') }}"></script>
-    <script src="{{asset ('/admin/js/bootstrap.min.js') }}"></script>
-    <script class="include" type="text/javascript" src="{{asset ('/admin/js/jquery.dcjqaccordion.2.7.js') }}"></script>
-    <script src="{{asset ('/admin/js/jquery.scrollTo.min.js') }}"></script>
-    <script src="{{asset ('/admin/js/jquery.nicescroll.js') }}" type="text/javascript"></script>
+    <script src="{{asset ('/admins/js/jquery.js') }}"></script>
+    <script src="{{asset ('/admins/js/bootstrap.min.js') }}"></script>
+    <script class="include" type="text/javascript" src="{{asset ('/admins/js/jquery.dcjqaccordion.2.7.js') }}"></script>
+    <script src="{{asset ('/admins/js/jquery.scrollTo.min.js') }}"></script>
+    <script src="{{asset ('/admins/js/jquery.nicescroll.js') }}" type="text/javascript"></script>
 
 
     <!--common script for all pages-->
-    <script src="{{asset ('/admin/js/common-scripts.js') }}"></script>
+    <script src="{{asset ('/admins/js/common-scripts.js') }}"></script>
 
     <!--script for this page-->
   <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>    
-    <script src="{{asset ('/admin/js/tasks.js') }}" type="text/javascript"></script>
+    <script src="{{asset ('/admins/js/tasks.js') }}" type="text/javascript"></script>
 
     <script>
       jQuery(document).ready(function() {

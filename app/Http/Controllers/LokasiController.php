@@ -21,6 +21,26 @@ class LokasiController extends Controller {
 	public function index()
 	{
 		$lokasis = Lokasi::orderBy('id','DESC')->paginate(5);
+		if($lokasis == []){
+			return 'Kosong';
+		}
+		else{
+			$message = array();
+			$block = [
+				'lokasis'=>$lokasis,
+				'message'=>$message
+			];
+			$status = Lokasi::getStatusLokasi();
+			foreach ($block['lokasis'] as $lokasi) {
+				$lokasi->status =  $status["$lokasi->status"];
+			}
+			return view('admin.lokasi',compact('block'));
+		}
+	}
+
+	public function user_index()
+	{
+		$lokasis = Lokasi::orderBy('id','DESC')->paginate(5);
 		$lokasis->setPath("lokasi");
 		if($lokasis == []){
 			return 'Kosong';
@@ -35,7 +55,7 @@ class LokasiController extends Controller {
 			foreach ($block['lokasis'] as $lokasi) {
 				$lokasi->status =  $status["$lokasi->status"];
 			}
-			return view('izin_admin.lokasi',compact('block'));
+			return view('commonusers.lokasis',compact('block'));
 		}
 	}
 
@@ -237,7 +257,7 @@ class LokasiController extends Controller {
 		foreach ($block['lokasis'] as $lokasi) {
 				$lokasi->status =  $status["$lokasi->status"];
 		}
-		return view('izin_admin.lokasis',compact('block'));
+		return view('admin.lokasis',compact('block'));
 	}
 
 }

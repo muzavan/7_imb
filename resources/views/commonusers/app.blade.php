@@ -23,7 +23,7 @@
             <div class="container">
                 <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span
                     class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
-                </a><a class="brand" href="index.html">PIMO</a>
+                </a><a class="brand" href="/home">PIMO</a>
                 <div class="nav-collapse">
                     <ul class="nav pull-right">
                         <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
@@ -49,7 +49,7 @@
         <div class="subnavbar-inner">
             <div class="container">
                 <ul class="mainnav">
-                    <li class="active"><a href="index.html"><i class="icon-home"></i><span>Halaman Utama</span> </a>
+                    <li class="active"><a href="/home"><i class="icon-home"></i><span>Halaman Utama</span> </a>
                     </li>
                     <li class="active"><a href="{{ url('/informasis') }}"><i class="icon-info-sign"></i><span>Informasi</span> </a>
                     </li>
@@ -65,16 +65,20 @@
                             <li><a href="{{ url('/pengajuan-lokasi') }}">Izin Lokasi</a></li>
                         </ul>                   
                     </li>
+                    <li class="active"><a href="/pengaduan"><i class="icon-info-sign"></i>
+                            <span>Ajukan Pengaduan</span>
+                        </a>                    
+                    </li>
                     <li class="dropdown active">                    
                         <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="icon-envelope-alt"></i>
-                            <span>Ajukan Pengaduan</span>
+                            <i class="icon-hand-up"></i>
+                            <span>Tata Ruang</span>
                             <b class="caret"></b>
                         </a>    
 
                         <ul class="dropdown-menu">
-                            <li><a href="icons.html">Izin Mendirikan Bangunan</a></li>
-                            <li><a href="faq.html">Izin Lokasi</a></li>
+                            <li><a href="{{ url('/pengajuan-IMB') }}">Info Tata Ruang Bandung</a></li>
+                            <li><a href="{{ url('/pengajuan-lokasi') }}">Ajukan Permohonan Tata Ruang</a></li>
                         </ul>                   
                     </li>
                 </ul>

@@ -6,6 +6,7 @@ use App\Lokasi;
 use App\PermohonanLokasi;
 use App\PermohonanImb;
 use App\Informasi;
+use App\Bangunan;
 use Carbon\Carbon;
 //use Illuminate\Http\Request;
 use Input;
@@ -30,7 +31,7 @@ class AdminController extends Controller {
 				'informasi'=>$informasis,
 				'message'=>$message
 			];
-			return view('izin_admin.index', compact('block'));
+			return view('admin.index', compact('block'));
 		}
 	}
 
@@ -46,23 +47,29 @@ class AdminController extends Controller {
 				'lokasis'=>$lokasis,
 				'message'=>$message
 			];
-			return view('ruang_admin.app');
+			return view('admin.app');
 		}
 	}
 
 	public function IMB()
 	{
-		$lokasis = Lokasi::all();
-		if($lokasis == []){
+		$bangunans = Bangunan::orderBy('id')->simplePaginate(5);
+		if($bangunans == []){
 			return 'Kosong';
 		}
 		else{
 			$message = array();
 			$block = [
-				'lokasis'=>$lokasis,
+				'bangunans'=>$bangunans,
 				'message'=>$message
 			];
-			return view('izin_admin.imb');
+			$jenis = Bangunan::getJenisBangunan();
+			$status = Bangunan::getStatusBangunan();
+			foreach ($block['bangunans'] as $bangunan) {
+				$bangunan->jenis = $jenis["$bangunans->jenis"];
+				$bangunan->status = $status["$bangunans->status"];
+			}
+			return view('admin.imb',compact('block'));
 		}
 	}
 
@@ -78,7 +85,7 @@ class AdminController extends Controller {
 				'lokasis'=>$lokasis,
 				'message'=>$message
 			];
-			return view('ruang_admin.tata_ruang');
+			return view('admin.tata_ruang');
 		}
 	}
 

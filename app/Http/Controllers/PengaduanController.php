@@ -26,7 +26,7 @@ class PengaduanController extends Controller {
 				'pengaduans'=>$pengaduans,
 				'message'=>$message
 			];
-			return view('pengaduans.index',compact('block'));
+			return view('commonusers.pengaduan',compact('block'));
 		}
 	}
 

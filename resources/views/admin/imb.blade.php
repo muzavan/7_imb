@@ -1,8 +1,8 @@
-@extends('izin_admin.app')
+@extends('admin.app')
 
 @section('content')
       
-      @if($block)
+      @if($block['bangunans'])
       <!--main content start-->
       <section id="main-content">
           <section class="wrapper">
@@ -62,6 +62,27 @@
 
         </section><! --/wrapper -->
       </section><!-- /MAIN CONTENT -->
+
+      @else
+      <section id="main-content">
+          <section class="wrapper">
+            <h3><i class="fa fa-angle-right"></i> IMB</h3>
+
+              <div class="row mt">
+                  <div class="col-md-12">
+                      <div class="content-panel">
+                          <table class="table table-striped table-advance table-hover">
+                            <h4><i class="fa fa-angle-right"></i> Semua Izin</h4>
+
+                            Tidak ada permohonan IMB yang terdaftar.
+
+                            </div><!-- /content-panel -->
+                  </div><!-- /col-md-12 -->
+              </div><!-- /row -->
+
+        </section><! --/wrapper -->
+      </section><!-- /MAIN CONTENT -->
+
       @endif
 
 @stop
