@@ -9,6 +9,7 @@ use Carbon\Carbon;
 //use Illuminate\Http\Request;
 use Input;
 use Request;
+use PDF;
 
 class LokasiController extends Controller {
 
@@ -238,6 +239,35 @@ class LokasiController extends Controller {
 				$lokasi->status =  $status["$lokasi->status"];
 		}
 		return view('izin_admin.lokasis',compact('block'));
+	}
+
+	public function generateLaporan(){
+		$html = '<html><body>'
+			. '<center>'
+            . '<h1>Dinas Tata Ruang dan Cipta Karya</h1>'
+            . '<h1>Kota Bandung</h1>'
+            . '<br/>'
+            . '<h3>Laporan</h3>'
+            . '<h2>Rekapitulasi Permohonan Izin Lokasi dan Mendirikan Bangunan</h2>'
+            . '<br/>'
+            . '<img width="300px" src="http://2.bp.blogspot.com/-jt8t6lt0kck/UmTwtSffyhI/AAAAAAAADCU/hJEE7zZireY/s1600/Logo-Pemerintah-Kota-Bandung-transparent.png">'
+            . '<br/>'
+            . '<h2>'.date("Y",time())."</h2>";
+
+        $html = $html.'<div style="page-break-after: always;"></div>';
+        $html = $html.'<h2>'.date("M-Y",time()).'</h2>';
+        $html = $html."<table class='table table-bordered table-striped table-hover'><thead><td>No</td><td>Laporan Kemajuan</td><td>Jumlah</td></thead>";
+        $html = $html."<tbody>";
+        $html = $html."<tr><td>1</td><td>Sudah Ditolak</td><td>".Lokasi::whereRaw('MONTH(`updated_at`)=MONTH(NOW()) and `status`=-1')->get()->count()."</td></tr>";
+        $html = $html."<tr><td>2</td><td>Sedang Diproses</td><td>".Lokasi::whereRaw('MONTH(`updated_at`)=MONTH(NOW()) and `status`=0')->get()->count()."</td></tr>";
+        $html = $html."<tr><td>3</td><td>Sudah Diterima</td><td>".Lokasi::whereRaw('MONTH(`updated_at`)=MONTH(NOW()) and `status`=1')->get()->count()."</td></tr>";
+        $html = $html."</tbody>";
+        $html = $html."</table>";
+        $html = $html
+        	. '</center>'           
+  			. '</body></html>';
+        return PDF::loadHTML($html)->setPaper('a4')->setOrientation('potrait')->setWarnings(false)->download('laporan-'.date("M-Y",time()).'.pdf');
+    	//return PDF::load($html, 'A4', 'portrait')->show();
 	}
 
 }

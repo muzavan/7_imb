@@ -49,6 +49,7 @@ Route::group(['prefix' => '/admin/'], function()
         Route::get('/','LokasiController@index');
         Route::get('setuju/{id}', 'LokasiController@setuju');
         Route::get('tolak/{id}', 'LokasiController@tolak');
+        Route::get('/laporan', 'LokasiController@generateLaporan'); 
     }); 
 });
 // });
@@ -207,6 +208,7 @@ Route::group(['prefix' => '/api'], function()
 });
 
 Route::get('/informasis/{id?}','InformasiController@demo_index');
+Route::get('/email/send','MailController@send');
 Route::get('/pemohons', 'PemohonController@demo_edit');
 Route::get('/pengajuan-lokasi', 'LokasiController@demo_create');
 Route::get('/pengajuan-IMB', 'BangunanController@demo_create');

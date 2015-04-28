@@ -144,6 +144,8 @@ return [
 		'App\Providers\ConfigServiceProvider',
 		'App\Providers\EventServiceProvider',
 		'App\Providers\RouteServiceProvider',
+		'Barryvdh\DomPDF\ServiceProvider',
+		//'Thujohn\Pdf\PdfServiceProvider',
 
 	],
 
@@ -194,6 +196,8 @@ return [
 		'View'      => 'Illuminate\Support\Facades\View',
 		'Form'		=> 'Illuminate\Html\FormFacade',
 		'Html'		=> 'Illuminate\Html\HtmlFacade',
+		'PDF' => 'Barryvdh\DomPDF\Facade',
+		//'PDF' 		=> 'Thujohn\Pdf\PdfFacade',
 
 	],
 

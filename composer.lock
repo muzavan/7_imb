@@ -4,24 +4,72 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "b2be25ce03f54a0fb6c49cb36b6d373e",
+    "hash": "3c5a7efa76ecf5d1584279a77750552f",
     "packages": [
         {
-            "name": "classpreloader/classpreloader",
-            "version": "1.2.0",
+            "name": "barryvdh/laravel-dompdf",
+            "version": "v0.5.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/ClassPreloader/ClassPreloader.git",
-                "reference": "f0bfbf71fb3335c9473f695d4d966ba2fb879a9f"
+                "url": "https://github.com/barryvdh/laravel-dompdf.git",
+                "reference": "a8f72ed075b8a694e88f38a5ff3c05689fbe011e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ClassPreloader/ClassPreloader/zipball/f0bfbf71fb3335c9473f695d4d966ba2fb879a9f",
-                "reference": "f0bfbf71fb3335c9473f695d4d966ba2fb879a9f",
+                "url": "https://api.github.com/repos/barryvdh/laravel-dompdf/zipball/a8f72ed075b8a694e88f38a5ff3c05689fbe011e",
+                "reference": "a8f72ed075b8a694e88f38a5ff3c05689fbe011e",
                 "shasum": ""
             },
             "require": {
-                "nikic/php-parser": "~1.0",
+                "dompdf/dompdf": "0.6.*",
+                "illuminate/support": "5.0.x",
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.5-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Barryvdh\\DomPDF\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Barry vd. Heuvel",
+                    "email": "barryvdh@gmail.com"
+                }
+            ],
+            "description": "A DOMPDF Wrapper for Laravel",
+            "keywords": [
+                "dompdf",
+                "laravel",
+                "pdf"
+            ],
+            "time": "2015-02-04 10:04:35"
+        },
+        {
+            "name": "classpreloader/classpreloader",
+            "version": "1.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ClassPreloader/ClassPreloader.git",
+                "reference": "0544616ba33fb2a6b792b3a7822650810c6d65d9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ClassPreloader/ClassPreloader/zipball/0544616ba33fb2a6b792b3a7822650810c6d65d9",
+                "reference": "0544616ba33fb2a6b792b3a7822650810c6d65d9",
+                "shasum": ""
+            },
+            "require": {
+                "nikic/php-parser": "^1.2.2",
                 "php": ">=5.3.3",
                 "symfony/console": "~2.1",
                 "symfony/filesystem": "~2.1",
@@ -36,7 +84,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.2-dev"
+                    "dev-master": "1.3-dev"
                 }
             },
             "autoload": {
@@ -64,7 +112,7 @@
                 "class",
                 "preload"
             ],
-            "time": "2015-01-26 22:06:19"
+            "time": "2015-04-15 21:59:30"
         },
         {
             "name": "danielstjules/stringy",
@@ -221,6 +269,165 @@
                 "string"
             ],
             "time": "2014-12-20 21:24:13"
+        },
+        {
+            "name": "dompdf/dompdf",
+            "version": "v0.6.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dompdf/dompdf.git",
+                "reference": "cf7d8a0a27270418850cc7d7ea532159e5eeb3eb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dompdf/dompdf/zipball/cf7d8a0a27270418850cc7d7ea532159e5eeb3eb",
+                "reference": "cf7d8a0a27270418850cc7d7ea532159e5eeb3eb",
+                "shasum": ""
+            },
+            "require": {
+                "phenx/php-font-lib": "0.2.*"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "include/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Ménager",
+                    "email": "fabien.menager@gmail.com"
+                },
+                {
+                    "name": "Brian Sweeney",
+                    "email": "eclecticgeek@gmail.com"
+                }
+            ],
+            "description": "DOMPDF is a CSS 2.1 compliant HTML to PDF converter",
+            "homepage": "https://github.com/dompdf/dompdf",
+            "time": "2014-03-11 01:59:52"
+        },
+        {
+            "name": "guzzlehttp/guzzle",
+            "version": "4.2.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/guzzle/guzzle.git",
+                "reference": "66fd916e9f9130bc22c51450476823391cb2f67c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/66fd916e9f9130bc22c51450476823391cb2f67c",
+                "reference": "66fd916e9f9130bc22c51450476823391cb2f67c",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "guzzlehttp/streams": "~2.1",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "ext-curl": "*",
+                "phpunit/phpunit": "~4.0",
+                "psr/log": "~1.0"
+            },
+            "suggest": {
+                "ext-curl": "Guzzle will use specific adapters if cURL is present"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.2-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "GuzzleHttp\\": "src/"
+                },
+                "files": [
+                    "src/functions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Dowling",
+                    "email": "mtdowling@gmail.com",
+                    "homepage": "https://github.com/mtdowling"
+                }
+            ],
+            "description": "Guzzle is a PHP HTTP client library and framework for building RESTful web service clients",
+            "homepage": "http://guzzlephp.org/",
+            "keywords": [
+                "client",
+                "curl",
+                "framework",
+                "http",
+                "http client",
+                "rest",
+                "web service"
+            ],
+            "time": "2014-10-05 19:29:14"
+        },
+        {
+            "name": "guzzlehttp/streams",
+            "version": "2.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/guzzle/streams.git",
+                "reference": "f91b721d73f0e561410903b3b3c90a5d0e40b534"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/guzzle/streams/zipball/f91b721d73f0e561410903b3b3c90a5d0e40b534",
+                "reference": "f91b721d73f0e561410903b3b3c90a5d0e40b534",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "GuzzleHttp\\Stream\\": "src/"
+                },
+                "files": [
+                    "src/functions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Dowling",
+                    "email": "mtdowling@gmail.com",
+                    "homepage": "https://github.com/mtdowling"
+                }
+            ],
+            "description": "Provides a simple abstraction over streams of data (Guzzle 4+)",
+            "homepage": "http://guzzlephp.org/",
+            "keywords": [
+                "Guzzle",
+                "stream"
+            ],
+            "time": "2014-08-17 21:15:53"
         },
         {
             "name": "illuminate/html",
@@ -456,16 +663,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.0.27",
+            "version": "v5.0.28",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "4d6330118a295086ce9ff8eed2200d5b67f17688"
+                "reference": "06a09429322cf53e5bd4587db1060f02a291562e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/4d6330118a295086ce9ff8eed2200d5b67f17688",
-                "reference": "4d6330118a295086ce9ff8eed2200d5b67f17688",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/06a09429322cf53e5bd4587db1060f02a291562e",
+                "reference": "06a09429322cf53e5bd4587db1060f02a291562e",
                 "shasum": ""
             },
             "require": {
@@ -535,7 +742,7 @@
                 "predis/predis": "~1.0"
             },
             "suggest": {
-                "aws/aws-sdk-php": "Required to use the SQS queue driver (~2.4).",
+                "aws/aws-sdk-php": "Required to use the SQS queue driver and SES mail driver (~2.4).",
                 "doctrine/dbal": "Required to rename columns and drop SQLite columns (~2.4).",
                 "guzzlehttp/guzzle": "Required to use the Mailgun and Mandrill mail drivers (~5.0).",
                 "iron-io/iron_mq": "Required to use the iron queue driver (~1.5).",
@@ -578,7 +785,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2015-04-04 01:34:57"
+            "time": "2015-04-21 01:44:32"
         },
         {
             "name": "league/flysystem",
@@ -737,6 +944,67 @@
             "time": "2015-03-09 09:58:04"
         },
         {
+            "name": "morrislaptop/laravel-five-package-bridges",
+            "version": "1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/morrislaptop/LaravelFivePackageBridges.git",
+                "reference": "2d0f8f8d9ec4815395bcaf5b4ada24d63a1d001c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/morrislaptop/LaravelFivePackageBridges/zipball/2d0f8f8d9ec4815395bcaf5b4ada24d63a1d001c",
+                "reference": "2d0f8f8d9ec4815395bcaf5b4ada24d63a1d001c",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "~5.0"
+            },
+            "replace": {
+                "illuminate/support": "~4.2"
+            },
+            "require-dev": {
+                "camroncade/timezone": "dev-master",
+                "cartalyst/sentry": "~2.1",
+                "intervention/image": "~2.0",
+                "itsgoingd/clockwork": "~1.6",
+                "laracasts/flash": "~1.3",
+                "maatwebsite/excel": "~1.2",
+                "orchestra/testbench": "~3.0@dev",
+                "phpunit/phpunit": "~4.4",
+                "robbiep/cloudconvert-laravel": "~2.0@beta",
+                "way/generators": "~3.0"
+            },
+            "suggest": {
+                "camroncade/timezone": "Addon to assist with Timezone managemenr",
+                "cartalyst/sentry": "A framework agnostic authentication & authorization system. http://www.cartalyst.com",
+                "intervention/image": "PHP Image Manipulation http://image.intervention.io",
+                "itsgoingd/clockwork": "Server-side component of Clockwork, a Chrome extension for PHP development.",
+                "laracasts/flash": "Easy flash notifications https://packagist.org/packages/laracasts/flash",
+                "maatwebsite/excel": "An eloquent way of importing and exporting Excel and CSV files for Laravel with the power of PHPExcel http://www.maatwebsite.nl/laravel-excel/docs",
+                "robbiep/cloudconvert-laravel": "Provides API access to CloudConvert.com",
+                "way/generators": "Rapidly speed up your Laravel workflow with generators https://packagist.org/packages/way/generators"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Morrislaptop\\LaravelFivePackageBridges\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Craig Morris",
+                    "email": "craig.michael.morris@gmail.com"
+                }
+            ],
+            "description": "Use your Laravel 4 packages in Laravel 5",
+            "time": "2015-03-02 21:50:35"
+        },
+        {
             "name": "mtdowling/cron-expression",
             "version": "v1.0.4",
             "source": {
@@ -871,6 +1139,40 @@
                 "php"
             ],
             "time": "2015-04-03 14:33:59"
+        },
+        {
+            "name": "phenx/php-font-lib",
+            "version": "0.2.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PhenX/php-font-lib.git",
+                "reference": "c30c7fc00a6b0d863e9bb4c5d5dd015298b2dc82"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PhenX/php-font-lib/zipball/c30c7fc00a6b0d863e9bb4c5d5dd015298b2dc82",
+                "reference": "c30c7fc00a6b0d863e9bb4c5d5dd015298b2dc82",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "classes/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Ménager",
+                    "email": "fabien.menager@gmail.com"
+                }
+            ],
+            "description": "A library to read, parse, export and make subsets of different types of font files.",
+            "homepage": "https://github.com/PhenX/php-font-lib",
+            "time": "2014-02-01 15:22:28"
         },
         {
             "name": "psr/log",
@@ -1746,6 +2048,49 @@
             "time": "2015-03-31 08:12:29"
         },
         {
+            "name": "thujohn/pdf",
+            "version": "1.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thujohn/pdf-l4.git",
+                "reference": "8e3a35a1ec54b38cff9ccef5069b628749c1b28b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thujohn/pdf-l4/zipball/8e3a35a1ec54b38cff9ccef5069b628749c1b28b",
+                "reference": "8e3a35a1ec54b38cff9ccef5069b628749c1b28b",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "4.*|5.*",
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Thujohn\\Pdf": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "thujohn",
+                    "email": "jonathan.thuau@gmail.com"
+                }
+            ],
+            "description": "dompdf for Laravel 4",
+            "keywords": [
+                "dompdf",
+                "laravel",
+                "laravel4",
+                "pdf"
+            ],
+            "time": "2014-12-02 17:45:22"
+        },
+        {
             "name": "vlucas/phpdotenv",
             "version": "v1.1.0",
             "source": {
@@ -1937,23 +2282,23 @@
         },
         {
             "name": "phpspec/phpspec",
-            "version": "2.1.1",
+            "version": "2.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpspec/phpspec.git",
-                "reference": "66a1df93099282b1514e9e001fcf6e9393f7783d"
+                "reference": "9727d75919a00455433e867565bc022f0b985a39"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpspec/phpspec/zipball/66a1df93099282b1514e9e001fcf6e9393f7783d",
-                "reference": "66a1df93099282b1514e9e001fcf6e9393f7783d",
+                "url": "https://api.github.com/repos/phpspec/phpspec/zipball/9727d75919a00455433e867565bc022f0b985a39",
+                "reference": "9727d75919a00455433e867565bc022f0b985a39",
                 "shasum": ""
             },
             "require": {
-                "doctrine/instantiator": "~1.0,>=1.0.1",
+                "doctrine/instantiator": "^1.0.1",
                 "php": ">=5.3.3",
                 "phpspec/php-diff": "~1.0.0",
-                "phpspec/prophecy": "~1.1",
+                "phpspec/prophecy": "~1.4",
                 "sebastian/exporter": "~1.0",
                 "symfony/console": "~2.3",
                 "symfony/event-dispatcher": "~2.1",
@@ -1962,9 +2307,11 @@
                 "symfony/yaml": "~2.1"
             },
             "require-dev": {
-                "behat/behat": "~3.0,>=3.0.11",
+                "behat/behat": "^3.0.11",
                 "bossa/phpspec2-expect": "~1.0",
-                "symfony/filesystem": "~2.1"
+                "phpunit/phpunit": "~4.4",
+                "symfony/filesystem": "~2.1",
+                "symfony/process": "~2.1"
             },
             "suggest": {
                 "phpspec/nyan-formatters": "~1.0 – Adds Nyan formatters"
@@ -1975,7 +2322,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.1.x-dev"
+                    "dev-master": "2.2.x-dev"
                 }
             },
             "autoload": {
@@ -2009,20 +2356,20 @@
                 "testing",
                 "tests"
             ],
-            "time": "2015-01-09 13:21:45"
+            "time": "2015-04-18 16:22:51"
         },
         {
             "name": "phpspec/prophecy",
-            "version": "1.4.0",
+            "version": "v1.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpspec/prophecy.git",
-                "reference": "8724cd239f8ef4c046f55a3b18b4d91cc7f3e4c5"
+                "reference": "3132b1f44c7bf2ec4c7eb2d3cb78fdeca760d373"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpspec/prophecy/zipball/8724cd239f8ef4c046f55a3b18b4d91cc7f3e4c5",
-                "reference": "8724cd239f8ef4c046f55a3b18b4d91cc7f3e4c5",
+                "url": "https://api.github.com/repos/phpspec/prophecy/zipball/3132b1f44c7bf2ec4c7eb2d3cb78fdeca760d373",
+                "reference": "3132b1f44c7bf2ec4c7eb2d3cb78fdeca760d373",
                 "shasum": ""
             },
             "require": {
@@ -2069,20 +2416,20 @@
                 "spy",
                 "stub"
             ],
-            "time": "2015-03-27 19:31:25"
+            "time": "2015-04-27 22:15:08"
         },
         {
             "name": "phpunit/php-code-coverage",
-            "version": "2.0.15",
+            "version": "2.0.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "34cc484af1ca149188d0d9e91412191e398e0b67"
+                "reference": "934fd03eb6840508231a7f73eb8940cf32c3b66c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/34cc484af1ca149188d0d9e91412191e398e0b67",
-                "reference": "34cc484af1ca149188d0d9e91412191e398e0b67",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/934fd03eb6840508231a7f73eb8940cf32c3b66c",
+                "reference": "934fd03eb6840508231a7f73eb8940cf32c3b66c",
                 "shasum": ""
             },
             "require": {
@@ -2131,7 +2478,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2015-01-24 10:06:35"
+            "time": "2015-04-11 04:35:00"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -2270,16 +2617,16 @@
         },
         {
             "name": "phpunit/php-token-stream",
-            "version": "1.4.0",
+            "version": "1.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-token-stream.git",
-                "reference": "db32c18eba00b121c145575fcbcd4d4d24e6db74"
+                "reference": "eab81d02569310739373308137284e0158424330"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-token-stream/zipball/db32c18eba00b121c145575fcbcd4d4d24e6db74",
-                "reference": "db32c18eba00b121c145575fcbcd4d4d24e6db74",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-token-stream/zipball/eab81d02569310739373308137284e0158424330",
+                "reference": "eab81d02569310739373308137284e0158424330",
                 "shasum": ""
             },
             "require": {
@@ -2315,20 +2662,20 @@
             "keywords": [
                 "tokenizer"
             ],
-            "time": "2015-01-17 09:51:32"
+            "time": "2015-04-08 04:46:07"
         },
         {
             "name": "phpunit/phpunit",
-            "version": "4.6.1",
+            "version": "4.6.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "08b2aacdd8433abbba468f995d6d64b76a7a62ec"
+                "reference": "163232991e652e6efed2f8470326fffa61e848e2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/08b2aacdd8433abbba468f995d6d64b76a7a62ec",
-                "reference": "08b2aacdd8433abbba468f995d6d64b76a7a62ec",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/163232991e652e6efed2f8470326fffa61e848e2",
+                "reference": "163232991e652e6efed2f8470326fffa61e848e2",
                 "shasum": ""
             },
             "require": {
@@ -2367,9 +2714,6 @@
             "autoload": {
                 "classmap": [
                     "src/"
-                ],
-                "files": [
-                    "src/Framework/Assert/Functions.php"
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -2390,7 +2734,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2015-04-03 13:46:59"
+            "time": "2015-04-11 05:23:21"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
