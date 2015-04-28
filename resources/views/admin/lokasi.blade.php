@@ -1,5 +1,10 @@
+<<<<<<< HEAD:resources/views/admin/lokasi.blade.php
 @extends('admin.app')
 
+=======
+@extends('izin_admin.app')
+<?php use App\Lokasi; ?>
+>>>>>>> 0feedfc4bded0dd236584a232088010ae4a51857:resources/views/izin_admin/lokasi.blade.php
 @section('content')
       
       @if($block)
@@ -43,10 +48,12 @@
                                   <td>{{$lokasi->kecamatan}}</td>
                                   <td><a href='{{$lokasi->dokumen}}'>Dokumen Teknis</a></td>
                                   <td>{{$lokasi->status}}</td>
+                                  @if($lokasi->status==Lokasi::getStatusLokasi()['0'])
                                   <td>
-                                      <a href='lokasi/setuju/{{$lokasi->id}}'><button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button></a>
-                                      <a href='lokasi/tolak/{{$lokasi->id}}'><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button></a>
+                                      <a href='lokasi/setuju/{{$lokasi->id}}'><button class="btn btn-success btn-xs"><i class="fa fa-check">Setujui</i></button></a>
+                                      <a href='lokasi/sebelumTolak/{{$lokasi->id}}'><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o ">Tolak</i></button></a>
                                   </td>
+                                  @endif
                               </tr>
                              
                               <?php

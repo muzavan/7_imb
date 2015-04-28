@@ -1,5 +1,10 @@
+<<<<<<< HEAD:resources/views/admin/imb.blade.php
 @extends('admin.app')
 
+=======
+@extends('izin_admin.app')
+<?php use App\Bangunan; ?>
+>>>>>>> 0feedfc4bded0dd236584a232088010ae4a51857:resources/views/izin_admin/imb.blade.php
 @section('content')
       
       @if($block['bangunans'])
@@ -41,10 +46,12 @@
                                   <td>{{$bangunan->id_lokasi}}</td>
                                   <td><a href='{{$bangunan->dokumen}}'>Dokumen Teknis</a></td>
                                   <td>{{$bangunan->status}}</td>
+                                  @if($bangunan->status==Bangunan::getStatusBangunan()['0'])
                                   <td>
-                                      <a href='imb/setuju/{{$bangunan->id}}'><button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button></a>
-                                      <a href='imb/tolak/{{$bangunan->id}}'><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button></a>
+                                      <a href='imb/setuju/{{$bangunan->id}}'><button class="btn btn-success btn-xs"><i class="fa fa-check">Setujui</i></button></a>
+                                      <a href='imb/sebelumTolak/{{$bangunan->id}}'><button class="btn btn-danger btn-xs"><i class="fa fa-trash-o ">Tolak</i></button></a>
                                   </td>
+                                  @endif
                               </tr>
                               <?php
                                   }
