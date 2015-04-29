@@ -11,6 +11,14 @@
 |
 */
 
+/* TESTING SSO */
+
+Route::get("reza/loginPemohon/code/",function(){
+    echo Input::all();
+});
+Route::get("/loginPemohon","LoginController@loginPemohon");
+/* END OF TESTING */
+
 Route::get('/', function(){
     return view('commonusers.welcome');
 });
