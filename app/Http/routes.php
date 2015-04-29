@@ -221,9 +221,6 @@ Route::controllers([
 //});
 
 /* Demo End */
-<<<<<<< HEAD
-=======
-
 
 Route::group(['prefix' => '/home'], function()
 {
@@ -271,4 +268,3 @@ Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
 ]);
->>>>>>> 0feedfc4bded0dd236584a232088010ae4a51857

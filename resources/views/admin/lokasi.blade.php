@@ -1,10 +1,5 @@
-<<<<<<< HEAD:resources/views/admin/lokasi.blade.php
 @extends('admin.app')
 
-=======
-@extends('izin_admin.app')
-<?php use App\Lokasi; ?>
->>>>>>> 0feedfc4bded0dd236584a232088010ae4a51857:resources/views/izin_admin/lokasi.blade.php
 @section('content')
       
       @if($block)

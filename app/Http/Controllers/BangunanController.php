@@ -18,11 +18,11 @@ class BangunanController extends Controller {
 	public function index()
 	{
 		$bangunans = Bangunan::orderBy('id')->simplePaginate(5);
-<<<<<<< HEAD
+
 		// $lokasis->setPath("imb");
-=======
+
 		$bangunans->setPath("imb");
->>>>>>> 0feedfc4bded0dd236584a232088010ae4a51857
+
 		if($bangunans == []){
 			return 'Kosong';
 		}

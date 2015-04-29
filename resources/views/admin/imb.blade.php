@@ -1,10 +1,5 @@
-<<<<<<< HEAD:resources/views/admin/imb.blade.php
 @extends('admin.app')
 
-=======
-@extends('izin_admin.app')
-<?php use App\Bangunan; ?>
->>>>>>> 0feedfc4bded0dd236584a232088010ae4a51857:resources/views/izin_admin/imb.blade.php
 @section('content')
       
       @if($block['bangunans'])
