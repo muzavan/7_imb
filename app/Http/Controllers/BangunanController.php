@@ -42,6 +42,11 @@ class BangunanController extends Controller {
 		}
 	}
 
+	public function imbSatuan()
+	{
+		return view('admin.imb_satuan');
+	}
+
 	public function user_index()
 	{
 		$bangunans = Bangunan::orderBy('id')->simplePaginate(5);
@@ -135,16 +140,17 @@ class BangunanController extends Controller {
 
 	public function api()
 	{
+		header("Content-Type:application/json;");
 		$jenis = Bangunan::getJenisBangunan();
 		$var = Request::all();
 		if((isset($var['id']))&&(isset($var['password']))){
 			$bangunan = Bangunan::find($var['id']);
 			if($bangunan==null){
-				return array("status"=>"error");
+				return json_encode(array("status"=>"error"));
 			}
 			else if($bangunan->password==$var['password']){
 				$lokasi = Lokasi::find($bangunan->id_lokasi);
-				return [
+				return json_encode([
 					"id" => $bangunan->id,
 					"nik" => $bangunan->nik,
 					"email" => $bangunan->email,
@@ -154,18 +160,18 @@ class BangunanController extends Controller {
 					"kelurahan_lokasi" => $lokasi->kelurahan,
 					"kecamatan_lokasi" => $lokasi->kecamatan,
 					"status" => $bangunan->status,
-				];
+				]);
 
 			}
 			else{
-				return [
+				return json_encode([
 					"status"=>"fail"
-				];
+				]);
 			}
 		} else{
-			return [
+			return json_encode([
 				"status"=>"error"
-			];
+			]);
 		}
 	}
 

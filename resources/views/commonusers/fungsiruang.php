@@ -1,0 +1,9 @@
+<?php
+
+
+
+echo '
+Fungsi ruang:
+';
+
+?>

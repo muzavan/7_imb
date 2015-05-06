@@ -12,7 +12,9 @@
 					{{ $block['message'] }}
 					</div>
 				@endif
+
                   <div class="col-md-12">
+                  	<div class="pull-left" style="margin-left: 5px"><a href="#" class="btn btn-primary btn-info"><span class="glyphicon glyphicon-plus"></span> Tambah Informasi</a></div><br><br>
                   	@if($block['informasi'])
                   	@foreach ($block['informasi'] as $informasi)
 						<section class="task-panel tasks-widget">
@@ -24,6 +26,11 @@
 								<p>{{$informasi->konten}}</p>
 								<b>Referensi : </b>
 								<p>{{$informasi->referensi}}</p>
+
+								<div class="pull-right">
+									<a href="#" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-pencil"></span> Sunting</a>
+									<a href="#" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-trash"></span> Hapus</a>
+								</div>
 								</div>
 							</div>
 							

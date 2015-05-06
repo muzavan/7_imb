@@ -56,7 +56,7 @@ class InformasiController extends Controller {
 	 */
 	public function create()
 	{
-		return view('informasis.create');
+		return view('admin.add_informasi');
 	}
 
 	/**

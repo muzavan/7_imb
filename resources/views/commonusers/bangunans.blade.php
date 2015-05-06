@@ -1,31 +1,17 @@
 @extends('commonusers.app')
 
 @section('sidebar')
-      <table class="table table-striped table-bordered">
-          <thead>
-              <tr>
-                  <th>Tahapan</th>
-              </tr>
-          </thead>
 
-          <tbody>
-             <tr class='active'><td>Izin Bangunan</td></tr>
-             <tr><td>Izin Pemilik</td></tr>
-             <tr><td>Izin Tanah</td></tr>
-             <tr><td>Izin Lokasi</td></tr>
-          </tbody>
-        
-      </table>
 @stop
 
 @section('content')
-  {!! Form::open(['url' => '/home/bangunans' , 'class'=>'form-horizontal' , 'files'=>true]) !!}
+  {!! Form::open(['url' => '/home/pengajuan-IMB' , 'class'=>'form-horizontal' , 'files'=>true]) !!}
       <div class='control-group'>
-        <div class="controls"><h3>Form Permohonan IMB - 1. Izin Bangunan</h3></div>
+        <div class="controls"><h3>Form Permohonan Izin Mendirikan Bangunan</h3></div>
       </div>
       <div class='control-group'>
         <div class="controls">{!! Form::label('nama','Nama:') !!}</div>
-        <div class="controls">{!! Form::text('nama','(Nama Bangunan)',['class' => 'span7']) !!}</div>
+        <div class="controls">{!! Form::text('nama','',['placeholder' => 'Nama Bangunan', 'class' => 'span7']) !!}</div>
       </div>
       <div class='control-group'>
         <div class="controls">{!! Form::label('fungsi','Fungsi:') !!}</div>
@@ -33,7 +19,7 @@
       </div>
       <div class='control-group'>
         <div class="controls">{!! Form::label('alamat','Alamat:') !!}</div>
-        <div class="controls">{!! Form::textarea('lokasi','Alamat Lengkap Bangunan',['class' => 'span7','rows' => '3']) !!}</div>
+        <div class="controls">{!! Form::textarea('lokasi','',['placeholder' => 'Alamat Lengkap Bangunan', 'class' => 'span7','rows' => '3']) !!}</div>
       </div>
       <div class='control-group'>
         <div class="controls">{!! Form::label('jenis','Jenis:') !!}</div>

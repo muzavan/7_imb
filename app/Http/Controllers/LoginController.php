@@ -28,7 +28,7 @@ class LoginController extends Controller {
 
 	public function loginIIPemohon($access_token){
 		setcookie("access_token",$access_token,time()+60*60);
-		return redirect("/sudah-login")
+		return redirect("/sudah-login");
 	}
 
 	public function cekLogin(){

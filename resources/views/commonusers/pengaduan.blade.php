@@ -1,17 +1,17 @@
 @extends('commonusers.app')
 
 @section('content')
-  {!! Form::open(['url' => '/home/bangunans' , 'class'=>'form-horizontal' , 'files'=>true]) !!}
+  {!! Form::open(['url' => '/home/pdsd' , 'class'=>'form-horizontal' , 'files'=>true]) !!}
       <div class='control-group'>
         <div class="controls"><h3>Form Pengaduan</h3></div>
       </div>
       <div class='control-group'>
         <div class="controls">{!! Form::label('nama','Nama:') !!}</div>
-        <div class="controls">{!! Form::text('nama',null,['class' => 'form-control']) !!}</div>
+        <div class="controls">{!! Form::text('nama',null,['class' => 'span9']) !!}</div>
       </div>
       <div class='control-group'>
         <div class="controls">{!! Form::label('isi','Isi:') !!}</div>
-        <div class="controls">{!! Form::textarea('isi',null,['class' => 'form-control']) !!}</div>
+        <div class="controls">{!! Form::textarea('isi',null,['class' => 'span9']) !!}</div>
       </div>
       <div class='control-group'>
         <div class="controls">{!! Form::label('jenis','Kategori Pengaduan:') !!}</div>

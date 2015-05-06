@@ -131,14 +131,15 @@ class LokasiController extends Controller {
 
 	public function api()
 	{
+		header("Content-Type:application/json;");
 		$var = Request::all();
 		if((isset($var['id']))&&(isset($var['password']))){
 			$lokasi = Lokasi::find($var['id']);
 			if($lokasi==null){
-				return array("status"=>"error");
+				return json_encode(array("status"=>"error"));
 			}
 			else if($lokasi->password==$var['password']){
-				return [
+				return json_encode([
 					"id" => $lokasi->id,
 					"nik" => $lokasi->nik,
 					"email" => $lokasi->email,
@@ -147,18 +148,18 @@ class LokasiController extends Controller {
 					"kelurahan" => $lokasi->kelurahan,
 					"kecamatan" => $lokasi->kecamatan,
 					"status" => $lokasi->status,
-				];
+				]);
 
 			}
 			else{
-				return [
+				return json_encode([
 					"status"=>"fail"
-				];
+				]);
 			}
 		}else{
-			return [
+			return json_encode([
 					"status"=>"error"
-				];
+				]);
 		}
 	}
 
@@ -286,8 +287,8 @@ class LokasiController extends Controller {
         $data = Lokasi::whereRaw('MONTH(`updated_at`)==MONTH(NOW()) and YEAR(`updated_at`)==YEAR(NOW())')->get();
         $html = $html.'<div style="page-break-after: always;"></div>';
         $html = $html.'<h2>'.date("M-Y",time()).'</h2>';
-        $html = $html.'<h2>Izin Lokasi</h2>'
-        $html = $html."<table class='table table-bordered table-striped table-hover'><thead>
+        $html = $html.'<h2>Izin Lokasi</h2>';
+        $html = $html.'<table class="table table-bordered table-striped table-hover"><thead>
         				<td>No</td>
         				<td>NIK Pengaju</td>
         				<td>Email</td>
@@ -296,7 +297,7 @@ class LokasiController extends Controller {
         				<td>Kelurahan</td>
         				<td>Kecamatan</td>
 						<td>Status</td>
-        				</thead>";
+        				</thead>';
         $html = $html."<tbody>";
         $i=0;
         foreach($data as $lokasi){
@@ -319,7 +320,7 @@ class LokasiController extends Controller {
         //IZIN MENDIRIKAN BANGUNAN
         $data = Bangunan::whereRaw('MONTH(`updated_at`)==MONTH(NOW()) and YEAR(`updated_at`)==YEAR(NOW())')->get();
         $html = $html.'<div style="page-break-after: always;"></div>';
-        $html = $html.'<h2>Izin Mendirikan Bangunan</h2>'
+        $html = $html.'<h2>Izin Mendirikan Bangunan</h2>';
         $html = $html."<table class='table table-bordered table-striped table-hover'><thead>
         				<td>No</td>
         				<td>NIK Pengaju</td>

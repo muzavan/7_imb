@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <meta charset="utf-8">
     <title>PIMO</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -11,6 +12,7 @@
         rel="stylesheet">
     <link href="{{asset ('css/font-awesome.css')}}" rel="stylesheet">
     <link href="{{asset ('css/style.css')}}" rel="stylesheet">
+    <script src="http://maps.googleapis.com/maps/api/js"></script>
     
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -51,7 +53,7 @@
                 <ul class="mainnav">
                     <li class="active"><a href="/home"><i class="icon-home"></i><span>Halaman Utama</span> </a>
                     </li>
-                    <li class="active"><a href="{{ url('/informasis') }}"><i class="icon-info-sign"></i><span>Informasi</span> </a>
+                    <li class="active"><a href="{{ url('/informasi') }}"><i class="icon-info-sign"></i><span>Informasi</span> </a>
                     </li>
                     <li class="dropdown active">                    
                         <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
@@ -71,13 +73,13 @@
                     </li>
                     <li class="dropdown active">                    
                         <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="icon-hand-up"></i>
+                            <i class="icon-road"></i>
                             <span>Tata Ruang</span>
                             <b class="caret"></b>
                         </a>    
 
                         <ul class="dropdown-menu">
-                            <li><a href="{{ url('/pengajuan-IMB') }}">Info Tata Ruang Bandung</a></li>
+                            <li><a href="{{ url('/tataruang') }}">Tata Ruang Bandung</a></li>
                             <li><a href="{{ url('/pengajuan-lokasi') }}">Ajukan Permohonan Tata Ruang</a></li>
                         </ul>                   
                     </li>
@@ -176,121 +178,32 @@
     <script src="{{asset ('js/bootstrap.js')}}"></script>
     <script src="{{asset ('js/base.js')}}"></script>
     <script>
-        var doughnutData = [
-				{
-				    value: 30,
-				    color: "#F7464A"
-				},
-				{
-				    value: 50,
-				    color: "#46BFBD"
-				},
-				{
-				    value: 100,
-				    color: "#FDB45C"
-				},
-				{
-				    value: 40,
-				    color: "#949FB1"
-				},
-				{
-				    value: 120,
-				    color: "#4D5360"
-				}
 
-			];
-
-        var myDoughnut = new Chart(document.getElementById("donut-chart").getContext("2d")).Doughnut(doughnutData);
+function initialize() {
+  var mapProp = {
+    center:new google.maps.LatLng(-6.9167,107.6000),
+    zoom:12,
+    mapTypeId:google.maps.MapTypeId.ROADMAP
+  };
+  var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+}
+google.maps.event.addDomListener(window, 'load', initialize);
 
 
-        var lineChartData = {
-            labels: ["January", "February", "March", "April", "May", "June", "July"],
-            datasets: [
-				{
-				    fillColor: "rgba(220,220,220,0.5)",
-				    strokeColor: "rgba(220,220,220,1)",
-				    pointColor: "rgba(220,220,220,1)",
-				    pointStrokeColor: "#fff",
-				    data: [65, 59, 90, 81, 56, 55, 40]
-				},
-				{
-				    fillColor: "rgba(151,187,205,0.5)",
-				    strokeColor: "rgba(151,187,205,1)",
-				    pointColor: "rgba(151,187,205,1)",
-				    pointStrokeColor: "#fff",
-				    data: [28, 48, 40, 19, 96, 27, 100]
-				}
-			]
 
-        }
+$('body').on('change','#jenisruang',function(){
+    var id = $(this).val();
+    // var id = 1;
+    $.ajax({
+     url: 'tataruang/{id}',
+     type: 'GET',
+     data: {id: id},
+     success: function(response){
+         $('#tulisfungsi').html(response);
+     }
+    });
+});
 
-        var myLine = new Chart(document.getElementById("area-chart").getContext("2d")).Line(lineChartData);
-
-
-        var barChartData = {
-            labels: ["January", "February", "March", "April", "May", "June", "July"],
-            datasets: [
-				{
-				    fillColor: "rgba(220,220,220,0.5)",
-				    strokeColor: "rgba(220,220,220,1)",
-				    data: [65, 59, 90, 81, 56, 55, 40]
-				},
-				{
-				    fillColor: "rgba(151,187,205,0.5)",
-				    strokeColor: "rgba(151,187,205,1)",
-				    data: [28, 48, 40, 19, 96, 27, 100]
-				}
-			]
-
-        }
-
-var myLine = new Chart(document.getElementById("bar-chart").getContext("2d")).Bar(barChartData);
-
-var pieData = [
-				{
-				    value: 30,
-				    color: "#F38630"
-				},
-				{
-				    value: 50,
-				    color: "#E0E4CC"
-				},
-				{
-				    value: 100,
-				    color: "#69D2E7"
-				}
-
-			];
-
-				var myPie = new Chart(document.getElementById("pie-chart").getContext("2d")).Pie(pieData);
-
-				var chartData = [
-			{
-			    value: Math.random(),
-			    color: "#D97041"
-			},
-			{
-			    value: Math.random(),
-			    color: "#C7604C"
-			},
-			{
-			    value: Math.random(),
-			    color: "#21323D"
-			},
-			{
-			    value: Math.random(),
-			    color: "#9D9B7F"
-			},
-			{
-			    value: Math.random(),
-			    color: "#7D4F6D"
-			},
-			{
-			    value: Math.random(),
-			    color: "#584A5E"
-			}
-		];
-				var myPolarArea = new Chart(document.getElementById("line-chart").getContext("2d")).PolarArea(chartData);
 	</script>
 </body>
 </html>

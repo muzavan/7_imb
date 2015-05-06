@@ -16,14 +16,14 @@
                             <hr>
                               <thead>
                               <tr>
-                                  <th><i class="fa fa-bullhorn"></i>ID</th>
-                                  <th class="hidden-phone"><i class="fa fa-question-circle"></i>NIK</th>
-                                  <th><i class="fa fa-bookmark"></i>Email</th>
-                                  <th><i class=" fa fa-edit"></i>Nama</th>
-                                  <th><i class="fa fa-bullhorn"></i>Jenis</th>
-                                  <th class="hidden-phone"><i class="fa fa-question-circle"></i>ID Lokasi</th>
-                                  <th><i class="fa fa-bookmark"></i>Dokumen</th>
-                                  <th><i class=" fa fa-edit"></i> Status</th>
+                                  <th>ID</th>
+                                  <th class="hidden-phone">NIK</th>
+                                  <th>Email</th>
+                                  <th>Nama</th>
+                                  <th>Jenis</th>
+                                  <th class="hidden-phone">ID Lokasi</th>
+                                  <th>Dokumen</th>
+                                  <th>Status</th>
                                   <th></th>
                               </tr>
                               </thead>
@@ -56,7 +56,7 @@
 
                               
                               <?php
-                                  echo "<center>".$block['bangunans']->render()."<c/enter>";
+                                  echo "<center>".$block['bangunans']->render()."</center>";
                               ?>
                       </div><!-- /content-panel -->
                   </div><!-- /col-md-12 -->

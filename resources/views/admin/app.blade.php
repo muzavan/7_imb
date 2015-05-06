@@ -69,6 +69,13 @@
                   </li>
 
                   <li class="sub-menu">
+                      <a href="/admin">
+                          <i class="fa fa-desktop"></i>
+                          <span>Informasi</span>
+                      </a>
+                  </li>
+
+                  <li class="sub-menu">
                       <a href="javascript:;" >
                           <i class="fa fa-desktop"></i>
                           <span>IMB</span>
