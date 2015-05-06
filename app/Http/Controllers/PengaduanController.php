@@ -4,6 +4,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Pengaduan;
 use Carbon\Carbon;
+use Session;
 //use Illuminate\Http\Request;
 use Request;
 
@@ -21,7 +22,12 @@ class PengaduanController extends Controller {
 			return 'Kosong';
 		}
 		else{
-			$message = array();
+			if(Session::get('message')){
+				$message = Session::get('message');
+				Session::forget('message');
+			}
+			else
+				$message = array();
 			$block = [
 				'pengaduans'=>$pengaduans,
 				'message'=>$message
@@ -47,10 +53,11 @@ class PengaduanController extends Controller {
 	 */
 	public function store()
 	{
-		//$var = (new Request)->all();
 		$var = Request::all();
 		Pengaduan::create($var);
-		return redirect('/pengaduans');
+		$message = "Pengaduan telah dikirim.";
+		Session::put('message', $message);
+		return redirect('/pengaduan');
 	}
 
 	/**

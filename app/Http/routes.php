@@ -69,6 +69,7 @@ Route::get('/pemohons', 'PemohonController@demo_edit');
 Route::get('/pengajuan-lokasi', 'LokasiController@user_index');
 Route::get('/pengajuan-IMB', 'BangunanController@user_index');
 Route::get('/pengaduan', 'PengaduanController@index');
+Route::post('/pengaduan', 'PengaduanController@store');
 Route::get('/tataruang', 'TataruangController@index');
 Route::get('/tataruang/{id}', 'TataruangController@getFungsiRuang');
 
