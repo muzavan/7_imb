@@ -31,11 +31,14 @@
     </div>
   @endif
   @if($block['informasi'])
-    <div class="h2">{{$block['informasi']->judul}}</div>
-    <div class="h6">Dibuat : {{$block['informasi']->created_at}}</div>
-    <p>{{$block['informasi']->konten}}</p>
+    <div class="h2">{{$block['informasi']->judul}}</div><hr></hr>
+    <p>{{$block['informasi']->konten}}</p><br><br>
+    @if($block['informasi']->referensi)
     <b>Referensi : </b>
     <p>{{$block['informasi']->referensi}}</p>
+    @endif
+    <div class="h6"><b>Dibuat :</b> {{$block['informasi']->created_at}}</div>
+    <div class="h6"><b>Terakhir diperbaharui :</b> {{$block['informasi']->updated_at}}</div>
 
   @endif
   

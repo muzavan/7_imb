@@ -19,17 +19,23 @@ Route::get("reza/loginPemohon/code/",function(){
 Route::get("/loginPemohon","LoginController@loginPemohon");
 /* END OF TESTING */
 
-Route::get('/', function(){
-    return view('welcome');
-});
+Route::get('/','InformasiController@index');
 
 Route::get('home', 'HomeController@index');
 
 Route::group(['prefix' => '/admin'], function()
 {
    Route::get('/', 'AdminController@index');
-   Route::get('/informasi', 'AdminController@index');
-   Route::get('/tambah-informasi', 'InformasiController@create');
+
+   Route::group(['prefix' => '/informasi'], function()
+    {
+        Route::get('/informasi', 'AdminController@index');
+        Route::get('/tambah', 'InformasiController@create');
+        Route::post('/tambah', 'InformasiController@store');
+        Route::get('/sunting/{id}','InformasiController@edit');
+        Route::post('/sunting','InformasiController@update');
+        Route::get('/hapus/{id}', 'InformasiController@destroy');
+    });
    
    Route::group(['prefix' => '/imb'], function()
     {
@@ -49,18 +55,6 @@ Route::group(['prefix' => '/admin'], function()
     }); 
 });
 
-Route::group(['prefix' => '/home'], function()
-{
-    Route::get('/','InformasiController@demo_index');
-
-    Route::get('/informasis/{id?}','InformasiController@demo_index');
-    Route::get('/pengajuan-lokasi', 'LokasiController@create');
-    Route::post('/pengajuan-lokasi', 'LokasiController@store');
-    Route::get('/pengajuan-IMB', 'BangunanController@create');
-    Route::post('/pengajuan-IMB', 'BangunanController@store');
-
-});
-
 Route::group(['prefix' => '/api'], function()
 {
     Route::post('/lokasi', 'LokasiController@api');
@@ -68,7 +62,8 @@ Route::group(['prefix' => '/api'], function()
 
 });
 
-Route::get('/informasi/{id?}','InformasiController@demo_index');
+Route::get('/informasi','InformasiController@index');
+Route::get('/informasi/{id}','InformasiController@index');
 
 Route::get('/pemohons', 'PemohonController@demo_edit');
 Route::get('/pengajuan-lokasi', 'LokasiController@user_index');
@@ -86,7 +81,6 @@ Route::group(['prefix' => '/api'], function()
 {
     Route::post('/lokasi', 'LokasiController@api');
     Route::post('/imb', 'BangunanController@api');
-
 });
 
 Route::get('/email/send','MailController@send');

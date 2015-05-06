@@ -8,6 +8,7 @@ use App\PermohonanImb;
 use App\Informasi;
 use App\Bangunan;
 use Carbon\Carbon;
+use Session;
 //use Illuminate\Http\Request;
 use Input;
 use Request;
@@ -26,7 +27,12 @@ class AdminController extends Controller {
 			return 'Kosong';
 		}
 		else{
-			$message = array();
+			if(Session::get('message')){
+				$message = Session::get('message');
+				Session::forget('message');
+			}
+			else
+				$message = array();
 			$block = [
 				'informasi'=>$informasis,
 				'message'=>$message

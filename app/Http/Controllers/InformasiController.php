@@ -4,6 +4,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Informasi;
 use Carbon\Carbon;
+use Session;
 //use Illuminate\Http\Request;
 use Request;
 
@@ -14,23 +15,7 @@ class InformasiController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function index()
-	{
-		$informasis = Informasi::all();
-		if($informasis == []){
-			return 'Kosong';
-		}
-		else{
-			$message = array();
-			$block = [
-				'informasis'=>$informasis,
-				'message'=>$message
-			];
-			return view('informasis.index',compact('block'));
-		}
-	}
-
-	public function demo_index($id = 0)
+	public function index($id = 0)
 	{
 		$informasis = Informasi::all();
 		if($informasis == []){
@@ -66,22 +51,11 @@ class InformasiController extends Controller {
 	 */
 	public function store()
 	{
-		//$var = (new Request)->all();
 		$var = Request::all();
 		Informasi::create($var);
-		return redirect('/informasis');
-	}
-
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		$informasi = Informasi::find($id);
-		return view('informasis.informasi',compact('informasi'));
+		$message = "Informasi berhasil ditambahkan.";
+		Session::put('message', $message);
+		return redirect('/admin');
 	}
 
 	/**
@@ -92,8 +66,9 @@ class InformasiController extends Controller {
 	 */
 	public function edit($id)
 	{
+		// $id = $_GET['id'];
 		$informasi = Informasi::find($id);
-		return view('informasis.edit',compact('informasi'));
+		return view('admin.edit_informasi',compact('informasi'));
 	}
 
 	/**
@@ -102,12 +77,15 @@ class InformasiController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update()
 	{
 		$var = Request::all();
+		$id = $var['id'];
 		$informasi = Informasi::find($id);
+		$message = "Informasi berhasil diperbaharui.";
+		Session::put('message', $message);
 		$informasi->update($var);
-		return redirect('/informasis');
+		return redirect('/admin');
 	}
 
 	/**
@@ -119,14 +97,11 @@ class InformasiController extends Controller {
 	public function destroy($id)
 	{
 		$var = Informasi::find($id);
+		$judul = $var['judul'];
 		$var->delete();
-		$message = "Informasi dengan id $id sudah dihapus.";
-		$informasis = Informasi::all();
-		$block = [
-				'informasis'=>$informasis,
-				'message'=>$message
-		];
-		return view('informasis.index',compact('block'));
+		$message = "Informasi dengan judul '$judul' sudah dihapus.";
+		Session::put('message', $message);
+		return redirect('/admin');
 	}
 
 }
