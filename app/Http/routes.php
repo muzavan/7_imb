@@ -26,6 +26,7 @@ Route::get('home', 'HomeController@index');
 Route::group(['prefix' => '/admin'], function()
 {
    Route::get('/', 'AdminController@index');
+   Route::get('/pengaduan/{jenis}', 'PengaduanController@index');
 
    Route::group(['prefix' => '/informasi'], function()
     {
@@ -68,7 +69,7 @@ Route::get('/informasi/{id}','InformasiController@index');
 Route::get('/pemohons', 'PemohonController@demo_edit');
 Route::get('/pengajuan-lokasi', 'LokasiController@user_index');
 Route::get('/pengajuan-IMB', 'BangunanController@user_index');
-Route::get('/pengaduan', 'PengaduanController@index');
+Route::get('/pengaduan', 'PengaduanController@create');
 Route::post('/pengaduan', 'PengaduanController@store');
 Route::get('/tataruang', 'TataruangController@index');
 Route::get('/tataruang/{id}', 'TataruangController@getFungsiRuang');

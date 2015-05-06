@@ -15,7 +15,33 @@ class PengaduanController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function index($jenis)
+	{
+		$pengaduans = Pengaduan::where('jenis','=', $jenis)->get();
+		if($pengaduans == []){
+			return 'Kosong';
+		}
+		else{
+			if($jenis == 1)
+				$message = "Izin Mendirikan Bangunan";
+			else if($jenis == 2)
+				$message = "Izin Lokasi";
+			else
+				$message = "Tata Ruang";
+			$block = [
+				'pengaduans'=>$pengaduans,
+				'message'=>$message
+			];
+			return view('admin.pengaduan',compact('block'));
+		}
+	}
+
+	/**
+	 * Show the form for creating a new resource.
+	 *
+	 * @return Response
+	 */
+	public function create()
 	{
 		$pengaduans = Pengaduan::all();
 		if($pengaduans == []){
@@ -34,16 +60,7 @@ class PengaduanController extends Controller {
 			];
 			return view('commonusers.pengaduan',compact('block'));
 		}
-	}
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		return view('pengaduans.create');
 	}
 
 	/**

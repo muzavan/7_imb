@@ -118,9 +118,9 @@
                           <span>Pengaduan</span>
                       </a>
                       <ul class="sub">
-                          <li><a  href="/admin/lokasi">IMB</a></li>
-                          <li><a  href="#">Izin Lokasi</a></li>
-                          <li><a  href="#">Tata Ruang</a></li>
+                          <li><a  href="/admin/pengaduan/1">IMB</a></li>
+                          <li><a  href="/admin/pengaduan/2">Izin Lokasi</a></li>
+                          <li><a  href="/admin/pengaduan/3">Tata Ruang</a></li>
                       </ul>
                   </li>
 
