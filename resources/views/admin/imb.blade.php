@@ -1,3 +1,6 @@
+<?php
+  use App\Bangunan;
+?>
 @extends('admin.app')
 
 @section('content')

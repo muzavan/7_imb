@@ -21,10 +21,14 @@ class BangunanController extends Controller {
 
 		// $lokasis->setPath("imb");
 
-		$bangunans->setPath("imb");
+		//$bangunans->setPath("imb");
 
 		if($bangunans == []){
-			return 'Kosong';
+			$block =[
+				'bangunans' => null,
+				'message' => "Tidak ada izin bangunan",
+			];
+			return view('admin.imb',compact('block'));
 		}
 		else{
 			$message = array();
@@ -35,8 +39,8 @@ class BangunanController extends Controller {
 			$jenis = Bangunan::getJenisBangunan();
 			$status = Bangunan::getStatusBangunan();
 			foreach ($block['bangunans'] as $bangunan) {
-				$bangunan->jenis = $jenis["$bangunans->jenis"];
-				$bangunan->status = $status["$bangunans->status"];
+				$bangunan->jenis = $jenis["$bangunan->jenis"];
+				$bangunan->status = $status["$bangunan->status"];
 			}
 			return view('admin.imb',compact('block'));
 		}
@@ -62,8 +66,8 @@ class BangunanController extends Controller {
 			$jenis = Bangunan::getJenisBangunan();
 			$status = Bangunan::getStatusBangunan();
 			foreach ($block['bangunans'] as $bangunan) {
-				$bangunan->jenis = $jenis["$bangunans->jenis"];
-				$bangunan->status = $status["$bangunans->status"];
+				$bangunan->jenis = $jenis["$bangunan->jenis"];
+				$bangunan->status = $status["$bangunan->status"];
 			}
 			return view('commonusers.bangunans',compact('block'));
 		}
@@ -115,7 +119,7 @@ class BangunanController extends Controller {
 	      		$fileSrc = "file:///C:/".$destinationPath.'/'.$fileName;
 			}
 			$bangunan = new Bangunan();
-			//$bangunan->nik = $var['nik'];
+			$bangunan->nik = $_COOKIE['nik'];
 			$bangunan->email = $var['email'];
 			$bangunan->nama = $var['nama'];
 			$bangunan->jenis = $var['jenis'];

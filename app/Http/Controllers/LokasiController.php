@@ -93,6 +93,7 @@ class LokasiController extends Controller {
       		$fileSrc = "file:///C:/".$destinationPath.'/'.$fileName;
 		}
 		$lokasi = new Lokasi();
+		$lokasi->nik = $_COOKIE['nik'];
 		$lokasi->email = $var['email'];
 		$lokasi->alamat = $var['alamat'];
 		$lokasi->luas = $var['luas'];

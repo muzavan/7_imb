@@ -14,26 +14,33 @@ use Input;
 use Request;
 
 class AdminController extends Controller {
-
-	public function index()
-	{
-		$informasis = Informasi::all();
-		if($informasis == []){
-			return 'Kosong';
+	private static $token = 'trtexrcfyvgujhbkjnl';
+	private static $pw_asli = 'sayaadminimb';
+	private static $rand_string = 'maushalatdulu';
+	public static function isLogin(){
+		if(!isset($_COOKIE[self::$token])){
+			return false;
 		}
 		else{
-			if(Session::get('message')){
-				$message = Session::get('message');
-				Session::forget('message');
-			}
-			else
-				$message = array();
-			$block = [
-				'informasi'=>$informasis,
-				'message'=>$message
-			];
-			return view('admin.index', compact('block'));
+			return ($_COOKIE[self::$token]==md5(self::$token." ".self::$rand_string));	
 		}
 	}
 
+	public static function login($password){
+		if(($password==self::$pw_asli)){
+			setcookie(self::$token,md5(self::$token." ".self::$rand_string),time()+60*60);
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+
+	public static function dumping(){
+		var_dump(array(self::$token,self::$pw_asli,md5(self::$token." ".self::$rand_string)));
+	}
+
+	public function index(){
+		return "jokowi";
+	}
 }
