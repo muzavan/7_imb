@@ -71,8 +71,25 @@ class TataruangController extends Controller {
 		}
 		if($html == 'Fungsi :<br>')
 			$html = '';
-		else
-			$html = $html . '<a href="/admin/tataruang/sunting/'.$id.'" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-pencil"></span> Sunting</a>';
+		return $html;
+	}
+
+	public function getFungsiRuangAdmin()
+	{
+		$id = $_GET['id'];
+		$tataruang = Tataruang::where('id_wilayah','=',$id)->get();
+		$html = '<br>Fungsi :<br>';
+		foreach($tataruang as $tr){
+			$fungsiruang = Fungsiruang::where('id', '=', $tr->id_fungsi)->get();
+			foreach($fungsiruang as $fr){
+				$fungsinya = $fr->fungsi;
+				$html = $html . '<li>' . $fungsinya . '</li>';
+			}
+		}
+		if($html == '<br>Fungsi :<br>')
+			$html = '';
+		if($id != 0)
+			$html = $html . '<br><a href="/admin/tataruang/sunting/'.$id.'" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-pencil"></span> Sunting</a>';
 		return $html;
 	}
 

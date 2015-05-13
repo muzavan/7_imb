@@ -70,7 +70,7 @@ Route::group(['prefix' => '/admin'], function()
         Route::get('/', 'TataruangController@admin_index');
         Route::get('/tambah','Tataruangcontroller@create');
         Route::post('/tambah','Tataruangcontroller@store');
-        Route::get('/{id}', 'TataruangController@getFungsiRuang');
+        Route::get('/{id}', 'TataruangController@getFungsiRuangAdmin');
         Route::get('/sunting/{id}', 'TataruangController@edit');
         Route::post('/sunting', 'TataruangController@update');
     }); 
