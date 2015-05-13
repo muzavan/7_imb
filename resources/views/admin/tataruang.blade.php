@@ -6,6 +6,11 @@
           <section class="wrapper">
 
 <h3><i class="fa fa-angle-right"></i> Tata Ruang Kota Bandung</h3>
+@if($block['message'])
+	<div class='alert-success'>
+	{{ $block['message'] }}
+	</div>
+@endif
 
 <div class="row mt">
 

@@ -34,6 +34,27 @@ class InformasiController extends Controller {
 		}
 	}
 
+	public function admin_index()
+	{
+		$informasis = Informasi::all();
+		if($informasis == []){
+			return 'Kosong';
+		}
+		else{
+			if(Session::get('message')){
+				$message = Session::get('message');
+				Session::forget('message');
+			}
+			else
+				$message = array();
+			$block = [
+				'informasi'=>$informasis,
+				'message'=>$message
+			];
+			return view('admin.informasi', compact('block'));
+		}
+	}
+
 	/**
 	 * Show the form for creating a new resource.
 	 *
@@ -66,7 +87,6 @@ class InformasiController extends Controller {
 	 */
 	public function edit($id)
 	{
-		// $id = $_GET['id'];
 		$informasi = Informasi::find($id);
 		return view('admin.edit_informasi',compact('informasi'));
 	}

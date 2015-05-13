@@ -26,7 +26,8 @@ Route::get('/',function(){
         return "yes";
     }
     else{
-        return "hahaha gagal mampus lu";
+        // return "hahaha gagal mampus lu";
+        return view('commonusers.app');
     }
 });
 
@@ -36,11 +37,10 @@ Route::group(['prefix' => '/admin'], function()
 {
    Route::get('/', 'AdminController@index');
    Route::get('/pengaduan/{jenis}', 'PengaduanController@index');
-   Route:: get('/tataruang', 'TataruangController@admin_index');
 
    Route::group(['prefix' => '/informasi'], function()
     {
-        Route::get('/informasi', 'AdminController@index');
+        Route::get('/', 'InformasiController@admin_index');
         Route::get('/tambah', 'InformasiController@create');
         Route::post('/tambah', 'InformasiController@store');
         Route::get('/sunting/{id}','InformasiController@edit');
@@ -66,7 +66,12 @@ Route::group(['prefix' => '/admin'], function()
     });
     Route::group(['prefix' => '/tataruang'], function()
     {
+        Route::get('/', 'TataruangController@admin_index');
         Route::get('/tambah','Tataruangcontroller@create');
+        Route::post('/tambah','Tataruangcontroller@store');
+        Route::get('/{id}', 'TataruangController@getFungsiRuang');
+        Route::get('/sunting/{id}', 'TataruangController@edit');
+        Route::post('/sunting', 'TataruangController@update');
     }); 
 });
 
@@ -79,12 +84,10 @@ Route::group(['prefix' => '/api'], function()
 
 Route::get('/informasi','InformasiController@index');
 Route::get('/informasi/{id}','InformasiController@index');
-
-Route::get('/pemohons', 'PemohonController@demo_edit');
 Route::get('/pengajuan-lokasi', 'LokasiController@user_index');
 Route::post('/pengajuan-lokasi', 'LokasiController@store');
 Route::get('/pengajuan-IMB', 'BangunanController@user_index');
-Route::get('/pengajuan-IMB', 'BangunanController@store');
+Route::post('/pengajuan-IMB', 'BangunanController@store');
 Route::get('/pengaduan', 'PengaduanController@create');
 Route::post('/pengaduan', 'PengaduanController@store');
 Route::get('/tataruang', 'TataruangController@index');

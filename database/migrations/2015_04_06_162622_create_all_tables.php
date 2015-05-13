@@ -67,14 +67,12 @@ class CreateAllTables extends Migration {
 		{
 			$table->increments('id');
 			$table->string('wilayah');
-			$table->timestamps();
 		});
 		
 		Schema::create('fungsiruangs', function(Blueprint $table)
 		{
 			$table->increments('id');
 			$table->string('fungsi');
-			$table->timestamps();
 		});
 
 		Schema::create('tataruangs', function(Blueprint $table)
@@ -83,7 +81,6 @@ class CreateAllTables extends Migration {
 			$table->foreign('id_wilayah')->references('id')->on('wilayahs')->onDelete('cascade');
 			$table->integer('id_fungsi')->unsigned();
 			$table->foreign('id_fungsi')->references('id')->on('fungsiruangs')->onDelete('cascade');
-			$table->timestamps();
 		});
 		
 	}

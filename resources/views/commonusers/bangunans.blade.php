@@ -30,10 +30,6 @@
         <div class="controls">{!! Form::select('jenis', array('1' => 'Permanen', '2' => 'Semi-Permanen', '3' => 'Sementara'), 'Permanen',['class' => 'span7']) !!}</div>
       </div>
       <div class='control-group'>
-        <div class="controls">{!! Form::label('jumlah_lantai','Jumlah Lantai:') !!}</div>
-        <div class="controls">{!! Form::selectRange('jumlah_lantai', 1, 20,['class' => 'span7']) !!}</div>
-      </div>
-      <div class='control-group'>
         <div class="controls">{!! Form::label('dokumen','Dokumen Teknis:') !!}</div>
         <div class="controls">{!! Form::file('dokumen',['class' => 'span7']) !!}</div>
       </div>

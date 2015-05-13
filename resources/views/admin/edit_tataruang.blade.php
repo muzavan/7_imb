@@ -14,13 +14,14 @@
   <div class="panel-body">
     <div class="task-content">
 
-    {!! Form::open(['url' => '/admin/tataruang/tambah' , 'class'=>'form-horizontal' , 'files'=>true]) !!}
+    {!! Form::open(['url' => '/admin/tataruang/sunting' , 'class'=>'form-horizontal' , 'files'=>true]) !!}
       <div class='form-group'>
-        <div class="controls" style="margin-left: 20px"><h3>Tambah Wilayah</h3></div>
+        <div class="controls" style="margin-left: 20px"><h3>Sunting Wilayah</h3></div>
       </div>
       <div class='control-group'>
+        {!! Form::hidden('id', $block['wilayah']->id) !!}
         <label class="col-sm-2 col-sm-2 control-label"><label for="judul">Nama Kecamatan:</label></label>
-        <div class="col-sm-10">{!! Form::text('wilayah','',['required', 'placeholder' => 'Contoh : Lengkong', 'class' => 'form-control']) !!}</div>
+        <div class="col-sm-10">{!! Form::text('wilayah',$block['wilayah']->wilayah,['required', 'placeholder' => 'Contoh : Lengkong', 'class' => 'form-control']) !!}</div>
       </div><br><br><br>
       <div class='control-group'>
       <label class="col-sm-2 col-sm-2 control-label" for="checkboxes">Fungsi Ruang:</label>
@@ -30,7 +31,11 @@
     @if(($i <= $num/2 && $isgenap) || ($i <= $num/2 +1 && !$isgenap))
     <div class="checkbox">
       <label for="checkboxes-0">
-        {!! Form::checkbox('fungsi ' . $fungsiruang['id'],$fungsiruang['id']) !!}{{$fungsiruang['fungsi']}}
+        @if(in_array($fungsiruang['id'], $block['tataruang']))
+          {!! Form::checkbox('fungsi ' . $fungsiruang['id'],$fungsiruang['id'], true) !!}{{$fungsiruang['fungsi']}}
+        @else
+          {!! Form::checkbox('fungsi ' . $fungsiruang['id'],$fungsiruang['id']) !!}{{$fungsiruang['fungsi']}}
+        @endif
       </label>
     </div>
     @endif
@@ -44,7 +49,11 @@
     @if(($i > $num/2 && $isgenap) || ($i > $num/2 +1 && !$isgenap))
     <div class="checkbox">
       <label for="checkboxes-0">
-        {!! Form::checkbox('fungsi '  . $fungsiruang['id'],$fungsiruang['id']) !!}{{$fungsiruang['fungsi']}}
+        @if(in_array($fungsiruang['id'], $block['tataruang']))
+          {!! Form::checkbox('fungsi ' . $fungsiruang['id'],$fungsiruang['id'], true) !!}{{$fungsiruang['fungsi']}}
+        @else
+          {!! Form::checkbox('fungsi ' . $fungsiruang['id'],$fungsiruang['id']) !!}{{$fungsiruang['fungsi']}}
+        @endif
       </label>
     </div>
     @endif
@@ -53,7 +62,7 @@
   </div>
 </div><br><br><br><br><br>
       <div class='control-group'><br><br><br>
-        <div class="controls"><input class="btn btn-warning form-control" type="submit" value="Tambah Wilayah"></div>
+        <div class="controls"><input class="btn btn-warning form-control" type="submit" value="Sunting Wilayah"></div>
       </div>
       {!! Form::close() !!}
     </div>

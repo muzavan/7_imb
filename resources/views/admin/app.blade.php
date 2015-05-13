@@ -19,12 +19,9 @@
     <link href="{{asset ('/admins/css/style.css') }}" rel="stylesheet">
     <link href="{{asset ('/admins/css/style-responsive.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{asset ('/admins/css/to-do.css') }}">
+    <script src="http://maps.googleapis.com/maps/api/js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>    
 
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
   </head>
 
   <body>
@@ -69,7 +66,7 @@
                   </li>
 
                   <li class="sub-menu">
-                      <a href="/admin">
+                      <a href="/admin/informasi">
                           <i class="fa fa-desktop"></i>
                           <span>Informasi</span>
                       </a>
@@ -108,7 +105,7 @@
                       </a>
                       <ul class="sub">
                           <li><a  href="/admin/tataruang">Peta</a></li>
-                          <li><a  href="#">Permohonan Tata Ruang</a></li>
+                          <li><a  href="/admin/tataruang/tambah">Tambah Wilayah</a></li>
                       </ul>
                   </li>
 
@@ -161,28 +158,10 @@
     <script src="{{asset ('/admins/js/common-scripts.js') }}"></script>
 
     <!--script for this page-->
-  <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>    
     <script src="{{asset ('/admins/js/tasks.js') }}" type="text/javascript"></script>
-
-    <script>
-      jQuery(document).ready(function() {
-          TaskList.initTaskWidget();
-      });
-
-      $(function() {
-          $( "#sortable" ).sortable();
-          $( "#sortable" ).disableSelection();
-      });
-
-    </script>
     
     
   <script>
-      //custom select box
-
-      $(function(){
-          $('select.styled').customSelect();
-      });
 
       function initialize() {
   var mapProp = {
@@ -198,7 +177,6 @@ google.maps.event.addDomListener(window, 'load', initialize);
 
 $('body').on('change','#jenisruang',function(){
     var id = $(this).val();
-    // var id = 1;
     $.ajax({
      url: 'tataruang/{id}',
      type: 'GET',
