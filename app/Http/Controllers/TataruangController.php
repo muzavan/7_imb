@@ -84,6 +84,7 @@ class TataruangController extends Controller {
 	 */
 	public function create()
 	{
+<<<<<<< Updated upstream
 		$fungsiruangs = Fungsiruang::orderBy('fungsi', 'ASC')->get();
 		if($fungsiruangs == [])
 			return 'kosong';
@@ -95,6 +96,9 @@ class TataruangController extends Controller {
 			];
 			return view('admin.form_tataruang', compact('block'));
 		}
+=======
+		return view('admin.form_tataruang');
+>>>>>>> Stashed changes
 	}
 
 	public function edit($id)
