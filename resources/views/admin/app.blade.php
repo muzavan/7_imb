@@ -105,14 +105,7 @@
                       </a>
                       <ul class="sub">
                           <li><a  href="/admin/tataruang">Peta</a></li>
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
                           <li><a  href="/admin/tataruang/tambah">Tambah Wilayah</a></li>
-=======
-=======
->>>>>>> Stashed changes
-                          <li><a  href="#">Permohonan Tata Ruang</a></li>
->>>>>>> Stashed changes
                       </ul>
                   </li>
 
@@ -184,6 +177,31 @@ google.maps.event.addDomListener(window, 'load', initialize);
 
 $('body').on('change','#jenisruang',function(){
     var id = $(this).val();
+    $.ajax({
+     url: 'tataruang/{id}',
+     type: 'GET',
+     data: {id: id},
+     success: function(response){
+         $('#tulisfungsi').html(response);
+     }
+    });
+});
+
+      function initialize() {
+  var mapProp = {
+    center:new google.maps.LatLng(-6.9167,107.6000),
+    zoom:12,
+    mapTypeId:google.maps.MapTypeId.ROADMAP
+  };
+  var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+}
+google.maps.event.addDomListener(window, 'load', initialize);
+
+
+
+$('body').on('change','#jenisruang',function(){
+    var id = $(this).val();
+    // var id = 1;
     $.ajax({
      url: 'tataruang/{id}',
      type: 'GET',

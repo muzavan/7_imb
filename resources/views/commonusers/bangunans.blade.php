@@ -26,7 +26,10 @@
         <div class="controls">{!! Form::text('password','',['class' => 'span7']) !!}</div>
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
       </div>
