@@ -168,20 +168,42 @@ class LokasiController extends Controller {
 		header("Content-Type:application/json;");
 		$var = Request::all();
 		if((isset($var['nik']))){
-			$lahans = Lokasi::where("nik","=",$var['nik'])->get();
+			$lahans = Lokasi::whereRaw("nik = ".$var['nik']." and status = 1")->get();
 			if($lahans->count()==0){
 				return json_encode(array("status"=>"fail"));
 			}
 			else{
 				$alamats = array();
 				foreach($lahans as $lahan){
-					array_push($alamats,$lahan->alamat." Kecamatan ".$lahan->kecamatan." Kelurahan ".$lahan->kelurahan);
+					array_push($alamats,["id" => $lahan->id, "alamat"=>($lahan->alamat." Kecamatan ".$lahan->kecamatan." Kelurahan ".$lahan->kelurahan)]);
 				}
 
-				return json_encode([
-					"alamats" => $alamats,
-				]);
+				return json_encode(["alamats" => $alamats]);
 
+			}
+		}else{
+			return json_encode([
+					"status"=>"error"
+				]);
+		}
+	}
+
+	public function api_lahan_id()
+	{
+		header("Content-Type:application/json;");
+		$var = Request::all();
+		if((isset($var['id']))){
+			$lahans = Lokasi::find($var['id'])->get();
+			if($lahans->count()==0){
+				return json_encode(array("status"=>"fail"));
+			}
+			else{
+				$alamat = '';
+				foreach($lahans as $lahan){
+					$alamat = $lahan->alamat." Kecamatan ".$lahan->kecamatan." Kelurahan ".$lahan->kelurahan;
+				}
+
+				return json_encode(['alamat' => $alamat]);
 			}
 		}else{
 			return json_encode([

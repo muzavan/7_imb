@@ -3,7 +3,8 @@
 use Illuminate\Database\Eloquent\Model;
 
 class Lokasi extends Model {
-	protected $fillable = array('id','nama','fungsi','lokasi','jenis','jumlah_lantai','dokumen');
+	protected $fillable = array('id','nik','email','luas','alamat','kelurahan','kecamatan','status','dokumen');
+
 	public static function getStatusLokasi() 
 	{
 		$jenis_bangunan = [

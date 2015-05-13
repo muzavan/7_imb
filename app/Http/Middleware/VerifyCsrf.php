@@ -11,6 +11,7 @@ class VerifyCsrf extends \Illuminate\Foundation\Http\Middleware\VerifyCsrfToken
            'api/lokasi',
            'api/imb',
 		   'api/lahan',
+       'api/lahan_id',
    ];
 
     /**
