@@ -31,6 +31,21 @@ class TataruangController extends Controller {
 		}
 	}
 
+	public function admin_index()
+	{
+		$wilayahs = Wilayah::orderBy('wilayah', 'ASC')->get();
+		if($wilayahs == [])
+			return 'kosong';
+		else{
+			$message = array();
+			$block = [
+				'wilayah'=>$wilayahs,
+				'message'=>$message
+			];
+			return view('admin.tataruang', compact('block'));
+		}
+	}
+
 	/**
 	 * Menampilkan fungsi tata ruang suatu wilayah
 	 *
@@ -61,7 +76,7 @@ class TataruangController extends Controller {
 	 */
 	public function create()
 	{
-		return view('pengaduans.create');
+		return view('admin.form_tataruang');
 	}
 
 	/**

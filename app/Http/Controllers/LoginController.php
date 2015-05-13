@@ -14,10 +14,10 @@ class LoginController extends Controller {
 	}
 
 	public static function oauth(){
-		$client_id = env('DUKCAPIL_CLIENT','Eqahktn5vzR1Aa6a');
-		$secret_id = env('DUKCAPIL_SECRET','eEQ6hIdcNE3fuD3r');
-		$redirect_uri = env('DUKCAPIL_REDIRECT','http://imb.pplbandung.biz.tm/');
-		$host = env('DUKCAPIL_HOST','');
+		$client_id = env('DUKCAPIL_CLIENT','wVbVZMsWRxC26zfo');
+		$secret_id = env('DUKCAPIL_SECRET','mEkRU2CRPeZDCEEm');
+		$redirect_uri = env('DUKCAPIL_REDIRECT','http://imb.pplbandung.biz.tm');
+		$host = env('DUKCAPIL_HOST','http://dukcapil.pplbandung.biz.tm');
 		return [
 			"client_id"		=>	$client_id,
 			"secret_id"		=>	$secret_id,

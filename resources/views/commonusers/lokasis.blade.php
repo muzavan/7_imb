@@ -5,7 +5,7 @@
 @stop
 
 @section('content')
-      {!! Form::open(['url' => '/home/pengajuan-lokasi' , 'class'=>'form-horizontal', 'files'=>true]) !!}
+      {!! Form::open(['url' => '/pengajuan-lokasi' , 'class'=>'form-horizontal', 'files'=>true]) !!}
       <div class='control-group'>
         <div class="controls"><h3>Form Permohonan Izin Lokasi</h3></div>
       </div>
@@ -34,7 +34,6 @@
         <div class="controls">{!! Form::label('dokumen','Dokumen Teknis:') !!}</div>
         <div class="controls">{!! Form::file('dokumen',['class' => 'span8']) !!}</div>
       </div>
-      {!! Form::hidden('status', 'menunggu') !!}
       <div class='control-group'>
         <div class="controls">{!! Form::submit('Tambah Permohonan Lokasi',['class' => 'btn btn-primary form-control']) !!}</div>
       </div>
