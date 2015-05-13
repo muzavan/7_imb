@@ -163,6 +163,33 @@ class LokasiController extends Controller {
 		}
 	}
 
+	public function api_lahan()
+	{
+		header("Content-Type:application/json;");
+		$var = Request::all();
+		if((isset($var['nik']))){
+			$lahans = Lokasi::where("nik","=",$var['nik'])->get();
+			if($lahans->count()==0){
+				return json_encode(array("status"=>"fail"));
+			}
+			else{
+				$alamats = array();
+				foreach($lahans as $lahan){
+					array_push($alamats,$lahan->alamat." Kecamatan ".$lahan->kecamatan." Kelurahan ".$lahan->kelurahan);
+				}
+
+				return json_encode([
+					"alamats" => $alamats,
+				]);
+
+			}
+		}else{
+			return json_encode([
+					"status"=>"error"
+				]);
+		}
+	}
+
 	/**
 	 * Show the form for editing the specified resource.
 	 *

@@ -60,7 +60,8 @@ Route::group(['prefix' => '/api'], function()
 {
     Route::post('/lokasi', 'LokasiController@api');
     Route::post('/imb', 'BangunanController@api');
-
+	Route::post('/lahan', 'LokasiController@api_lahan');
+    
 });
 
 Route::get('/informasi','InformasiController@index');

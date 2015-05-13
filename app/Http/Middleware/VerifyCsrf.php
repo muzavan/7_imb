@@ -10,6 +10,7 @@ class VerifyCsrf extends \Illuminate\Foundation\Http\Middleware\VerifyCsrfToken
    protected $routes = [
            'api/lokasi',
            'api/imb',
+		   'api/lahan',
    ];
 
     /**
