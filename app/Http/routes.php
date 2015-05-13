@@ -27,8 +27,12 @@ Route::get('/',function(){
     }
     else{
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         // return "hahaha gagal mampus lu";
         return view('commonusers.app');
+=======
+        return "hahaha gagal mampus lu";
+>>>>>>> Stashed changes
 =======
         return "hahaha gagal mampus lu";
 >>>>>>> Stashed changes
@@ -72,12 +76,16 @@ Route::group(['prefix' => '/admin'], function()
     Route::group(['prefix' => '/tataruang'], function()
     {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         Route::get('/', 'TataruangController@admin_index');
         Route::get('/tambah','Tataruangcontroller@create');
         Route::post('/tambah','Tataruangcontroller@store');
         Route::get('/{id}', 'TataruangController@getFungsiRuang');
         Route::get('/sunting/{id}', 'TataruangController@edit');
         Route::post('/sunting', 'TataruangController@update');
+=======
+        Route::get('/tambah','Tataruangcontroller@create');
+>>>>>>> Stashed changes
 =======
         Route::get('/tambah','Tataruangcontroller@create');
 >>>>>>> Stashed changes
@@ -90,7 +98,11 @@ Route::group(['prefix' => '/api'], function()
     Route::post('/imb', 'BangunanController@api');
     Route::post('/lahan', 'LokasiController@api_lahan');
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+
+>>>>>>> Stashed changes
 
 
 >>>>>>> Stashed changes
@@ -102,7 +114,11 @@ Route::get('/pengajuan-lokasi', 'LokasiController@user_index');
 Route::post('/pengajuan-lokasi', 'LokasiController@store');
 Route::get('/pengajuan-IMB', 'BangunanController@user_index');
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 Route::post('/pengajuan-IMB', 'BangunanController@store');
+=======
+Route::get('/pengajuan-IMB', 'BangunanController@store');
+>>>>>>> Stashed changes
 =======
 Route::get('/pengajuan-IMB', 'BangunanController@store');
 >>>>>>> Stashed changes

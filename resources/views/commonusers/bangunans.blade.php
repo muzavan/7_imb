@@ -25,7 +25,10 @@
         <div class="controls">{!! Form::label('password','Kode lokasi:') !!}</div>
         <div class="controls">{!! Form::text('password','',['class' => 'span7']) !!}</div>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
       </div>
       <div class='control-group'>
         <div class="controls">{!! Form::label('jenis','Jenis:') !!}</div>
