@@ -1,0 +1,45 @@
+{
+    "name": "morrislaptop/laravel-five-package-bridges",
+    "description": "Use your Laravel 4 packages in Laravel 5",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Craig Morris",
+            "email": "craig.michael.morris@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "laravel/framework": "~5.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.4",
+        "orchestra/testbench": "~3.0@dev",
+        "laracasts/flash": "~1.3",
+        "way/generators": "~3.0",
+        "intervention/image": "~2.0",
+        "maatwebsite/excel": "~1.2",
+        "itsgoingd/clockwork": "~1.6",
+        "cartalyst/sentry": "~2.1",
+        "robbiep/cloudconvert-laravel": "~2.0@beta",
+        "camroncade/timezone": "dev-master"
+    },
+    "replace": {
+        "illuminate/support": "~4.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Morrislaptop\\LaravelFivePackageBridges\\": "src/"
+        }
+    },
+    "suggest": {
+        "laracasts/flash": "Easy flash notifications https://packagist.org/packages/laracasts/flash",
+        "way/generators": "Rapidly speed up your Laravel workflow with generators https://packagist.org/packages/way/generators",
+        "intervention/image": "PHP Image Manipulation http://image.intervention.io",
+        "maatwebsite/excel": "An eloquent way of importing and exporting Excel and CSV files for Laravel with the power of PHPExcel http://www.maatwebsite.nl/laravel-excel/docs",
+        "itsgoingd/clockwork": "Server-side component of Clockwork, a Chrome extension for PHP development.",
+        "cartalyst/sentry": "A framework agnostic authentication & authorization system. http://www.cartalyst.com",
+        "robbiep/cloudconvert-laravel": "Provides API access to CloudConvert.com",
+        "camroncade/timezone": "Addon to assist with Timezone managemenr"
+    }
+}
