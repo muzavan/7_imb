@@ -18,6 +18,7 @@ use App\Http\Controllers\LoginController;
 
 Route::get("/loginPemohon","LoginController@loginPemohon");
 Route::get("/loginAdmin","AdminController@index");
+Route::post("/loginAdmin","AdminController@login");
 /* END OF TESTING */
 /* END OF TESTING */
 
@@ -73,10 +74,10 @@ Route::group(array('middleware' => 'adminAuth'),function()
             Route::get('setuju/{id}', 'LokasiController@setuju');
             Route::post('tolak', 'LokasiController@tolak');
             Route::get('sebelumTolak/{id}', 'LokasiController@sebelumTolak');
-            Route::get('/laporan', 'LokasiController@generateLaporan');
             Route::get('/proses', 'LokasiController@getProses');
             Route::get('/disetujui', 'LokasiController@getDisetujui');
             Route::get('/ditolak', 'LokasiController@getDitolak');
+            Route::get('/laporan', 'LokasiController@kirimLaporan'); 
         });
         Route::group(['prefix' => '/tataruang'], function()
         {

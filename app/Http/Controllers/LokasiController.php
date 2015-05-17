@@ -179,7 +179,7 @@ class LokasiController extends Controller {
 		];
 		MailController::send($data);
 
-		return "Berhasil?";
+		return redirect('/user/');
 	}
 
 	/**
@@ -319,7 +319,7 @@ class LokasiController extends Controller {
 		$lokasi->jumlah_lantai = $var['jumlah_lantai'];
 		$lokasi->dokumen = $fileSrc;
 		$lokasi->save();
-		return redirect('/lokasis');
+		return redirect('/admin/lokasi/');
 	}
 
 	public function setuju($id)
@@ -336,12 +336,13 @@ class LokasiController extends Controller {
 			"token" => $lokasi->password,
 		];
 		MailController::send($data);
-		return redirect('/home');
+		return redirect('/admin/lokasi');
 	}
 
 	public function tolak()
 	{
 		$var = Request::all();
+		var_dump($var);
 		$id = $var['id'];
 		$lokasi = Lokasi::find($id);
 		$lokasi->status = -1;
@@ -356,12 +357,12 @@ class LokasiController extends Controller {
 			"komentar" => $var['komentar'],
 		];
 		MailController::send($data);
-		return redirect('/home');
+		return redirect('/admin/lokasi');
 	}
 
 	public function sebelumTolak($id)
 	{
-		return view('izin_admin.tolak_lokasi',compact('id'));
+		return view('admin.tolak_izin_lokasi',compact('id'));
 	}
 
 	/**
@@ -388,22 +389,22 @@ class LokasiController extends Controller {
 	}
 
 	public function kirimLaporan(){
-		$html = '<html><body>'
+		$html = '<!DOCTYPE html><body>'
 			. '<center>'
             . '<h1>Dinas Tata Ruang dan Cipta Karya</h1>'
             . '<h1>Kota Bandung</h1>'
-            . '<br/>'
+            . '<h1>&nbsp</h1>'
             . '<h3>Laporan</h3>'
             . '<h2>Rekapitulasi Permohonan Izin Lokasi dan Mendirikan Bangunan</h2>'
-            . '<br/>'
-            . '<img width="300px" src="http://2.bp.blogspot.com/-jt8t6lt0kck/UmTwtSffyhI/AAAAAAAADCU/hJEE7zZireY/s1600/Logo-Pemerintah-Kota-Bandung-transparent.png">'
-            . '<br/>'
+            . '<h1>&nbsp</h1>'
+            . '<img width="300px" src="http://2.bp.blogspot.com/-jt8t6lt0kck/UmTwtSffyhI/AAAAAAAADCU/hJEE7zZireY/s1600/Logo-Pemerintah-Kota-Bandung-transparent.png" />'
+            . '<h1>&nbsp</h1>'
             . '<h2>'.date("Y",time())."</h2>";
-        $data = Lokasi::whereRaw('MONTH(`updated_at`)==MONTH(NOW()) and YEAR(`updated_at`)==YEAR(NOW())')->get();
+        $data = Lokasi::whereRaw('MONTH(`updated_at`)=MONTH(NOW()) and YEAR(`updated_at`)=YEAR(NOW())')->get();
         $html = $html.'<div style="page-break-after: always;"></div>';
         $html = $html.'<h2>'.date("M-Y",time()).'</h2>';
         $html = $html.'<h2>Izin Lokasi</h2>';
-        $html = $html.'<table class="table table-bordered table-striped table-hover"><thead>
+        $html = $html.'<table class="table table-bordered table-striped table-hover"><tr>
         				<td>No</td>
         				<td>NIK Pengaju</td>
         				<td>Email</td>
@@ -412,8 +413,8 @@ class LokasiController extends Controller {
         				<td>Kelurahan</td>
         				<td>Kecamatan</td>
 						<td>Status</td>
-        				</thead>';
-        $html = $html."<tbody>";
+						</tr>
+        				';
         $i=0;
         foreach($data as $lokasi){
         	$i=$i+1;
@@ -429,14 +430,13 @@ class LokasiController extends Controller {
         	$html = $html."<td>".Lokasi::getStatusLokasi()["$status"]."</td>";
         	$html = $html."</tr>";
         }
-        $html = $html."</tbody>";
         $html = $html."</table>";
 
         //IZIN MENDIRIKAN BANGUNAN
-        $data = Bangunan::whereRaw('MONTH(`updated_at`)==MONTH(NOW()) and YEAR(`updated_at`)==YEAR(NOW())')->get();
+        $data = Bangunan::whereRaw('MONTH(`updated_at`)=MONTH(NOW()) and YEAR(`updated_at`)=YEAR(NOW())')->get();
         $html = $html.'<div style="page-break-after: always;"></div>';
         $html = $html.'<h2>Izin Mendirikan Bangunan</h2>';
-        $html = $html."<table class='table table-bordered table-striped table-hover'><thead>
+        $html = $html."<table class='table table-bordered table-striped table-hover'><tr>
         				<td>No</td>
         				<td>NIK Pengaju</td>
         				<td>Email</td>
@@ -445,8 +445,7 @@ class LokasiController extends Controller {
         				<td>Kelurahan</td>
         				<td>Kecamatan</td>
 						<td>Status</td>
-        				</thead>";
-        $html = $html."<tbody>";
+        				</tr>";
         $i=0;
         foreach($data as $bangunan){
         	$i=$i+1;
@@ -465,23 +464,23 @@ class LokasiController extends Controller {
         	$html = $html."<td>".Lokasi::getStatusBangunan()["$status"]."</td>";
         	$html = $html."</tr>";
         }
-        $html = $html."</tbody>";
         $html = $html."</table>";
 
         $html = $html
         	. '</center>'           
   			. '</body></html>';
         $fileName = "Laporan Dinas Tata Ruang dan Cipta Karya per ".date("M-Y",time()).".pdf";
-		$filePath = '../app/storage/';
+		$filePath = storage_path();
         PDF::loadHTML($html)->setPaper('a4')->setOrientation('potrait')->setWarnings(false)->save($filePath.$fileName);;
     	$mailAttachment = $filePath.$fileName;
-    	Mail::send('emails.laporan', $data, function($message) use ($data,$mailAttachment) {
+    	$datas = [];
+    	Mail::send('emails.laporan', $datas, function($message) use ($mailAttachment) {
 					$message->from('no-reply@pimo.com', 'Sistem Pengajuaan Izin Mendirikan Online');
 					$message->to("muzavan@gmail.com","Muhammad Reza Irvanda")->subject("[Laporan Pelayanan Online Dinas Tata Ruang dan Cipta Karya]");
 					$message->attach($mailAttachment);
 		});
 
-		return redirect("./home");
+		return redirect("/admin/lokasi");
 	}
 
 }
