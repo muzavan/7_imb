@@ -115,7 +115,7 @@ class LokasiController extends Controller {
 		];
 		MailController::send($data);
 
-		return "Berhasil?";
+		return redirect('/user/');
 	}
 
 	/**
@@ -255,7 +255,7 @@ class LokasiController extends Controller {
 		$lokasi->jumlah_lantai = $var['jumlah_lantai'];
 		$lokasi->dokumen = $fileSrc;
 		$lokasi->save();
-		return redirect('/lokasis');
+		return redirect('/admin/lokasi/');
 	}
 
 	public function setuju($id)
@@ -272,7 +272,7 @@ class LokasiController extends Controller {
 			"token" => $lokasi->password,
 		];
 		MailController::send($data);
-		return redirect('/home');
+		return redirect('/admin/lokasi');
 	}
 
 	public function tolak()
@@ -292,7 +292,7 @@ class LokasiController extends Controller {
 			"komentar" => $var['komentar'],
 		];
 		MailController::send($data);
-		return redirect('/home');
+		return redirect('/admin/lokasi');
 	}
 
 	public function sebelumTolak($id)

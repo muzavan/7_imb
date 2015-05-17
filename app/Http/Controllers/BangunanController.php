@@ -138,7 +138,7 @@ class BangunanController extends Controller {
 				"token" => null,
 			];
 			MailController::send($toSend);
-			return 'Berhasil';
+			return redirect('/user/');
 		}
 	}
 
@@ -233,7 +233,7 @@ class BangunanController extends Controller {
 		$bangunan->id_lokasi = $var['id_lokasi'];
 		$bangunan->dokumen = $fileSrc;
 		$bangunan->save();
-		return 'Berhasil';
+		return redirect("/user/");
 	}
 
 	public function setuju($id)
@@ -250,7 +250,7 @@ class BangunanController extends Controller {
 			"token" => $bangunan->password,
 		];
 		MailController::send($toSend);
-		return redirect('/home');
+		return redirect('/admin/imb');
 	}
 
 	public function tolak()
@@ -270,7 +270,7 @@ class BangunanController extends Controller {
 			"komentar" => $var['komentar'],
 		];
 		MailController::send($toSend);
-		return redirect('/home');
+		return redirect('/admin/imb');
 	}
 
 	public function sebelumTolak($id)
