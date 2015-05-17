@@ -18,9 +18,6 @@ class BangunanController extends Controller {
 	public function index()
 	{
 		$bangunans = Bangunan::orderBy('id')->simplePaginate(5);
-
-		// $lokasis->setPath("imb");
-
 		$bangunans->setPath("imb");
 
 		if($bangunans == []){
@@ -49,9 +46,6 @@ class BangunanController extends Controller {
 	public function getProses()
 	{
 		$bangunans = Bangunan::where('status','=',0)->orderBy('id')->simplePaginate(5);
-
-		// $lokasis->setPath("imb");
-
 		$bangunans->setPath("imb");
 
 		if($bangunans == []){
@@ -80,9 +74,6 @@ class BangunanController extends Controller {
 	public function getDisetujui()
 	{
 		$bangunans = Bangunan::where('status','=',1)->orderBy('id')->simplePaginate(5);
-
-		// $lokasis->setPath("imb");
-
 		$bangunans->setPath("imb");
 
 		if($bangunans == []){
@@ -111,9 +102,6 @@ class BangunanController extends Controller {
 	public function getDitolak()
 	{
 		$bangunans = Bangunan::where('status','=',-1)->orderBy('id')->simplePaginate(5);
-
-		// $lokasis->setPath("imb");
-
 		$bangunans->setPath("imb");
 
 		if($bangunans == []){
@@ -137,11 +125,6 @@ class BangunanController extends Controller {
 			}
 			return view('admin.imb',compact('block'));
 		}
-	}
-
-	public function imbSatuan()
-	{
-		return view('admin.imb_satuan');
 	}
 
 	public function user_index()
@@ -281,19 +264,15 @@ class BangunanController extends Controller {
 	public function show($id)
 	{
 		$bangunan = Bangunan::find($id);
-		return view('bangunans.bangunan',compact('bangunan'));
-	}
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		$bangunan = Bangunan::find($id);
-		return view('bangunans.edit',compact('bangunan'));
+		if($bangunan == [])
+			return redirect('/admin/imb');
+		else{
+			$jenis = Bangunan::getJenisBangunan();
+			$status = Bangunan::getStatusBangunan();
+			$bangunan->jenis = $jenis["$bangunan->jenis"];
+			$bangunan->status = $status["$bangunan->status"];
+			return view('admin.imb_satuan', compact('bangunan'));
+		}
 	}
 
 	/**

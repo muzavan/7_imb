@@ -1,6 +1,7 @@
 @extends('commonusers.app')
 
 @section('content')
+<div class='span8'>
 @if($block['message'])
 <div class='alert-success'>
 {{ $block['message'] }}
@@ -26,4 +27,5 @@
         <div class="controls">{!! Form::submit('Kirim Pengaduan',['class' => 'btn btn-primary form-control']) !!}</div>
       </div>
       {!! Form::close() !!}
+</div>
 @stop

@@ -96,9 +96,7 @@
                     <div class="span2">
                         @yield('sidebar')
                     </div>
-                    <div class="span8">
                         @yield('content')
-                    </div>
                     <!-- /span6 -->
                 </div>
                 <!-- /row -->
@@ -135,6 +133,11 @@
                             <li><a href="/user/tataruang/peta">Lihat Tata Ruang</a></li>
                         </ul>
                     </div>
+                    <div class="span12">
+                        <br><br>
+                        &copy; Azabalakisimawa - <a href="/user">PIMO</a>.
+                    </div>
+
                     <!-- /span3 -->
                 </div>
                 <!-- /row -->
@@ -144,23 +147,6 @@
         <!-- /extra-inner -->
     </div>
     <!-- /extra -->
-    <!-- <div class="footer">
-        <div class="footer-inner">
-            <div class="container">
-                <div class="row">
-                    <div class="span12">
-                        &copy; Azabalakisimawa - <a href="index.html">PIMO</a>.
-                    </div>
-                    <!-- /span12 -->
-                </div>
-                <!-- /row -->
-            </div>
-            <!-- /container -->
-        </div>
-        <!-- /footer-inner -->
-    </div>
-    <!-- @yield('content') -->
-    <!-- @yield('footer') -->
     <!-- /footer -->
     <!-- Le javascript
 ================================================== -->

@@ -9,7 +9,7 @@ use App\Bangunan;
 @stop
 
 @section('content')
-  
+<div class='span8'>
   <div class='row'>
     <div class='col-md-3'>
     </div>
@@ -79,4 +79,5 @@ use App\Bangunan;
     <div class='col-md-3'>
     </div>
   </div>
+</div>
 @stop

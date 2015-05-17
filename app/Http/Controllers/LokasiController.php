@@ -192,7 +192,14 @@ class LokasiController extends Controller {
 	public function show($id)
 	{
 		$lokasi = Lokasi::find($id);
-		return view('lokasis.lokasi',compact('lokasi'));
+		if($lokasi == [])
+			return redirect('/admin/lokasi');
+		else{
+			$status = Bangunan::getStatusBangunan();
+			$lokasi->status = $status["$lokasi->status"];
+			return view('admin.lokasi_satuan', compact('lokasi'));
+		}
+
 	}
 
 	public function api()
@@ -276,18 +283,6 @@ class LokasiController extends Controller {
 					"status"=>"error"
 				]);
 		}
-	}
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		$lokasi = Lokasi::find($id);
-		return view('lokasis.edit',compact('lokasi'));
 	}
 
 	/**

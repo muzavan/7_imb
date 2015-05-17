@@ -45,7 +45,7 @@
                                   foreach ($block['bangunans'] as $bangunan) {
                               ?>
                               <tr>
-                                  <td>{{$bangunan->id}}</td>
+                                  <td><a href="imb/{{$bangunan->id}}">{{$bangunan->id}}</a></td>
                                   <td>{{$bangunan->nik}}</td>
                                   <td>{{$bangunan->email}}</td>
                                   <td>{{$bangunan->nama}}</td>

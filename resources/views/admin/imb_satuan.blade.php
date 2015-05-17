@@ -16,15 +16,18 @@
               
               <div class="panel-body">
                 <div class="task-content">
-                  <div class="h2">NIK: 98989</div>
-                  <p><b>E-mail:</b> pumpkinranger@gmail.com</p>
-                  <p><b>Nama:</b> Pumpkin Ranger</p>
-                  <p><b>Jenis:</b> Labyu</p>
-                  <p><b>Lokasi:</b> <a href="#">Bandung</a></p>
-                  <p><b>Dokumen:</b> hay.pdf</p>
-                  <p><b>Status:</b> Diterima yayang</p>
-                  <p><b>Tanggal dibuat:</b> 32 Mei 2014</p>
-                  <p><b>Tanggal diperbaharui:</b> 32 Mei 2014</p>
+                  <div class="h2">NIK: {{$bangunan->nik}}</div>
+                  <p><b>E-mail:</b> {{$bangunan->email}}</p>
+                  <p><b>Nama:</b> {{$bangunan->nama}}</p>
+                  <p><b>Jenis:</b> {{$bangunan->jenis}}</p>
+                  <p><b>Lokasi:</b> <a href="/admin/lokasi{{$bangunan->id_lokasi}}">Sini</a></p>
+                  <p><b>Dokumen:</b> <a href="{{$bangunan->dokumen}}">Dokumen teknis</a></p>
+                  <p><b>Status:</b> {{$bangunan->status}}</p>
+                  <p><b>Tanggal dibuat:</b> {{$bangunan->created_at}}</p>
+                  <div class="pull-right">
+                  <a href="/admin/imb/setuju/{{$bangunan->id}}" class="btn btn-sm btn-success">Terima</a>
+                  <a href="/admin/imb/sebelumTolak/{{$bangunan->id}}" class="btn btn-sm btn-danger">Tolak</a>
+                </div>
                 </div>
               </div>
               

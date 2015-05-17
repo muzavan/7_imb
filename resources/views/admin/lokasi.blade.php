@@ -46,7 +46,7 @@
                                   foreach ($block['lokasis'] as $lokasi) {
                               ?>
                               <tr>
-                                  <td>{{$lokasi->id}}</td>
+                                  <td><a href="lokasi/{{$lokasi->id}}">{{$lokasi->id}}</a></td>
                                   <td>{{$lokasi->nik}}</td>
                                   <td>{{$lokasi->email}}</td>
                                   <td>{{$lokasi->alamat}}</td>

@@ -1,6 +1,7 @@
 @extends('commonusers.app')
 
 @section('content')
+<div class='span8'>
 <div style="margin-left:70px"><h2>Tata Ruang Kota Bandung</h2></div></div>
 
 <div class="row">
@@ -18,5 +19,6 @@
 
 		<div id="tulisfungsi"></div>
 	</div>
+</div>
 </div>
 @stop

@@ -1,9 +1,0 @@
-<?php
-
-
-
-echo '
-Fungsi ruang:
-';
-
-?>

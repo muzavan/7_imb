@@ -60,7 +60,7 @@ Route::group(array('middleware' => 'adminAuth'),function()
        Route::group(['prefix' => '/imb'], function()
         {
             Route::get('/','BangunanController@index');
-            Route::get('/imb-saja', 'BangunanController@imbSatuan');
+            Route::get('/{id}', 'BangunanController@show');
             Route::get('setuju/{id}', 'BangunanController@setuju');
             Route::post('tolak', 'BangunanController@tolak');
             Route::get('sebelumTolak/{id}', 'BangunanController@sebelumTolak');
@@ -71,6 +71,7 @@ Route::group(array('middleware' => 'adminAuth'),function()
        Route::group(['prefix' => '/lokasi'], function()
         {
             Route::get('/','LokasiController@index');
+            Route::get('/{id}', 'BangunanController@show');
             Route::get('setuju/{id}', 'LokasiController@setuju');
             Route::post('tolak', 'LokasiController@tolak');
             Route::get('sebelumTolak/{id}', 'LokasiController@sebelumTolak');

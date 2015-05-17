@@ -1,6 +1,7 @@
 @extends('commonusers.app')
 
 @section('sidebar')
+<div class="span8">
   @if($block['informasis']->count())
       <table class="table table-striped table-bordered">
           <thead>
@@ -42,5 +43,5 @@
 
   @endif
   
-  
+</div>
 @stop

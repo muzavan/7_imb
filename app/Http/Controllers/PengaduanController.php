@@ -78,30 +78,6 @@ class PengaduanController extends Controller {
 	}
 
 	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		$pengaduan = Pengaduan::find($id);
-		return view('pengaduans.pengaduan',compact('pengaduan'));
-	}
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		$pengaduan = Pengaduan::find($id);
-		return view('pengaduans.edit',compact('pengaduan'));
-	}
-
-	/**
 	 * Update the specified resource in storage.
 	 *
 	 * @param  int  $id
