@@ -17,6 +17,8 @@ use App\Http\Controllers\LoginController;
 
 
 Route::get("/loginPemohon","LoginController@loginPemohon");
+Route::get("/loginAdmin","AdminController@index");
+/* END OF TESTING */
 /* END OF TESTING */
 
 Route::get('/',function(){
@@ -39,7 +41,8 @@ Route::group(array('middleware' => 'adminAuth'),function()
 {
     //middleware adminAuth dipake buat mastiin yang bisa ngakses halaman di bawah ini yang udah login sebagai admin, adminnya gak usah pake database dulu aja ya haha
     Route::group(['prefix' => '/admin'],function(){
-       Route::get('/', 'AdminController@index');
+       Route::get('/', 'AdminController@after_index');
+       Route::get('/logout', 'AdminController@logout');
        Route::get('/pengaduan/{jenis}', 'PengaduanController@index');
        Route:: get('/tataruang', 'TataruangController@admin_index');
 
@@ -103,7 +106,8 @@ Route::group(['middleware'=>'userAuth'],function(){
         Route::get('/pengaduan', 'PengaduanController@create');
         Route::post('/pengaduan', 'PengaduanController@store');
         Route::get('/tataruang', 'TataruangController@index');
-        Route::get('/tataruang/{id}', 'TataruangController@getFungsiRuang');    
+        Route::get('/tataruang/{id}', 'TataruangController@getFungsiRuang');
+        Route::get('/logout','LoginController@logout');    
     });
 });
 

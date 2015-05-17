@@ -32,7 +32,7 @@
                             class="icon-user"></i> <b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li><a href="javascript:;">Profil</a></li>
-                                <li><a href="javascript:;">Logout</a></li>
+                                <li><a href="/user/logout">Logout</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -51,9 +51,9 @@
         <div class="subnavbar-inner">
             <div class="container">
                 <ul class="mainnav">
-                    <li class="active"><a href="/"><i class="icon-home"></i><span>Halaman Utama</span> </a>
+                    <li class="active"><a href="/user/"><i class="icon-home"></i><span>Halaman Utama</span> </a>
                     </li>
-                    <li class="active"><a href="{{ url('/informasi') }}"><i class="icon-info-sign"></i><span>Informasi</span> </a>
+                    <li class="active"><a href="{{ url('/user/informasi') }}"><i class="icon-info-sign"></i><span>Informasi</span> </a>
                     </li>
                     <li class="dropdown active">                    
                         <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
@@ -63,8 +63,8 @@
                         </a>    
 
                         <ul class="dropdown-menu">
-                            <li><a href="{{ url('/pengajuan-IMB') }}">Izin Mendirikan Bangunan</a></li>
-                            <li><a href="{{ url('/pengajuan-lokasi') }}">Izin Lokasi</a></li>
+                            <li><a href="{{ url('/user/pengajuan-IMB') }}">Izin Mendirikan Bangunan</a></li>
+                            <li><a href="{{ url('/user/pengajuan-lokasi') }}">Izin Lokasi</a></li>
                         </ul>                   
                     </li>
                     <li class="active"><a href="/pengaduan"><i class="icon-info-sign"></i>
@@ -79,8 +79,8 @@
                         </a>    
 
                         <ul class="dropdown-menu">
-                            <li><a href="{{ url('/tataruang') }}">Tata Ruang Bandung</a></li>
-                            <li><a href="{{ url('/pengajuan-lokasi') }}">Ajukan Permohonan Tata Ruang</a></li>
+                            <li><a href="{{ url('/user/tataruang') }}">Tata Ruang Bandung</a></li>
+                            <li><a href="{{ url('/user/pengajuan-lokasi') }}">Ajukan Permohonan Tata Ruang</a></li>
                         </ul>                   
                     </li>
                 </ul>

@@ -37,7 +37,7 @@
           {!! Form::file('dokumen',['class' => 'form-control']) !!}
         </div>
         <div class='form-group'>
-          {!! Form::submit('Tambah Permohonan Bangunan',['class' => 'btn btn-primary form-control']) !!}
+          {!! Form::submit('Tambah Permohonan Lokasi',['class' => 'btn btn-primary form-control']) !!}
         </div>
         {!! Form::close() !!}
       </div>
@@ -46,30 +46,30 @@
       {!! Form::open(['url' => '/user/pengajuan-lokasi' , 'files'=>true]) !!}
       <div class='form-group'>
         {!! Form::label('email','Email:') !!}
-        {!! Form::email('email','mail@email.com',['class' => 'form-control']) !!}
+        {!! Form::email('email','',['class' => 'form-control','placeholder' => 'mail@email.com']) !!}
       </div>
       <div class='form-group'>
         {!! Form::label('alamat','Alamat:') !!}
-        {!! Form::text('alamat','(Alamat Lokasi)',['class' => 'form-control']) !!}
+        {!! Form::text('alamat','',['class' => 'form-control','placeholder' => '(Alamat Lokasi)']) !!}
       </div>
       <div class='form-group'>
-        {!! Form::label('luas','Luas:') !!}
-        {!! Form::text('luas','Luas (dalam meter persegi)',['class' => 'form-control','rows' => '3']) !!}
+        {!! Form::label('luas','Luas (m2):') !!}
+        {!! Form::text('luas','',['class' => 'form-control','placeholder' => 'Luas (dalam meter persegi)']) !!}
       </div>
       <div class='form-group'>
         {!! Form::label('kelurahan','Kelurahan:') !!}
-        {!! Form::text('kelurahan','Kelurahan',['class' => 'form-control','rows' => '3']) !!}
+        {!! Form::text('kelurahan','',['class' => 'form-control','placeholder' => 'Kelurahan']) !!}
       </div>
       <div class='form-group'>
         {!! Form::label('kecamatan','Kecamatan:') !!}
-        {!! Form::text('kecamatan','Kecamatan',['class' => 'form-control','rows' => '3']) !!}
+        {!! Form::text('kecamatan','',['class' => 'form-control','placeholder' => 'Kecamatan']) !!}
       </div>
       <div class='form-group'>
         {!! Form::label('dokumen','Dokumen Teknis:') !!}
         {!! Form::file('dokumen',['class' => 'form-control']) !!}
       </div>
       <div class='form-group'>
-        {!! Form::submit('Tambah Permohonan Bangunan',['class' => 'btn btn-primary form-control']) !!}
+        {!! Form::submit('Tambah Permohonan Lokasi',['class' => 'btn btn-primary form-control']) !!}
       </div>
       {!! Form::close() !!}
     </div>

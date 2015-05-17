@@ -26,7 +26,7 @@ class AdminController extends Controller {
 		}
 	}
 
-	public static function login($password){
+	public static function _login($password){
 		if(($password==self::$pw_asli)){
 			setcookie(self::$token,md5(self::$token." ".self::$rand_string),time()+60*60);
 			return true;
@@ -41,6 +41,32 @@ class AdminController extends Controller {
 	}
 
 	public function index(){
-		return "jokowi";
+		return view('admin.login');
+	}
+
+	public function after_index(){
+		return redirect('/admin/lokasi/');
+	}
+
+	public function login(){
+		$var = Request::all();
+		if(!isset($var['password'])){
+			$message = "You have to login";
+			return view('admin.login',compact('message'));
+		}
+		else{
+			if(self::_login($var['password'])){
+				return redirect('/admin/');
+			}
+			else{
+				$message = "Incorrect Passowrd";
+				return view('admin.login',compact('message'));		
+			}
+		}
+	}
+
+	public function logout(){
+		setcookie(self::$token,'',time()-60);
+		return redirect("/");
 	}
 }

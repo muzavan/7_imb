@@ -58,5 +58,11 @@ class LoginController extends Controller {
 		}
 	}
 
+	public function logout(){
+		setcookie("access_token",'',time()-60);
+		setcookie("nik",'',time()-60);
+		return redirect('/');	
+	}
+
 	
 }

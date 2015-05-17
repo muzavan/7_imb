@@ -48,11 +48,11 @@ use App\Bangunan;
         {!! Form::open(['url' => '/user/pengajuan-IMB' , 'files'=>true]) !!}
       <div class='form-group'>
         {!! Form::label('email','Email:') !!}
-        {!! Form::email('email','mail@email.com',['class' => 'form-control']) !!}
+        {!! Form::email('email','',['class' => 'form-control','placeholder'=>'mail@email.com']) !!}
       </div>
       <div class='form-group'>
         {!! Form::label('nama','Nama:') !!}
-        {!! Form::text('nama','(Nama Bangunan)',['class' => 'form-control']) !!}
+        {!! Form::text('nama','',['class' => 'form-control','placeholder'=>'Nama Bangunan']) !!}
       </div>
       <div class='form-group'>
         {!! Form::label('jenis','Jenis:') !!}
@@ -60,11 +60,11 @@ use App\Bangunan;
       </div>
       <div class='form-group'>
         {!! Form::label('id_lokasi','ID Lokasi:') !!}
-        {!! Form::text('id_lokasi','No Surat Izin Lokasi',['class' => 'form-control','rows' => '3']) !!}
+        {!! Form::text('id_lokasi','',['class' => 'form-control','placeholder'=>'No Surat Izin Lokasi']) !!}
       </div>
       <div class='form-group'>
         {!! Form::label('password_lokasi','Password Lokasi:') !!}
-        {!! Form::text('password_lokasi','Password Surat Izin Lokasi (dimiliki Pemilik Lokasi)',['class' => 'form-control','rows' => '3']) !!}
+        {!! Form::text('password_lokasi','',['class' => 'form-control','placeholder'=>'Password Surat Izin Lokasi (dimiliki Pemilik Lokasi)']) !!}
       </div>
       <div class='form-group'>
         {!! Form::label('dokumen','Dokumen Teknis:') !!}

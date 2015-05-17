@@ -1,3 +1,6 @@
+<?php
+  use App\Lokasi;
+?>
 @extends('admin.app')
 
 @section('content')
