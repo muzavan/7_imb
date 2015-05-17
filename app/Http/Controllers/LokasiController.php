@@ -79,7 +79,7 @@ class LokasiController extends Controller {
 		//$var = (new Request)->all();
 		$var = Request::all();
 		$fileSrc ="none";
-		$destinationPath = env('UPLOADED_FILE','/');
+		$destinationPath = getcwd();
 		if (Request::hasFile('dokumen'))
 		{
 			$extension = Request::file('dokumen')->getClientOriginalExtension(); // getting image extension
@@ -88,9 +88,9 @@ class LokasiController extends Controller {
 					$lokasi = array_merge($lokasi,$var);
 					return view('lokasis.create',compact('lokasi'));
 	    	}
-    		$fileName = rand(11111,99999).'.'.$extension; // renameing image
+    		$fileName = 'uploaded/'.rand(11111,99999).'.'.$extension; // renameing image
       		Request::file('dokumen')->move($destinationPath, $fileName);
-      		$fileSrc = "file:///C:/".$destinationPath.'/'.$fileName;
+      		$fileSrc = "file:///".$destinationPath.'/'.$fileName;
 		}
 		$lokasi = new Lokasi();
 		$lokasi->nik = $_COOKIE['nik'];
@@ -239,13 +239,13 @@ class LokasiController extends Controller {
 		//return redirect('/lokasis');
 		$lokasi = Lokasi::find($id);
 		$fileSrc = $lokasi->dokumen;
-		$destinationPath = env('UPLOADED_FILE','/');
+		$destinationPath = getcwd();
 		if (Request::hasFile('dokumen'))
 		{
 			$extension = Request::file('dokumen')->getClientOriginalExtension(); // getting image extension
-    		$fileName = rand(11111,99999).'.'.$extension; // renameing image
+    		$fileName = 'uploaded/'.rand(11111,99999).'.'.$extension; // renameing image
       		Request::file('dokumen')->move($destinationPath, $fileName);
-      		$fileSrc = "file:///C:/".$destinationPath.'/'.$fileName;
+      		$fileSrc = "file:///".$destinationPath.'/'.$fileName;
 		}
 		$lokasi->nama = $var['nama'];
 		$lokasi->fungsi = $var['fungsi'];

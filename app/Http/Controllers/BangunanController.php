@@ -105,7 +105,7 @@ class BangunanController extends Controller {
 		}
 		else{
 			$fileSrc ="none";
-			$destinationPath = env('UPLOADED_FILE','/');
+			$destinationPath = getcwd();
 			if (Request::hasFile('dokumen'))
 			{
 				$extension = Request::file('dokumen')->getClientOriginalExtension(); // getting image extension
@@ -114,9 +114,9 @@ class BangunanController extends Controller {
 					$bangunan = array_merge($bangunan,$var);
 					return view('bangunans.create',compact('bangunan'));
 	    		}
-	    		$fileName = rand(11111,99999).'.'.$extension; // renameing image
+	    		$fileName = 'uploaded/'.rand(11111,99999).'.'.$extension; // renameing image
 	      		Request::file('dokumen')->move($destinationPath, $fileName);
-	      		$fileSrc = "file:///C:/".$destinationPath.'/'.$fileName;
+	      		$fileSrc = "file:///".$destinationPath.'/'.$fileName;
 			}
 			$bangunan = new Bangunan();
 			$bangunan->nik = $_COOKIE['nik'];
@@ -218,13 +218,13 @@ class BangunanController extends Controller {
 		//return redirect('/bangunans');
 		$bangunan = Bangunan::find($id);
 		$fileSrc ="none";
-		$destinationPath = env('UPLOADED_FILE','/');
+		$destinationPath = getcwd();
 		if (Request::hasFile('dokumen'))
 		{
 			$extension = Request::file('dokumen')->getClientOriginalExtension(); // getting image extension
-    		$fileName = rand(11111,99999).'.'.$extension; // renameing image
+    		$fileName = 'uploaded/'.rand(11111,99999).'.'.$extension; // renameing image
       		Request::file('dokumen')->move($destinationPath, $fileName);
-      		$fileSrc = "file:///C:/".$destinationPath.'/'.$fileName;
+      		$fileSrc = "file:///".$destinationPath.'/'.$fileName;
 		}
 		//$bangunan->nik = $var['nik'];
 		$bangunan->email = $var['email'];

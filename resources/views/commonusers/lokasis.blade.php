@@ -5,37 +5,76 @@
 @stop
 
 @section('content')
-      {!! Form::open(['url' => '/pengajuan-lokasi' , 'class'=>'form-horizontal', 'files'=>true]) !!}
-      <div class='control-group'>
-        <div class="controls"><h3>Form Permohonan Izin Lokasi</h3></div>
+  <div class='row'>
+    <div class='col-md-3'>
+    </div>
+    @if(isset($lokasi))
+      <div class='col-md-6'>
+        <div class="alert alert-danger">{{$lokasi['error']}}</div>
+        {!! Form::open(['url' => '/user/pengajuan-lokasi' , 'files'=>true]) !!}
+        <div class='form-group'>
+          {!! Form::label('email','Email:') !!}
+          {!! Form::email('email', $lokasi['email'],['class' => 'form-control']) !!}
+        </div>
+        <div class='form-group'>
+          {!! Form::label('alamat','Alamat:') !!}
+          {!! Form::text('alamat',$lokasi['alamat'],['class' => 'form-control']) !!}
+        </div>
+        <div class='form-group'>
+          {!! Form::label('luas','Luas:') !!}
+          {!! Form::text('luas',$lokasi['luas'],['class' => 'form-control','rows' => '3']) !!}
+        </div>
+        <div class='form-group'>
+          {!! Form::label('kelurahan','Kelurahan:') !!}
+          {!! Form::text('kelurahan',$lokasi['kelurahan'],['class' => 'form-control','rows' => '3']) !!}
+        </div>
+        <div class='form-group'>
+          {!! Form::label('kecamatan','Kecamatan:') !!}
+          {!! Form::text('kecamatan',$lokasi['kecamatan'],['class' => 'form-control','rows' => '3']) !!}
+        </div>
+        <div class='form-group'>
+          {!! Form::label('dokumen','Dokumen Teknis:') !!}
+          {!! Form::file('dokumen',['class' => 'form-control']) !!}
+        </div>
+        <div class='form-group'>
+          {!! Form::submit('Tambah Permohonan Bangunan',['class' => 'btn btn-primary form-control']) !!}
+        </div>
+        {!! Form::close() !!}
       </div>
-
-      <div class='control-group'>
-        <div class="controls">{!! Form::label('email','Email:') !!}</div>
-        <div class="controls">{!! Form::text('email','',['class' => 'span8']) !!}</div>
+    @else
+    <div class='col-md-6'>
+      {!! Form::open(['url' => '/user/pengajuan-lokasi' , 'files'=>true]) !!}
+      <div class='form-group'>
+        {!! Form::label('email','Email:') !!}
+        {!! Form::email('email','mail@email.com',['class' => 'form-control']) !!}
       </div>
-      <div class='control-group'>
-        <div class="controls">{!! Form::label('alamat','Alamat:') !!}</div>
-        <div class="controls">{!! Form::textarea('alamat','',['class' => 'span8', 'rows' => '3']) !!}</div>
+      <div class='form-group'>
+        {!! Form::label('alamat','Alamat:') !!}
+        {!! Form::text('alamat','(Alamat Lokasi)',['class' => 'form-control']) !!}
       </div>
-      <div class='control-group'>
-        <div class="controls">{!! Form::label('luas','Luas:') !!}</div>
-        <div class="controls">{!! Form::text('luas','',['class' => 'span8']) !!}</div>
+      <div class='form-group'>
+        {!! Form::label('luas','Luas:') !!}
+        {!! Form::text('luas','Luas (dalam meter persegi)',['class' => 'form-control','rows' => '3']) !!}
       </div>
-      <div class='control-group'>
-        <div class="controls">{!! Form::label('kelurahan','Kelurahan:') !!}</div>
-        <div class="controls">{!! Form::text('kelurahan','',['class' => 'span8']) !!}</div>
+      <div class='form-group'>
+        {!! Form::label('kelurahan','Kelurahan:') !!}
+        {!! Form::text('kelurahan','Kelurahan',['class' => 'form-control','rows' => '3']) !!}
       </div>
-      <div class='control-group'>
-        <div class="controls">{!! Form::label('kecamatan','Kecamatan:') !!}</div>
-        <div class="controls">{!! Form::text('kecamatan','',['class' => 'span8']) !!}</div>
+      <div class='form-group'>
+        {!! Form::label('kecamatan','Kecamatan:') !!}
+        {!! Form::text('kecamatan','Kecamatan',['class' => 'form-control','rows' => '3']) !!}
       </div>
-      <div class='control-group'>
-        <div class="controls">{!! Form::label('dokumen','Dokumen Teknis:') !!}</div>
-        <div class="controls">{!! Form::file('dokumen',['class' => 'span8']) !!}</div>
+      <div class='form-group'>
+        {!! Form::label('dokumen','Dokumen Teknis:') !!}
+        {!! Form::file('dokumen',['class' => 'form-control']) !!}
       </div>
-      <div class='control-group'>
-        <div class="controls">{!! Form::submit('Tambah Permohonan Lokasi',['class' => 'btn btn-primary form-control']) !!}</div>
+      <div class='form-group'>
+        {!! Form::submit('Tambah Permohonan Bangunan',['class' => 'btn btn-primary form-control']) !!}
       </div>
       {!! Form::close() !!}
+    </div>
+    @endif
+    <div class='col-md-3'>
+    </div>
+  </div>
 @stop

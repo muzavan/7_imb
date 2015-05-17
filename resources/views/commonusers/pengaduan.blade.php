@@ -6,7 +6,7 @@
 {{ $block['message'] }}
 </div>
 @endif
-  {!! Form::open(['url' => '/pengaduan' , 'class'=>'form-horizontal' , 'files'=>true]) !!}
+  {!! Form::open(['url' => '/user/pengaduan' , 'class'=>'form-horizontal' , 'files'=>true]) !!}
       <div class='control-group'>
         <div class="controls"><h3>Form Pengaduan</h3></div>
       </div>
