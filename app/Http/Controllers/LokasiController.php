@@ -39,6 +39,70 @@ class LokasiController extends Controller {
 		}
 	}
 
+	public function getProses()
+	{
+		$lokasis = Lokasi::where('status','=',0)->orderBy('id','DESC')->simplePaginate(5);
+		$lokasis->setPath("lokasi");
+		if($lokasis == []){
+			return 'Kosong';
+		}
+		else{
+			$message = 'Proses';
+			$block = [
+				'lokasis'=>$lokasis,
+				'message'=>$message
+			];
+			$status = Lokasi::getStatusLokasi();
+			foreach ($block['lokasis'] as $lokasi) {
+				$lokasi->status =  $status["$lokasi->status"];
+			}
+			return view('admin.lokasi',compact('block'));
+		}
+	}
+
+	public function getDisetujui()
+	{
+		$lokasis = Lokasi::where('status','=',1)->orderBy('id','DESC')->simplePaginate(5);
+		$lokasis->setPath("lokasi");
+		if($lokasis == []){
+			return 'Kosong';
+		}
+		else{
+			$message = 'Disetujui';
+			$block = [
+				'lokasis'=>$lokasis,
+				'message'=>$message
+			];
+			$status = Lokasi::getStatusLokasi();
+			foreach ($block['lokasis'] as $lokasi) {
+				$lokasi->status =  $status["$lokasi->status"];
+			}
+			return view('admin.lokasi',compact('block'));
+		}
+	}
+
+	public function getDitolak()
+	{
+		$lokasis = Lokasi::where('status','=',-1)->orderBy('id','DESC')->simplePaginate(5);
+		$lokasis->setPath("lokasi");
+		if($lokasis == []){
+			return 'Kosong';
+		}
+		else{
+			$message = 'Ditolak';
+			$block = [
+				'lokasis'=>$lokasis,
+				'message'=>$message
+			];
+			$status = Lokasi::getStatusLokasi();
+			foreach ($block['lokasis'] as $lokasi) {
+				$lokasi->status =  $status["$lokasi->status"];
+			}
+			return view('admin.lokasi',compact('block'));
+		}
+	}
+
+
 	public function user_index()
 	{
 		$lokasis = Lokasi::orderBy('id','DESC')->paginate(5);

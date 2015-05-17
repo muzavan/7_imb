@@ -46,6 +46,99 @@ class BangunanController extends Controller {
 		}
 	}
 
+	public function getProses()
+	{
+		$bangunans = Bangunan::where('status','=',0)->orderBy('id')->simplePaginate(5);
+
+		// $lokasis->setPath("imb");
+
+		$bangunans->setPath("imb");
+
+		if($bangunans == []){
+			$block =[
+				'bangunans' => null,
+				'message' => "Tidak ada izin bangunan",
+			];
+			return view('admin.imb',compact('block'));
+		}
+		else{
+			$message = "Proses";
+			$block = [
+				'bangunans'=>$bangunans,
+				'message'=>$message
+			];
+			$jenis = Bangunan::getJenisBangunan();
+			$status = Bangunan::getStatusBangunan();
+			foreach ($block['bangunans'] as $bangunan) {
+				$bangunan->jenis = $jenis["$bangunan->jenis"];
+				$bangunan->status = $status["$bangunan->status"];
+			}
+			return view('admin.imb',compact('block'));
+		}
+	}
+
+	public function getDisetujui()
+	{
+		$bangunans = Bangunan::where('status','=',1)->orderBy('id')->simplePaginate(5);
+
+		// $lokasis->setPath("imb");
+
+		$bangunans->setPath("imb");
+
+		if($bangunans == []){
+			$block =[
+				'bangunans' => null,
+				'message' => "Tidak ada izin bangunan",
+			];
+			return view('admin.imb',compact('block'));
+		}
+		else{
+			$message = "Disetujui";
+			$block = [
+				'bangunans'=>$bangunans,
+				'message'=>$message
+			];
+			$jenis = Bangunan::getJenisBangunan();
+			$status = Bangunan::getStatusBangunan();
+			foreach ($block['bangunans'] as $bangunan) {
+				$bangunan->jenis = $jenis["$bangunan->jenis"];
+				$bangunan->status = $status["$bangunan->status"];
+			}
+			return view('admin.imb',compact('block'));
+		}
+	}
+
+	public function getDitolak()
+	{
+		$bangunans = Bangunan::where('status','=',-1)->orderBy('id')->simplePaginate(5);
+
+		// $lokasis->setPath("imb");
+
+		$bangunans->setPath("imb");
+
+		if($bangunans == []){
+			$block =[
+				'bangunans' => null,
+				'message' => "Tidak ada izin bangunan",
+			];
+			return view('admin.imb',compact('block'));
+		}
+		else{
+			$message = "Ditolak";
+			$block = [
+				'bangunans'=>$bangunans,
+				'message'=>$message
+			];
+			$jenis = Bangunan::getJenisBangunan();
+			$status = Bangunan::getStatusBangunan();
+			foreach ($block['bangunans'] as $bangunan) {
+				$bangunan->jenis = $jenis["$bangunan->jenis"];
+				$bangunan->status = $status["$bangunan->status"];
+			}
+			return view('admin.imb',compact('block'));
+		}
+	}
+
 	public function imbSatuan()
 	{
 		return view('admin.imb_satuan');

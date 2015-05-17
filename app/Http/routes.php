@@ -26,12 +26,12 @@ Route::get('/',function(){
     if(isset($vars['code'])){
        //  return $vars['code'];
        LoginController::getAccessToken($vars['code']);
-        return view('commonusers.app');
+        return view('commonusers.welcome');
         //seharusnya ke home user?
     }
     else{
         // return "hahaha gagal mampus lu";
-        return view('commonusers.app');
+        return view('commonusers.welcome');
     }
 });
 
@@ -63,6 +63,9 @@ Route::group(array('middleware' => 'adminAuth'),function()
             Route::get('setuju/{id}', 'BangunanController@setuju');
             Route::post('tolak', 'BangunanController@tolak');
             Route::get('sebelumTolak/{id}', 'BangunanController@sebelumTolak');
+            Route::get('/proses', 'BangunanController@getProses');
+            Route::get('/disetujui', 'BangunanController@getDisetujui');
+            Route::get('/ditolak', 'BangunanController@getDitolak');
         }); 
        Route::group(['prefix' => '/lokasi'], function()
         {
@@ -70,7 +73,10 @@ Route::group(array('middleware' => 'adminAuth'),function()
             Route::get('setuju/{id}', 'LokasiController@setuju');
             Route::post('tolak', 'LokasiController@tolak');
             Route::get('sebelumTolak/{id}', 'LokasiController@sebelumTolak');
-            Route::get('/laporan', 'LokasiController@generateLaporan'); 
+            Route::get('/laporan', 'LokasiController@generateLaporan');
+            Route::get('/proses', 'LokasiController@getProses');
+            Route::get('/disetujui', 'LokasiController@getDisetujui');
+            Route::get('/ditolak', 'LokasiController@getDitolak');
         });
         Route::group(['prefix' => '/tataruang'], function()
         {
@@ -99,6 +105,9 @@ Route::get('/informasi/{id}','InformasiController@index');
 Route::group(['middleware'=>'userAuth'],function(){
     //middleware userAuth digunakan untuk memastikan user harus login dulu
     Route::group(['prefix'=>'/user'],function(){
+        Route::get('/',function(){
+            return view('commonusers.welcome');
+        });
         Route::get('/pengajuan-lokasi', 'LokasiController@user_index');
         Route::post('/pengajuan-lokasi', 'LokasiController@store');
         Route::get('/pengajuan-IMB', 'BangunanController@user_index');

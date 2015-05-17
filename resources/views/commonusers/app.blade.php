@@ -53,7 +53,7 @@
                 <ul class="mainnav">
                     <li class="active"><a href="/user/"><i class="icon-home"></i><span>Halaman Utama</span> </a>
                     </li>
-                    <li class="active"><a href="{{ url('/user/informasi') }}"><i class="icon-info-sign"></i><span>Informasi</span> </a>
+                    <li class="active"><a href="{{ url('/informasi') }}"><i class="icon-info-sign"></i><span>Informasi</span> </a>
                     </li>
                     <li class="dropdown active">                    
                         <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
@@ -67,7 +67,7 @@
                             <li><a href="{{ url('/user/pengajuan-lokasi') }}">Izin Lokasi</a></li>
                         </ul>                   
                     </li>
-                    <li class="active"><a href="/pengaduan"><i class="icon-info-sign"></i>
+                    <li class="active"><a href="{{ url('/user/pengaduan') }}"><i class="icon-info-sign"></i>
                             <span>Ajukan Pengaduan</span>
                         </a>                    
                     </li>
@@ -80,7 +80,6 @@
 
                         <ul class="dropdown-menu">
                             <li><a href="{{ url('/user/tataruang') }}">Tata Ruang Bandung</a></li>
-                            <li><a href="{{ url('/user/pengajuan-lokasi') }}">Ajukan Permohonan Tata Ruang</a></li>
                         </ul>                   
                     </li>
                 </ul>
@@ -117,9 +116,7 @@
                         <h4>
                             Izin Mendirikan Bangunan</h4>
                         <ul>
-                            <li><a href="javascript:;">Informasi</a></li>
-                            <li><a href="javascript:;">Ajukan Permohonan</a></li>
-                            <li><a href="javascript:;">Ajukan Pengaduan</a></li>
+                            <li><a href="/user/pengajuan-IMB">Ajukan Permohonan</a></li>
                         </ul>
                     </div>
                     <!-- /span3 -->
@@ -127,9 +124,7 @@
                         <h4>
                             Izin Lokasi</h4>
                         <ul>
-                            <li><a href="javascript:;">Informasi</a></li>
-                            <li><a href="javascript:;">Ajukan Permohonan</a></li>
-                            <li><a href="javascript:;">Ajukan Pengaduan</a></li>
+                            <li><a href="/user/pengajuan-lokasi">Ajukan Permohonan</a></li>
                         </ul>
                     </div>
                     <!-- /span3 -->
@@ -137,9 +132,7 @@
                         <h4>
                             Tata Ruang</h4>
                         <ul>
-                            <li><a href="javascript:;">Informasi</a></li>
-                            <li><a href="javascript:;">Ajukan Permohonan</a></li>
-                            <li><a href="javascript:;">Ajukan Pengaduan</a></li>
+                            <li><a href="/user/tataruang/peta">Lihat Tata Ruang</a></li>
                         </ul>
                     </div>
                     <!-- /span3 -->
@@ -205,5 +198,99 @@ $('body').on('change','#jenisruang',function(){
 });
 
 	</script>
+
+        <style>
+        .bg-primary {
+    background-color: #68cacd;
+    margin-top: -36px;
+    padding: 120px;
+    color: #ffffff;
+}
+
+.section-heading {
+    margin-top: 0;
+}
+
+hr {
+    max-width: 50px;
+    border-color: #f05f40;
+    border-width: 3px;
+}
+
+hr.light {
+    border-color: #fff;
+}
+
+.text-faded {
+    color: rgba(255,255,255,.7);
+}
+
+.img-responsive{max-width: 100%; height: auto;}
+
+.bg-yellow {
+    background-color: #f05f40;
+    padding: 120px;
+    color: #ffffff;
+    margin-top: -36px;
+}
+
+.title {
+    margin-top: 0;
+    font-size: 50px;
+}
+
+.btn-sample {
+    color: #FFFFFF;
+    background-color: #F05F40;
+    border: solid 5px #FFFFFF;
+    border-radius: 0px;
+    padding: 10px;
+}
+
+.btn-sample:hover,
+.btn-sample:focus,
+.btn-sample:active,
+.btn-sample.active,
+.btn-sample.disabled,
+.btn-sample[disabled] {
+    color: #FFFFFF;
+    background-color: #F05F40;
+}
+
+.btn-sample-blue {
+    color: #FFFFFF;
+    background-color: #68cacd;
+    border: solid 5px #FFFFFF;
+    border-radius: 0px;
+    padding: 10px;
+}
+
+.btn-sample-blue:hover,
+.btn-sample-blue:focus,
+.btn-sample-blue:active,
+.btn-sample-blue.active,
+.btn-sample-blue.disabled,
+.btn-sample-blue[disabled] {
+    color: #FFFFFF;
+    background-color: #68cacd;
+}
+
+.bg-yellow-bottom {
+    background-color: #f05f40;
+    padding: 120px;
+    color: #ffffff;
+    margin-top: -36px;
+    margin-bottom: -26px;
+}
+
+.carous{
+    color: #FFFFFF;
+}
+
+a.we{
+    color: #ffffff;
+    text-decoration: underline;
+}
+    </style>
 </body>
 </html>
