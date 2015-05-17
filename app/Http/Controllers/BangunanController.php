@@ -275,7 +275,7 @@ class BangunanController extends Controller {
 
 	public function sebelumTolak($id)
 	{
-		return view('izin_admin.tolak_imb',compact('id'));
+		return view('admin.tolak_izin_imb',compact('id'));
 	}
 
 	/**
@@ -301,6 +301,103 @@ class BangunanController extends Controller {
 				$bangunan->status = $status["$bangunan->status"];
 		}
 		return view('bangunans.index',compact('block'));
+	}
+
+	public function kirimLaporan(){
+		$html = '<html><body>'
+			. '<center>'
+            . '<h1>Dinas Bangunan</h1>'
+            . '<h1>Kota Bandung</h1>'
+            . '<br/>'
+            . '<h3>Laporan</h3>'
+            . '<h2>Rekapitulasi Permohonan Izin Lokasi dan Mendirikan Bangunan</h2>'
+            . '<br/>'
+            . '<img width="300px" src="http://2.bp.blogspot.com/-jt8t6lt0kck/UmTwtSffyhI/AAAAAAAADCU/hJEE7zZireY/s1600/Logo-Pemerintah-Kota-Bandung-transparent.png">'
+            . '<br/>'
+            . '<h2>'.date("Y",time())."</h2>";
+        $data = Lokasi::whereRaw('MONTH(`updated_at`)==MONTH(NOW()) and YEAR(`updated_at`)==YEAR(NOW())')->get();
+        $html = $html.'<div style="page-break-after: always;"></div>';
+        $html = $html.'<h2>'.date("M-Y",time()).'</h2>';
+        $html = $html.'<h2>Izin Lokasi</h2>';
+        $html = $html.'<table class="table table-bordered table-striped table-hover"><thead>
+        				<td>No</td>
+        				<td>NIK Pengaju</td>
+        				<td>Email</td>
+        				<td>Alamat</td>
+        				<td>Luas</td>
+        				<td>Kelurahan</td>
+        				<td>Kecamatan</td>
+						<td>Status</td>
+        				</thead>';
+        $html = $html."<tbody>";
+        $i=0;
+        foreach($data as $lokasi){
+        	$i=$i+1;
+        	$html = $html."<tr>";
+        	$html = $html."<td>".$i."</td>";
+        	$html = $html."<td>".$lokasi['nik']."</td>";
+        	$html = $html."<td>".$lokasi['email']."</td>";
+        	$html = $html."<td>".$lokasi['alamat']."</td>";
+        	$html = $html."<td>".$lokasi['luas']."</td>";
+        	$html = $html."<td>".$lokasi['kelurahan']."</td>";
+        	$html = $html."<td>".$lokasi['kecamatan']."</td>";
+        	$status = $lokasi['status'];
+        	$html = $html."<td>".Lokasi::getStatusLokasi()["$status"]."</td>";
+        	$html = $html."</tr>";
+        }
+        $html = $html."</tbody>";
+        $html = $html."</table>";
+
+        //IZIN MENDIRIKAN BANGUNAN
+        $data = Bangunan::whereRaw('MONTH(`updated_at`)==MONTH(NOW()) and YEAR(`updated_at`)==YEAR(NOW())')->get();
+        $html = $html.'<div style="page-break-after: always;"></div>';
+        $html = $html.'<h2>Izin Mendirikan Bangunan</h2>';
+        $html = $html."<table class='table table-bordered table-striped table-hover'><thead>
+        				<td>No</td>
+        				<td>NIK Pengaju</td>
+        				<td>Email</td>
+        				<td>Jenis</td>
+        				<td>Alamat</td>
+        				<td>Kelurahan</td>
+        				<td>Kecamatan</td>
+						<td>Status</td>
+        				</thead>";
+        $html = $html."<tbody>";
+        $i=0;
+        foreach($data as $bangunan){
+        	$i=$i+1;
+        	$tmp = $bangunan['id_lokasi'];
+        	$lokasi = Lokasi::find($tmp);
+        	$html = $html."<tr>";
+        	$html = $html."<td>".$i."</td>";
+        	$html = $html."<td>".$bangunan['nik']."</td>";
+        	$html = $html."<td>".$bangunan['email']."</td>";
+        	$jenis = $bangunan['jenis'];
+        	$html = $html."<td>".Bangunan::getJenisBangunan()['$jenis']."</td>";
+        	$html = $html."<td>".$lokasi['alamat']."</td>";
+        	$html = $html."<td>".$lokasi['kelurahan']."</td>";
+        	$html = $html."<td>".$lokasi['kecamatan']."</td>";
+        	$status = $bangunan['status'];
+        	$html = $html."<td>".Lokasi::getStatusBangunan()["$status"]."</td>";
+        	$html = $html."</tr>";
+        }
+        $html = $html."</tbody>";
+        $html = $html."</table>";
+
+        $html = $html
+        	. '</center>'           
+  			. '</body></html>';
+        $fileName = "Laporan Dinas Tata Ruang dan Cipta Karya per ".date("M-Y",time()).".pdf";
+		$filePath = '../app/storage/';
+        PDF::loadHTML($html)->setPaper('a4')->setOrientation('potrait')->setWarnings(false)->save($filePath.$fileName);;
+    	$mailAttachment = $filePath.$fileName;
+    	Mail::send('emails.laporan', $data, function($message) use ($data,$mailAttachment) {
+					$message->from('no-reply@pimo.com', 'Sistem Pengajuaan Izin Mendirikan Online');
+					$message->to("muzavan@gmail.com","Muhammad Reza Irvanda")->subject("[Laporan Pelayanan Online Dinas Tata Ruang dan Cipta Karya]");
+					$message->attach($mailAttachment);
+		});
+
+		return redirect("/admin/imb");
 	}
 
 }

@@ -42,7 +42,7 @@
             </div>
             <div class="top-menu">
               <ul class="nav pull-right top-menu">
-                    <li><a class="logout" href="/admin/logout">Logout</a></li>
+                    <li><a class="logout" href="logout">Logout</a></li>
               </ul>
             </div>
         </header>
@@ -66,7 +66,7 @@
                   </li>
 
                   <li class="sub-menu">
-                      <a href="/admin/informasi">
+                      <a href="informasi">
                           <i class="fa fa-desktop"></i>
                           <span>Informasi</span>
                       </a>
@@ -78,7 +78,7 @@
                           <span>IMB</span>
                       </a>
                       <ul class="sub">
-                          <li><a  href="/admin/imb">Semua Izin</a></li>
+                          <li><a  href="imb">Semua Izin</a></li>
                           <li><a  href="#">Izin dalam Proses</a></li>
                           <li><a  href="#">Izin Diterima</a></li>
                           <li><a  href="#">Izin Ditolak</a></li>
@@ -91,7 +91,7 @@
                           <span>Izin Lokasi</span>
                       </a>
                       <ul class="sub">
-                          <li><a  href="/admin/lokasi">Semua Izin</a></li>
+                          <li><a  href="lokasi">Semua Izin</a></li>
                           <li><a  href="#">Izin dalam Proses</a></li>
                           <li><a  href="#">Izin Diterima</a></li>
                           <li><a  href="#">Izin Ditolak</a></li>
@@ -104,8 +104,8 @@
                           <span>Tata Ruang</span>
                       </a>
                       <ul class="sub">
-                          <li><a  href="/admin/tataruang">Peta</a></li>
-                          <li><a  href="/admin/tataruang/tambah">Tambah Wilayah</a></li>
+                          <li><a  href="tataruang">Peta</a></li>
+                          <li><a  href="tataruang/tambah">Tambah Wilayah</a></li>
                       </ul>
                   </li>
 
@@ -115,10 +115,17 @@
                           <span>Pengaduan</span>
                       </a>
                       <ul class="sub">
-                          <li><a  href="/admin/pengaduan/1">IMB</a></li>
-                          <li><a  href="/admin/pengaduan/2">Izin Lokasi</a></li>
-                          <li><a  href="/admin/pengaduan/3">Tata Ruang</a></li>
+                          <li><a  href="pengaduan/1">IMB</a></li>
+                          <li><a  href="pengaduan/2">Izin Lokasi</a></li>
+                          <li><a  href="pengaduan/3">Tata Ruang</a></li>
                       </ul>
+                  </li>
+
+                  <li class="sub-menu">
+                      <a href="lokasi/laporan" >
+                          <i class="fa fa-desktop"></i>
+                          <span>Kirim Laporan</span>
+                      </a>
                   </li>
 
               </ul>
